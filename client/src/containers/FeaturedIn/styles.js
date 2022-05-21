@@ -2,7 +2,11 @@ import { styled } from '@mui/system';
 import { Container, Grid, Typography, Button } from '@mui/material';
 export const FeatureInner = styled('div')({});
 
-export const Logos = styled('img')({});
+export const Logo = styled('img')({
+  height: '5rem',
+});
+
+
 
 export const LogoWrap = styled('div')({});
 
@@ -19,18 +23,19 @@ export const GridItem = styled(Grid)(({ theme }) => ({
   flexDirection: 'column',
   alignItems: 'flex-start',
   gap: '2.5rem',
-  background: theme.palette.primary.main,
   padding: '5rem',
 }));
 
+
+
+
 export const Subheader = styled(Typography)(({ theme }) => ({
   color: theme.palette.primary.main,
-  fontSize: '10.5rem',
+  fontSize: 'clamp(2.70rem, calc(-0.44rem + 15.69vw), 10.74rem)',
   fontWeight: 400,
   fontFamily: 'Mightype',
   textAlign: 'center',
 }));
-
 export const FeaturedInSection = styled('section')(({ theme }) => ({
   background: theme.palette.secondary.light,
   padding: '12.5rem',

@@ -35,7 +35,7 @@ export default function LandingContainer() {
           </Subheader>
           <CustomButton sx={{ ml: 12 }}>Shop Now</CustomButton>
         </GridItem>
-        <GridItem md={6}>
+        <GridItem item md={6}>
           <LandingImage src='/images/landing-img.png' alt='Landing Image' />
         </GridItem>
       </LandingInner>

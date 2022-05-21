@@ -129,4 +129,3 @@ export const NavOption = styled(Typography)(({ theme }) => {
   //   color: '#e9e7dc',
   //   opacity: 1,
 });
-
