@@ -43,22 +43,24 @@ export const NavItems = styled('div')`
 
 export const LinkContainer = styled('div')(({ theme }) => ({
   display: 'flex',
-  gap: '2rem',
+  gap: '5rem',
 }));
 
 export const NavLinks = styled(NavLink)(({ theme }) => ({
-  color: theme.palette.secondary.main,
+  color: theme.palette.primary.main,
   fontSize: '1.6rem',
   fontWeight: 'bold',
   cursor: 'pointer',
   fontFamily: 'open Sans, sans-serif',
+  textTransform: 'uppercase',
 }));
 
 export const Text = styled(Typography)(({ theme }) => ({
-  color: theme.palette.secondary.main,
+  color: theme.palette.primary.main,
   fontSize: '1.6rem',
   fontWeight: 'bold',
   cursor: 'pointer',
+  textTransform: 'uppercase',
   fontFamily: 'open Sans, sans-serif',
 }));
 

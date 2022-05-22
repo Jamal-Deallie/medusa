@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Container } from '@mui/material';
 import { useMemo, useState } from 'react';
 import {
@@ -10,7 +11,7 @@ import {
   Text,
 } from './styles';
 import { navItems } from '../../shared/navItems';
-
+import { Bag, Search } from '../../components';
 
 export default function Navigation() {
   const quantity = 1;
@@ -28,11 +29,13 @@ export default function Navigation() {
     <Nav>
       <NavWrap>
         <LinkContainer>{NavOptions}</LinkContainer>
-        <Logo src='/images/logos/logo-rough.svg' alt='medusa logo' />
+        <Link to='/'>
+          <Logo src='/images/logos/logo-rough.svg' alt='medusa logo' />
+        </Link>
         <OptionsContainer>
-          <Text>Search</Text>
+          <Search />
           {auth ? <Text>My Account</Text> : <Text>Sign In</Text>}
-          <Text>Bag ({quantity})</Text>
+          <Bag />
         </OptionsContainer>
       </NavWrap>
     </Nav>

@@ -1,9 +1,9 @@
-export default function ProductDetails() {
+import { ProductDetails } from '../../components';
 
-
-    return (
-        <div>
-            <h1>Product Details</h1>
-        </div>
-    )
+export default function ProductDetailsPage() {
+  return (
+    <>
+      <ProductDetails />
+    </>
+  );
 }

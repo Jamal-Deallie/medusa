@@ -1,9 +1,9 @@
+import { ForgotPassword } from '../../components';
+
 export default function ForgotPasswordPage() {
-
-
-    return (
-        <div>
-            <h1>Forgot Password Pages</h1>
-        </div>
-    )
+  return (
+    <>
+      <ForgotPassword />
+    </>
+  );
 }

@@ -23,14 +23,14 @@ function App() {
         <Route path='/' element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path='shop' element={<ProductPage />} />
-          <Route path=':_id' element={<ProductDetailsPage />} />
+          <Route path='details' element={<ProductDetailsPage />} />
           <Route path='about' element={<AboutPage />} />
           <Route path='contactus' element={<ContactPage />} />
-          <Route path='register' element={<RegisterPage />} />
+          <Route path='signup' element={<RegisterPage />} />
           <Route path='location' element={<LocationPage />} />
           <Route path='signin' element={<SignInPage />} />
           <Route path='forgotpassword' element={<ForgotPasswordPage />} />
-          <Route path='resetpassword/:token' element={<ResetPasswordPage />} />
+          <Route path='resetpassword' element={<ResetPasswordPage />} />
           <Route path='dashboard' element={<DashboardPage />} />
 
           <Route path='query' element={<ProductQueryPage />} />
