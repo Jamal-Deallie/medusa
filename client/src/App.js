@@ -16,14 +16,18 @@ import {
   CheckoutSuccessPage,
 } from './views';
 import { Layout } from './components';
+import { ProductsListContainer } from './containers';
 function App() {
   return (
     <Router>
       <Routes>
         <Route path='/' element={<Layout />}>
           <Route index element={<HomePage />} />
-          <Route path='shop' element={<ProductPage />} />
-          <Route path='details' element={<ProductDetailsPage />} />
+          <Route path='/' element={<ProductPage />}>
+            <Route path='shop' element={<ProductsListContainer />} />
+            <Route path=':id' element={<ProductDetailsPage />} />
+            <Route path='category:id' element={<ProductDetailsPage />} />
+          </Route>
           <Route path='about' element={<AboutPage />} />
           <Route path='contactus' element={<ContactPage />} />
           <Route path='signup' element={<RegisterPage />} />

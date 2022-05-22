@@ -6,7 +6,7 @@ export const Nav = styled('nav')(({ theme }) => ({
   height: '10rem',
   position: 'relative',
   width: '100%',
-  zIndex: 1,
+  zIndex: 2,
 }));
 
 export const NavWrap = styled('div')(({ theme }) => ({

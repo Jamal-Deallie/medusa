@@ -3,6 +3,7 @@ import { Container, Button, Typography } from '@mui/material';
 
 export const ContentContainer = styled('div')(({ theme }) => ({
   margin: '0 auto',
+  maxWidth: '40rem'
 }));
 
 export const HeadingContainer = styled('div')(({ theme }) => ({

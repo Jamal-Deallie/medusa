@@ -1,9 +1,8 @@
+import { ProductsContainer } from '../../containers';
 export default function ProductPage() {
-
-
-    return (
-        <div>
-            <h1>Product Pages</h1>
-        </div>
-    )
+  return (
+    <>
+      <ProductsContainer />
+    </>
+  );
 }

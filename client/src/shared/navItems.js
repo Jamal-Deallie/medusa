@@ -3,6 +3,7 @@ export const navItems = [
     id: 0,
     label: 'Shop',
     link: 'shop',
+    onClick: 'handleClick',
   },
   {
     id: 1,

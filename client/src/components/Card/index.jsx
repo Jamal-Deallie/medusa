@@ -19,7 +19,7 @@ export default function Card() {
       <CardWrap>
         <Image src='/images/plant_placeholder.png' alt='place-holder' />
 
-        <CardButton>Add to Cart</CardButton>
+        <CardButton sx={{ fontFamily: 'open-sans' }}>Add to Cart</CardButton>
       </CardWrap>
     </ContentContainer>
   );

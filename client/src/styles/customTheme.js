@@ -23,12 +23,19 @@ export const customTheme = createTheme({
     },
   },
   typography: {
+    fontFamily: ['"Mightype"', 'Open Sans'].join(','),
     h1: {
       fontFamily: 'Mightype',
-      color: secondaryColor,
     },
     body1: {
       fontSize: '1.6rem',
+      fontFamily: 'Open Sans',
+    },
+  },
+  components: {
+    MuiButton: {
+      fontSize: '1.6rem',
+      fontFamily: ['Open Sans']
     },
   },
 });
