@@ -53,6 +53,9 @@ export const NavLinks = styled(NavLink)(({ theme }) => ({
   cursor: 'pointer',
   fontFamily: 'open Sans, sans-serif',
   textTransform: 'uppercase',
+  '&.active': {
+    color: theme.palette.primary.dark,
+  },
 }));
 
 export const Text = styled(Typography)(({ theme }) => ({

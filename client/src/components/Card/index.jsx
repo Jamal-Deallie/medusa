@@ -3,13 +3,15 @@ import {
   Image,
   HeadingContainer,
   Text,
-  CardButton,
   CardWrap,
 } from './styles';
+import { ATCButton } from '../../components';
 import { useNavigate } from 'react-router';
 
 export default function Card() {
   const navigate = useNavigate();
+
+  let items
   return (
     <ContentContainer onClick={() => navigate(`/`)}>
       <HeadingContainer>
@@ -19,7 +21,7 @@ export default function Card() {
       <CardWrap>
         <Image src='/images/plant_placeholder.png' alt='place-holder' />
 
-        <CardButton sx={{ fontFamily: 'open-sans' }}>Add to Cart</CardButton>
+        <ATCButton items={items}/>
       </CardWrap>
     </ContentContainer>
   );

@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import { MenuItem, Menu, Button } from '@mui/material';
 import { MenuSection, Links } from './styles';
-
+import { useLocation } from 'react-router-dom';
 export default function ShopMenu({ handleClick, open }) {
+  console.log(open);
+  const locaction = useLocation();
+
+  console.log(locaction);
   return (
-    <MenuSection onClick={handleClick} $open={open}>
+    <MenuSection $open={open}>
       <Links onClick={handleClick} to='shop/category/easycare'>
         Easy Care
       </Links>

@@ -1,9 +1,9 @@
-export default function ProductDetailsPage() {
+export default function NotFoundPage() {
 
 
     return (
         <div>
-            <h1>Product Details</h1>
+            <h1>Not Found 404</h1>
         </div>
     )
 }

@@ -36,7 +36,7 @@ export default function Navigation() {
                 cursor: 'pointer',
                 textTransform: 'uppercase',
                 fontFamily: 'open Sans, sans-serif',
-                lineHeight:'1'
+                lineHeight:'1.5'
               }}
              onClick={handleClick}>
               SHOP

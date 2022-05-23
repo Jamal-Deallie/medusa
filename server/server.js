@@ -21,6 +21,7 @@ require("./authenticate");
 
 app.use(express.json());
 
+
 app.use((req, res, next) => {
   console.log('middleware check');
   next();
@@ -44,6 +45,10 @@ app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
   next();
 });
+
+const whitelist = process.env.WHITELISTED_DOMAINS
+  ? process.env.WHITELISTED_DOMAINS.split(",")
+  : [];
 
 const corsOptions = {
     origin: function (origin, callback) {
