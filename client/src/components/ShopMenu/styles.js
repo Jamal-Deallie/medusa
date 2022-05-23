@@ -11,7 +11,7 @@ export const MenuSection = styled('div', {
   display: 'flex',
   transition: 'transform 250ms',
   transform: $open ? 'translateY(0%)' : 'translateY(-100%)',
-  position: 'absolute',
+  position: 'fixed',
   zIndex: 1,
   borderRadius: '0  0  1rem 1rem',
   flexDirection: 'column',

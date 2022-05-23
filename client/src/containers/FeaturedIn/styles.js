@@ -16,7 +16,7 @@ export const FeatureOuter = styled('div')({
 
 export const HeadingContainer = styled('div')({
   padding: '10rem 5rem 0 5rem',
-});
+})
 
 export const GridItem = styled(Grid)(({ theme }) => ({
   display: 'flex',
