@@ -67,18 +67,6 @@ export const Text = styled(Typography)(({ theme }) => ({
   fontFamily: 'open Sans, sans-serif',
 }));
 
-//   font-family: 'open Sans', sans-serif;
-//   text-transform: uppercase;
-//   letter-spacing: 0.5px;
-//   font-weight: 600;
-//   font-size: 1.6rem;
-//   letter-spacing: 0.1rem;
-//   color: #e9e7dc;
-//   opacity: 1;
-//   @media screen and (max-width: 1024px) {
-//     font-size: 2.4rem;
-//   }
-// `;
 
 export const Links = styled(Link)`
   font-family: 'open Sans', sans-serif;

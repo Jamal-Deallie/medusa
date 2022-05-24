@@ -6,6 +6,7 @@ const passport = require('passport');
 const session = require('express-session');
 const userRouter = require('./routes/userRoutes');
 const productRouter = require('./routes/productRoutes');
+const checkoutRouter = require('./routes/checkoutRoutes');
 const app = express();
 
 // 1) MIDDLEWARES
@@ -69,6 +70,8 @@ const corsOptions = {
 
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/products', productRouter);
+app.use('/api/v1/checkout', checkoutRouter);
+
 
 app.get("/", function (req, res) {
     res.send({ status: "success" });

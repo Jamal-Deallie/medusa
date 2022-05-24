@@ -5,23 +5,34 @@ import {
   Text,
   CardWrap,
 } from './styles';
+import {
+  selectProductById,
+  useGetProductsQuery,
+} from '../../features/product/productSlice';
+import { useSelector } from 'react-redux';
 import { ATCButton } from '../../components';
 import { useNavigate } from 'react-router';
 
-export default function Card() {
+export default function Card({ products }) {
+  console.log(products);
   const navigate = useNavigate();
 
-  let items
+  const items = useSelector(state => selectProductById(state, products._id));
+
   return (
-    <ContentContainer onClick={() => navigate(`/`)}>
+    <ContentContainer>
       <HeadingContainer>
-        <Text>$30.50</Text>
-        <Text>Monstera</Text>
+        <Text>${items.price}</Text>
+        <Text>{items.name}</Text>
       </HeadingContainer>
       <CardWrap>
-        <Image src='/images/plant_placeholder.png' alt='place-holder' />
+        <Image
+          src={items.image}
+          alt='place-holder'
+          onClick={() => navigate(`/shop/${products._id}`)}
+        />
 
-        <ATCButton items={items}/>
+        <ATCButton productId={products._id} />
       </CardWrap>
     </ContentContainer>
   );

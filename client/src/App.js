@@ -23,11 +23,11 @@ function App() {
       <Routes>
         <Route path='/' element={<Layout />}>
           <Route index element={<HomePage />} />
-          <Route path='/' element={<ProductPage />}>
-            <Route path='shop' element={<ProductsListContainer />} />
-            <Route path='category:id' element={<ProductsListContainer />} />
+          <Route path='shop' element={<ProductPage />}>
+            <Route path='category/:id' element={<ProductsListContainer />} />
+            <Route index element={<ProductsListContainer />} />
           </Route>
-          <Route path='details' element={<ProductDetailsPage />} />
+          <Route path='shop/:id' element={<ProductDetailsPage />} />
           <Route path='about' element={<AboutPage />} />
           <Route path='contactus' element={<ContactPage />} />
           <Route path='signup' element={<RegisterPage />} />
