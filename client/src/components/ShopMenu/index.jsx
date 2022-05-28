@@ -7,13 +7,13 @@ export default function ShopMenu({ handleClick, open }) {
   console.log(locaction);
   return (
     <MenuSection $open={open}>
-      <Links onClick={handleClick} to='shop/category/easycare'>
+      <Links onClick={handleClick} to='category/easy-care'>
         Easy Care
       </Links>
-      <Links onClick={handleClick} to='shop/category/largeplants'>
+      <Links onClick={handleClick} to='category/large-plants'>
         Large Plants
       </Links>
-      <Links onClick={handleClick} to='shop/category/petfriendly'>
+      <Links onClick={handleClick} to='category/pet-friendly'>
         Pet Friendly
       </Links>
       <div onClick={handleClick}>

@@ -1,4 +1,5 @@
 import { CardButton } from './styles';
+import { Typography } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { addItem } from '../../features/cart/cartSlice';
 import {
@@ -11,33 +12,35 @@ export default function ATCButton({ productId }) {
   const dispatch = useDispatch();
   const items = useSelector(state => selectProductById(state, productId));
 
-  console.log({ items: items });
 
-    const handleAddToCart = product => {
-      console.log({ product });
-      if (product) {
-        dispatch(
-          addItem({
-            ...product,
-          })
-        );
-      } else {
-        console.log('An error has occurred');
-      }
-    };
+
+  const handleAddToCart = product => {
+    console.log({ product });
+    if (product) {
+      dispatch(
+        addItem({
+          ...product,
+        })
+      );
+    } else {
+      console.log('An error has occurred');
+    }
+  };
 
   return (
-    <CardButton
-      sx={{ fontFamily: 'open-sans' }}
-      onClick={() =>
-        handleAddToCart({
-          _id: items._id,
-          price: items.price,
-          name: items.name,
-          image: items.image,
-        })
-      }>
-      Add to Cart
-    </CardButton>
+    <>
+      <CardButton
+        sx={{ fontFamily: 'open-sans' }}
+        onClick={() =>
+          handleAddToCart({
+            _id: items._id,
+            price: items.price,
+            name: items.name,
+            image: items.image,
+          })
+        }>
+        Add to Cart
+      </CardButton>
+    </>
   );
 }

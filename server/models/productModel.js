@@ -17,11 +17,15 @@ const productSchema = new mongoose.Schema({
     unique: true,
   },
   description: {
-    type: [String],
+    type: String,
     required: [true, 'The product must have a description'],
     unique: true,
   },
   price: { type: Number, required: [true, 'A tour must have a price'] },
+  category: {
+    type: [String],
+    required: [true, 'The product must have a category'],
+  },
   image: {
     type: String,
     required: [true, 'The product must have a image'],

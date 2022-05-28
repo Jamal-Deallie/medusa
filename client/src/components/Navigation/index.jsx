@@ -12,17 +12,20 @@ import {
 } from './styles';
 import { navItems } from '../../shared/navItems';
 import { Bag, Search, ShopMenu } from '../../components';
+import useAuth from '../../hooks/useAuth';
 
 export default function Navigation() {
-  const quantity = 1;
-  const auth = false;
 
   const [open, setOpen] = useState(false);
 
   function handleClick() {
     setOpen(open => !open);
   }
+  // const token = localStorage.getItem('token');
 
+ const token = false
+  
+  // console.log(localStorage.getItem("token"));
   return (
     <>
       <Nav>
@@ -36,9 +39,9 @@ export default function Navigation() {
                 cursor: 'pointer',
                 textTransform: 'uppercase',
                 fontFamily: 'open Sans, sans-serif',
-                lineHeight:'1.5'
+                lineHeight: '1.5',
               }}
-             onClick={handleClick}>
+              onClick={handleClick}>
               SHOP
             </Typography>
             <NavLinks to='about' variant='text'>
@@ -53,12 +56,16 @@ export default function Navigation() {
           </Link>
           <OptionsContainer>
             <Search />
-            {auth ? <Text>My Account</Text> : <Text>Sign In</Text>}
+            {token ? (
+              <Text>My Account</Text>
+            ) : (
+              <NavLinks to='signin'>Sign In</NavLinks>
+            )}
             <Bag />
           </OptionsContainer>
         </NavWrap>
       </Nav>
-      <ShopMenu handleClick={handleClick} open={open}/>
+      <ShopMenu handleClick={handleClick} open={open} />
     </>
   );
 }

@@ -15,13 +15,9 @@ import {
   SubmitBtn,
 } from './styles';
 
-export default function SearchInput({
-  handleClick,
-  toggleSearch,
-  setToggleSearch,
-}) {
+export default function SearchInput({ handleClick }) {
   const [searchTerm, setSearchTerm] = useState('');
-  console.log({ search: toggleSearch });
+
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -30,48 +26,40 @@ export default function SearchInput({
   console.log(location);
   console.log(pathname);
   const query = useQuery();
-  const searchQuery = query.get('term');
 
-  const handleSearch = e => {
-    e.preventDefault();
-    setSearchTerm(e.target.value);
-  };
+  if (searchTerm) {
+    const searchQuery = query.get('term');
+  }
 
-  function searchProducts() {
-    if (searchTerm.trim()) {
-    } else {
-      navigate.push('/');
-    }
-  }
-  function useQuery() {
-    return new URLSearchParams(useLocation().search);
-  }
+  const handleSearch = e => {};
+
+  function searchProducts() {}
+  function useQuery() {}
 
   function handleSubmit(e) {
     e.preventDefault();
-    searchProducts();
-    // navigate(`/search?term=${searchTerm}`);
   }
   return (
     <SearchBarSection>
       <FormWrapper>
-        <Heading>Who Searched Ya</Heading>
-        <Form onSubmit={handleSubmit} method='POST'>
+        <Heading>Search</Heading>
+        <Form onSubmit={handleSubmit} type='POST'>
           <Search>
             <SearchIconWrapper>
-              <SearchIcon color='secondary.main' sx={{ fontSize: 25 }} />
+              <SearchIcon
+                color='primary.main'
+                sx={{ fontSize: 25, color: 'secondary.main' }}
+              />
             </SearchIconWrapper>
             <StyledInputBase
-              type='search'
-              value={searchTerm}
               placeholder='Search Our Plants'
               inputProps={{ 'aria-label': 'search' }}
               onChange={handleSearch}
             />
             <SubmitBtn type='submit'></SubmitBtn>
           </Search>
-          <CloseSearchBtn onClick={handleClick} type='button'>
-            <CloseIcon color='primary.main' />
+          <CloseSearchBtn onClick={handleClick}>
+            <CloseIcon sx={{ color: 'secondary.main', fontSize: 25 }} />
           </CloseSearchBtn>
         </Form>
       </FormWrapper>

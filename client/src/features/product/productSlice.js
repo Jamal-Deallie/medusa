@@ -21,6 +21,9 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
       },
       providesTags: ['Product'],
     }),
+    getProductsByCategory: builder.query({
+      query: category => `/products?category=${category}`,
+    }),
     getProductsById: builder.query({
       query: _id => `/products/${_id}`,
       transformResponse: response => {
@@ -53,6 +56,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
 export const {
   useGetProductsQuery,
   useGetProductsByIdQuery,
+  useGetProductsByCategoryQuery,
   useGetProductsBySearchQuery,
 } = extendedApiSlice;
 
@@ -61,12 +65,14 @@ export const selectProductsResult =
   extendedApiSlice.endpoints.getProducts.select();
 
 // Creates memoized selector
-const selectProductsData = createSelector(
+export const selectProductsData = createSelector(
   selectProductsResult,
   productsResult => productsResult.data
 
   // normalized state object with ids & entities
 );
+
+
 
 //getSelectors creates these selectors and we rename them with aliases using destructuring
 export const {

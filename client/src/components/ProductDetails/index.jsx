@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { Grid, Typography, Divider } from '@mui/material';
 import {
   Image,
@@ -11,54 +12,75 @@ import {
   ImageWrap,
 } from './styles';
 import { ATCButton } from '../../components';
+import { useParams } from 'react-router-dom';
+import {
+  selectProductById,
+  useGetProductsByIdQuery,
+} from '../../features/product/productSlice';
+import { useSelector } from 'react-redux';
+
 export default function ProductDetails() {
-  return (
-    <DetailsSection>
-      <DetailsContainer sx={{ margin: '0 auto', maxWidth: '140rem' }}>
-        <Grid container component='main'>
-          <Grid item md={5}>
-            <ImageWrap>
-              <Image src='/images/plant_placeholder.png' alt='place-holder' />
-            </ImageWrap>
-          </Grid>
-          <Grid item md={7}>
-            <ContentContainer>
-              <div>
-                <HeaderWrap>
-                  <Typography variant='h1'>Name</Typography>
-                  <Typography sx={{ fontSize: '4rem' }}>$29</Typography>
-                </HeaderWrap>
-                <Divider />
-              </div>
-              <Typography>
-                The Ric Rac Cactus will win over any plant parent: Not only is
-                it pet-friendly and easy to care for, but it offers ric rac- or
-                fishbone-shaped trailing stems and the occasional night-blooming
-                flower. It is considered non-toxic, safe to keep around curious
-                cats and dogs.
-              </Typography>
-              <ATCButton />
-              <Divider />
-              <IconContainer>
-                <IconWrap>
-                  <Icon
-                    src='/images/icons/badge.svg'
-                    alt='30 Day Returns Guaranteed'
-                  />
-                  <Typography>
-                    We guarantee that every plant
-                    <br /> will arrive in good health
-                  </Typography>
-                </IconWrap>
-                <IconWrap>
-                  <Icon src='/images/icons/truck.svg' alt='free shipping' />
-                  <Typography>Free Express shipping</Typography>
-                </IconWrap>
-              </IconContainer>
-            </ContentContainer>
-          </Grid>
-        </Grid>
-      </DetailsContainer>
-    </DetailsSection>
-  );
+  const { id } = useParams();
+  const loadedProducts = useSelector(state => selectProductById(state, id));
+
+  const { isLoading, isSuccess, isError, error } = useGetProductsByIdQuery(id);
+
+  let products;
+
+  const renderProduct = useCallback(() => {
+    if (isLoading) {
+      products = <div>...is Loading</div>;
+    } else if (isSuccess) {
+      const { _id, image, description, name, price, category } = loadedProducts;
+      return (
+        <DetailsSection>
+          <DetailsContainer>
+            <Grid container component='main'>
+              <Grid item md={5}>
+                <ImageWrap>
+                  <Image src={image} alt={name} />
+                </ImageWrap>
+              </Grid>
+              <Grid item md={7}>
+                <ContentContainer>
+                  <div>
+                    <HeaderWrap>
+                      <Typography variant='h1'>{name}</Typography>
+                      <Typography sx={{ fontSize: '4rem' }}>
+                        ${price}
+                      </Typography>
+                    </HeaderWrap>
+                    <Divider />
+                  </div>
+                  <Typography>{description}</Typography>
+                  <ATCButton />
+                  <Divider />
+                  <IconContainer>
+                    <IconWrap>
+                      <Icon
+                        src='/images/icons/badge.svg'
+                        alt='30 Day Returns Guaranteed'
+                      />
+                      <Typography>
+                        We guarantee that every plant
+                        <br /> will arrive in good health
+                      </Typography>
+                    </IconWrap>
+                    <IconWrap>
+                      <Icon src='/images/icons/truck.svg' alt='free shipping' />
+                      <Typography>Free Express shipping</Typography>
+                    </IconWrap>
+                  </IconContainer>
+                </ContentContainer>
+              </Grid>
+            </Grid>
+          </DetailsContainer>
+        </DetailsSection>
+      );
+    } else if (isError) {
+      products = <div>{error}</div>;
+    }
+  }, [isLoading, isSuccess, isError, error, products, loadedProducts]);
+
+  return <> {renderProduct()}</>;
 }

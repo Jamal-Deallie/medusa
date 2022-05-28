@@ -31,7 +31,7 @@ import {
   // addItem,
 } from '../../features/cart/cartSlice.js';
 
-// import { CartItems } from '../../components';
+import { CheckoutBtn } from '../../components';
 
 export default function Bag() {
   const [open, setOpen] = useState(false);
@@ -59,7 +59,7 @@ export default function Bag() {
             textTransform: 'uppercase',
             fontFamily: 'open Sans, sans-serif',
           }}>
-          Bag ({quantity})
+          Bag {quantity ? `(${quantity})` : ''}
         </Typography>
       </div>
       <Drawer anchor='right' open={open} onClose={handleClick}>
@@ -93,6 +93,7 @@ export default function Bag() {
                 items.map(item => {
                   return (
                     <ListItem
+                      key={item._id}
                       disablePadding
                       sx={{
                         display: 'flex',
@@ -116,12 +117,11 @@ export default function Bag() {
                             <Add />
                           </Button>
                           <Button
-                        
                             sx={{
                               background: 'none',
                               color: 'primary.main',
                               fontSize: 16,
-                              fontFamily: 'open-sans'
+                              fontFamily: 'open-sans',
                             }}>
                             {item.quantity}
                           </Button>
@@ -145,8 +145,7 @@ export default function Bag() {
                 ${subtotal && subtotal}
               </Typography>
             </SubtotalWrap>
-
-            <button>Proceed To Checkout</button>
+            <CheckoutBtn />
           </CartFooter>
         </Box>
       </Drawer>

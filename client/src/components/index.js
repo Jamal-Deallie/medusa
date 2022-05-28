@@ -1,6 +1,5 @@
 export { default as ATCButton } from './ATCButton';
 export { default as Bag } from './Bag';
-export { default as Card } from './Card';
 export { default as ContactForm } from './ContactForm';
 export { default as Footer } from './Footer';
 export { default as ForgotPassword } from './ForgotPassword';

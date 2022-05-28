@@ -7,7 +7,7 @@ import {
   ImageWrap,
   GridContainer,
 } from './styles';
-import { Card } from '../../components';
+
 import { Typography, Grid, Button } from '@mui/material';
 
 export default function NewArrivalsContainer() {
@@ -17,13 +17,13 @@ export default function NewArrivalsContainer() {
       <ContentWrap>
         <GridContainer container spacing='20'>
           <GridItem item md={4}>
-            <Card />
+
           </GridItem>
           <GridItem item md={4}>
-            <Card />
+    
           </GridItem>
           <GridItem item md={4}>
-            <Card />
+      
           </GridItem>
         </GridContainer>
       </ContentWrap>

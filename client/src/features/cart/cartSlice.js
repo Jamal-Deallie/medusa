@@ -23,7 +23,7 @@ const cartSlice = createSlice({
       if (itemAdded) {
         itemAdded.quantity++;
         state.totalQuantity++;
-        itemAdded.price += payload.price;
+        itemAdded.price = payload.price;
         state.subtotal += payload.price;
       } else {
         state.cartItems.push({ ...payload, quantity: 1 });

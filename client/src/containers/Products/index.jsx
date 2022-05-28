@@ -5,25 +5,11 @@ import { ProductsSection, ProductsWrap, Subheader } from './styles';
 import { Divider, Container } from '@mui/material';
 
 export default function ProductsContainer() {
-  const location = useLocation();
-  const navigate = useNavigate();
 
-  console.log(location);
-  console.log(navigate);
-  console.log(useParams());
-
-  const subheader = useMemo(
-    () => location.pathname.split('/').at(-1),
-    [location]
-  );
-
-  let products;
-
-  console.log(subheader);
   return (
     <ProductsSection>
       <ProductsWrap>
-        <Subheader sx={{ textTransform: 'capitalize' }}>{subheader}</Subheader>
+        <Subheader sx={{ textTransform: 'capitalize' }}>Shop All</Subheader>
         <Divider />
         <Container>
           <ProductsListContainer />

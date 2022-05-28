@@ -34,8 +34,15 @@ export const IconContainer = styled('div')({
   alignItems: 'flex-start',
 });
 
-export const DetailsSection = styled('section')({});
+export const DetailsSection = styled('section')(({ theme }) => ({
+  width: '100%',
+  height: '100%',
+  background: theme.palette.secondary.light,
+}));
 
 export const DetailsContainer = styled('div')({
   padding: '12.5rem 0',
+  maxWidth: '140rem',
+  width: '100%',
+  margin: '0 auto',
 });
