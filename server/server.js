@@ -1,21 +1,17 @@
+const dotenv = require('dotenv');
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
-const corsOptions = require('./config/corsOptions');
-
-
 const cookieParser = require('cookie-parser');
-
-const mongoose = require('mongoose');
 const connectDB = require('./config/dbConn');
 const cors = require('cors');
-
 const userRouter = require('./routes/userRoutes');
 const productRouter = require('./routes/productRoutes');
 const checkoutRouter = require('./routes/checkoutRoutes');
 const webhookRouter = require('./routes/webhookRoutes');
 const mongoSanitize = require('express-mongo-sanitize');
-const dotenv = require('dotenv');
+const bodyParser = require('body-parser');
+
 const app = express();
 
 connectDB();
@@ -32,6 +28,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 //middleware for cookies
+app.use(bodyParser.json());
+// built-in middleware for json
+//middleware for cookies
 app.use(cookieParser());
 
 app.use((req, res, next) => {
@@ -39,7 +38,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// app.use(bodyParser.json());
+
 
 
 // 3) ROUTES

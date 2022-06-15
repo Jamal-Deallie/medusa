@@ -7,6 +7,9 @@ export const Nav = styled('nav')(({ theme }) => ({
   position: 'relative',
   width: '100%',
   zIndex: 2,
+  [theme.breakpoints.down('lg')]: {
+    display: 'none',
+  },
 }));
 
 export const NavWrap = styled('div')(({ theme }) => ({
@@ -31,6 +34,7 @@ export const Logo = styled('img')({
 });
 
 export const NavItems = styled('div')`
+
   display: flex;
   gap: 5rem;
   position: absolute;
@@ -53,6 +57,34 @@ export const NavLinks = styled(NavLink)(({ theme }) => ({
   cursor: 'pointer',
   fontFamily: 'open Sans, sans-serif',
   textTransform: 'uppercase',
+  transition: 'all color .2s ease',
+  position: 'relative',
+  display: 'inline-block',
+  padding: '3px 0',
+  '&::before': {
+    content: '""',
+    position: 'absolute',
+    top: 'calc(100% + 5px)',
+    width: 0,
+    right: 0,
+    height: '3px',
+    transition: 'width .4s cubic-bezier(0.51, 0.18, 0, 0.88) .1s',
+    background: theme.palette.primary.dark,
+  },
+  '&::after': {
+    content: '""',
+    position: 'absolute',
+    top: 'calc(100% + 5px)',
+    width: 0,
+    right: 0,
+    height: '3px',
+    transition: 'width .2s cubic-bezier(0.29, 0.18, 0.26, 0.83)',
+    background: theme.palette.secondary.main,
+  },
+  '&:hover': {
+    '&::after': { width: '100%', left: 0 },
+    '&::before': { width: '100%', left: 0 },
+  },
   '&.active': {
     color: theme.palette.primary.dark,
   },
@@ -66,7 +98,6 @@ export const Text = styled(Typography)(({ theme }) => ({
   textTransform: 'uppercase',
   fontFamily: 'open Sans, sans-serif',
 }));
-
 
 export const Links = styled(Link)`
   font-family: 'open Sans', sans-serif;
@@ -112,13 +143,42 @@ export const NavButton = styled(Button)`
   }
 `;
 
-export const NavOption = styled(Typography)(({ theme }) => {
-  //   fontFamily: 'open Sans, sans-serif',
-  //   textTransform: 'uppercase',
-  //   letterSpacing: '0.5px',
-  //   fontWeight: 600,
-  //   fontSize: '1.6rem',
-  //   letterSpacing: '0.1rem',
-  //   color: '#e9e7dc',
-  //   opacity: 1,
-});
+export const NavOption = styled(Typography)(({ theme }) => ({
+  color: theme.palette.primary.main,
+  fontSize: '1.6rem',
+  fontWeight: 'bold',
+  cursor: 'pointer',
+  fontFamily: 'open Sans, sans-serif',
+  textTransform: 'uppercase',
+  transition: 'all color .2s ease',
+  position: 'relative',
+  display: 'inline-block',
+  padding: '3px 0',
+  '&::before': {
+    content: '""',
+    position: 'absolute',
+    top: 'calc(100% + 5px)',
+    width: 0,
+    right: 0,
+    height: '3px',
+    transition: 'width .4s cubic-bezier(0.51, 0.18, 0, 0.88) .1s',
+    background: theme.palette.primary.dark,
+  },
+  '&::after': {
+    content: '""',
+    position: 'absolute',
+    top: 'calc(100% + 5px)',
+    width: 0,
+    right: 0,
+    height: '3px',
+    transition: 'width .2s cubic-bezier(0.29, 0.18, 0.26, 0.83)',
+    background: theme.palette.secondary.main,
+  },
+  '&:hover': {
+    '&::after': { width: '100%', left: 0 },
+    '&::before': { width: '100%', left: 0 },
+  },
+  '&.active': {
+    color: theme.palette.primary.dark,
+  },
+}));

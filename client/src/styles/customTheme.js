@@ -1,4 +1,4 @@
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme } from '@mui/material/styles';
 
 const primaryDark = '#131919';
 const primaryColor = '#253232';
@@ -23,19 +23,24 @@ export const customTheme = createTheme({
     },
   },
   typography: {
-    fontFamily: ['"Mightype"', 'Open Sans'].join(','),
+    fontFamily: ['"Mightype"', 'open-sans, sans-serif'].join(','),
     h1: {
       fontFamily: 'Mightype',
     },
     body1: {
       fontSize: '1.6rem',
-      fontFamily: 'Open Sans',
+      fontFamily: 'open-sans, sans-serif',
+    },
+    body2: {
+      fontSize: '2.4rem',
+      fontFamily: 'open-sans, sans-serif',
+      fontWeight: 600,
     },
   },
   components: {
     MuiButton: {
       fontSize: '1.6rem',
-      fontFamily: ['Open Sans']
+      fontFamily: 'open-sans, sans-serif',
     },
   },
 });

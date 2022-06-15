@@ -4,17 +4,15 @@ import {
   Subheader,
   StoryWrap,
   StorySection,
+  CustomButton,
 } from './styles';
 import { Typography } from '@mui/material';
 export default function StoryContainer() {
   return (
     <StorySection>
-      <Subheader>Kindness Grows Here</Subheader>
+      <Subheader id='story-subheader'>Kindness Grows Here</Subheader>
       <StoryWrap>
-        <ImageContainer>
-          <PlantImage src='/images/plant-1.svg' alt='Landing Image' />
-        </ImageContainer>
-        <Typography color={'secondary.main'}>
+        <Typography color={'primary.main'} id='story-desc'>
           Quisque velit nisi, pretium ut lacinia in, elementum id enim. Vivamus
           suscipit tortor eget felis porttitor volutpat. Sed porttitor lectus
           nibh. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
@@ -24,9 +22,7 @@ export default function StoryContainer() {
           sit amet nisl tempus convallis quis ac lectus. Donec rutrum congue leo
           eget malesuada.
         </Typography>
-        <ImageContainer $rotate='rotate(-0.15turn) '>
-          <PlantImage src='/images/plant-2.svg' alt='Landing Image' />
-        </ImageContainer>
+        <CustomButton id='story-button'>Learn More</CustomButton>
       </StoryWrap>
     </StorySection>
   );

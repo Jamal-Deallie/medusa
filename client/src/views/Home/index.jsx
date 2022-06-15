@@ -1,18 +1,20 @@
 import {
-  LandingContainer,
+  // LandingContainer,
   FeaturedInContainer,
   NewArrivalsContainer,
   StoryContainer,
-  ProcessContainer
+  ProcessContainer,
 } from '../../containers';
-
+import Landing from '../../animations/Landing/test';
 export default function HomePage() {
   return (
     <>
-      <LandingContainer />
-      <FeaturedInContainer />
-      <ProcessContainer/>
+      <Landing />
       <StoryContainer />
+      {/* <LandingContainer /> */}
+      <FeaturedInContainer />
+      <ProcessContainer />
+
       <NewArrivalsContainer />
     </>
   );

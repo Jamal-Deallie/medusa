@@ -1,5 +1,5 @@
 import { styled } from '@mui/system';
-import { Container, Grid, Typography } from '@mui/material';
+import { Container, Box, Grid, Typography } from '@mui/material';
 
 export const GridItem = styled(Grid)(({ theme }) => ({
   display: 'flex',
@@ -10,15 +10,12 @@ export const GridItem = styled(Grid)(({ theme }) => ({
 }));
 
 export const Subheader = styled(Typography)(({ theme }) => ({
-  color: theme.palette.primary.main,
+  color: theme.palette.secondary.main,
   fontSize: '10.5rem',
   fontWeight: 400,
   fontFamily: 'Mightype',
   textAlign: 'center',
-}));
-export const ProcnSection = styled('section')(({ theme }) => ({
-  background: theme.palette.secondary.dark,
-  paddingBottom: '12.5rem',
+  paddingBottom: '5rem',
 }));
 
 export const HeadingContainer = styled('div')({
@@ -26,15 +23,28 @@ export const HeadingContainer = styled('div')({
 });
 
 export const Icon = styled('img')({
-  height: '10rem',
+  height: '9rem',
 });
 
 export const ProcessSection = styled('section')(({ theme }) => ({
-  background: theme.palette.secondary.light,
-  paddingBottom: '12.5rem',
+  background: theme.palette.primary.main,
+  padding: '6.25rem 0',
 }));
 
-export const IconWrap = styled('div')(({ theme }) => ({
+export const IconWrap = styled(Box)({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: '16rem',
+  height: '9rem',
+  overflow: 'hidden',
+});
 
+export const GridContainer = styled(Grid)({
+  margin: '0 auto',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  maxWidth: '140rem',
+});
 
-}));

@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import {
-  CartWrapper,
-  CartIcon,
+  TextWrapper,
   ProductImage,
   NameWrap,
   DetailsWrap,
   SubheaderContainer,
   CartFooter,
   SubtotalWrap,
+  NavOption 
 } from './styles';
 import {
   Drawer,
@@ -50,22 +50,12 @@ export default function Bag() {
   return (
     <>
       <div onClick={handleClick}>
-        <Typography
-          color='primary.main'
-          sx={{
-            fontSize: '1.6rem',
-            fontWeight: 'bold',
-            cursor: 'pointer',
-            textTransform: 'uppercase',
-            fontFamily: 'open Sans, sans-serif',
-          }}>
-          Bag {quantity ? `(${quantity})` : ''}
-        </Typography>
+        <NavOption>Bag {quantity > 0 ? `(${quantity})` : ''}</NavOption>
       </div>
       <Drawer anchor='right' open={open} onClose={handleClick}>
         <Box
           sx={{
-            width: '60rem',
+            width: '50rem',
             height: '100vh',
             display: 'flex',
             flexDirection: 'column',
@@ -73,14 +63,18 @@ export default function Bag() {
           }}>
           <SubheaderContainer>
             <Typography variant='h1' color='secondary.main'>
-              Cart: <span>{quantity && quantity}</span>
+              Cart<span>{quantity > 0 ? `: (${quantity})` : ''}</span>
             </Typography>
             <IconButton aria-label='close' size='large' onClick={handleClick}>
               <Close sx={{ fontSize: 30, color: 'secondary.main' }} />
             </IconButton>
           </SubheaderContainer>
           {items.length === 0 ? (
-            <h1> This Cart is Empty</h1>
+            <TextWrapper>
+              <Typography variant='body2'>
+                Your cart is currently empty!
+              </Typography>
+            </TextWrapper>
           ) : (
             <List
               sx={{
@@ -89,52 +83,51 @@ export default function Bag() {
                 paddingTop: 0,
                 height: '100%',
               }}>
-              {items &&
-                items.map(item => {
-                  return (
-                    <ListItem
-                      key={item._id}
-                      disablePadding
-                      sx={{
-                        display: 'flex',
-                        justifyContent: 'flex-start',
-                        marginBottom: '1rem',
-                        borderBottom: `1px solid`,
-                      }}>
-                      <ProductImage src={item.image} alt={item.name} />
-                      <DetailsWrap>
-                        <NameWrap>
-                          <Typography>{item.name}</Typography>
-                          <IconButton aria-label='delete' size='large'>
-                            <Delete
-                              sx={{ fontSize: 30, color: 'primary.main' }}
-                            />
-                          </IconButton>
-                        </NameWrap>
+              {items?.map(item => {
+                return (
+                  <ListItem
+                    key={item._id}
+                    disablePadding
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'flex-start',
+                      marginBottom: '1rem',
+                      borderBottom: `1px solid`,
+                    }}>
+                    <ProductImage src={item.image} alt={item.name} />
+                    <DetailsWrap>
+                      <NameWrap>
+                        <Typography>{item.name}</Typography>
+                        <IconButton aria-label='delete' size='large'>
+                          <Delete
+                            sx={{ fontSize: 30, color: 'primary.main' }}
+                          />
+                        </IconButton>
+                      </NameWrap>
 
-                        <ButtonGroup disableElevation variant='contained'>
-                          <Button>
-                            <Add />
-                          </Button>
-                          <Button
-                            sx={{
-                              background: 'none',
-                              color: 'primary.main',
-                              fontSize: 16,
-                              fontFamily: 'open-sans',
-                            }}>
-                            {item.quantity}
-                          </Button>
-                          <Button>
-                            <Remove />
-                          </Button>
-                        </ButtonGroup>
+                      <ButtonGroup disableElevation variant='contained'>
+                        <Button>
+                          <Add />
+                        </Button>
+                        <Button
+                          sx={{
+                            background: 'none',
+                            color: 'primary.main',
+                            fontSize: 16,
+                            fontFamily: 'open-sans',
+                          }}>
+                          {item.quantity}
+                        </Button>
+                        <Button>
+                          <Remove />
+                        </Button>
+                      </ButtonGroup>
 
-                        <Typography>$ Price</Typography>
-                      </DetailsWrap>
-                    </ListItem>
-                  );
-                })}
+                      <Typography>$ Price</Typography>
+                    </DetailsWrap>
+                  </ListItem>
+                );
+              })}
             </List>
           )}
 

@@ -66,13 +66,11 @@ exports.isLoggedIn = async (req, res, next) => {
 
 exports.restrictTo = (...roles) => {
   return (req, res, next) => {
-    // roles ['admin', 'lead-guide']. role='user'
-    if (!roles.includes(req.user.role)) {
+    if (!roles.includes(req.user.roles)) {
       return next(
         new AppError('You do not have permission to perform this action', 403)
       );
     }
-
     next();
   };
 };
@@ -157,8 +155,41 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
   createSendToken(user, 200, req, res);
 });
 
+// Register User Controller
+exports.signup = catchAsync(async (req, res, next) => {
+  console.log(req.body);
+  //abstract items from body
+  const { firstName, lastName, email, password, passwordConfirm } = req.body;
+  //if required items are undefined send error
+  if (!email || !password || !passwordConfirm || !firstName) {
+    return next(new AppError('Please complete all required fields!', 400));
+  }
+
+  const user = await User.findOne({ email });
+  //check if user exist send a failed 409 message
+  if (user) {
+    return next(new AppError('The email already exists', 409));
+  }
+
+  try {
+    const newUser = await User.create({
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      password: password,
+      passwordConfirm: passwordConfirm,
+    });
+    createSendToken(newUser, 201, req, res);
+  } catch (err) {
+    console.log('signup error', err);
+    res.status(500).json({
+      errorMessage: `Server Error: ${err.message}`,
+    });
+  }
+});
+
 exports.signin = catchAsync(async (req, res, next) => {
-  console.log(req);
+  console.log(req.body);
   const { email, password } = req.body;
 
   // 1) Check if email and password exist
@@ -167,9 +198,10 @@ exports.signin = catchAsync(async (req, res, next) => {
   }
   // 2) Check if user exists && password is correct
   const user = await User.findOne({ email }).select('+password');
-
+  const correctPassword = await user.correctPassword(password, user.password);
+  console.log(correctPassword);
   //since the password is encrypted via bcrypt the correctPassword function can confirm the hashed PW matches the inputted PW
-  if (!user || !(await user.correctPassword(password, user.password))) {
+  if (!user || !correctPassword) {
     return next(new AppError('Incorrect email or password', 401));
   }
 
@@ -178,78 +210,10 @@ exports.signin = catchAsync(async (req, res, next) => {
   createSendToken(user, 200, req, res);
 });
 
-exports.handleLogout = async (req, res) => {
-  // On client, also delete the accessToken
-
-  const cookies = req.cookies;
-  if (!cookies?.jwt) return res.sendStatus(204); //No content
-  const refreshToken = cookies.jwt;
-
-  // Is refreshToken in db?
-  const foundUser = await User.findOne({ refreshToken }).exec();
-  if (!foundUser) {
-    res.clearCookie('jwt', { httpOnly: true, sameSite: 'None', secure: true });
-    return res.sendStatus(204);
-  }
-
-  // Delete refreshToken in db
-  foundUser.refreshToken = foundUser.refreshToken.filter(
-    rt => rt !== refreshToken
-  );
-  const result = await foundUser.save();
-  console.log(result);
-
-  res.clearCookie('jwt', { httpOnly: true, sameSite: 'None', secure: true });
-  res.sendStatus(204);
+exports.logout = (req, res) => {
+  res.cookie('jwt', 'loggedout', {
+    expires: new Date(Date.now() + 10 * 1000),
+    httpOnly: true,
+  });
+  res.status(200).json({ status: 'success' });
 };
-
-//Register User Controller
-exports.signup = catchAsync(async (req, res, next) => {
-  const { firstName, lastName, email, password, passwordConfirm } = req.body;
-
-  try {
-    const user = await User.findOne({ email });
-    //check if user exist send a failed 404 message
-    if (user) {
-      return next(new AppError('The email already exists', 409));
-    }
-    const newUser = await User.create({
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      password: password,
-      passwordConfirm: passwordConfirm,
-    });
-
-    createSendToken(newUser, 201, req, res);
-  } catch (err) {
-    console.log('signup error', err);
-    res.status(500).json({
-      errorMessage: `Server Error: ${err.message}`,
-    });
-  }
-
-  const message = `You've registered your customer account.`;
-  try {
-    await sendEmail({
-      email: email,
-      subject: 'Customer registration confirmation',
-      message: message,
-    });
-    res.status(200).json({
-      status: 'success',
-      message: 'Token sent to email',
-    });
-  } catch (err) {
-    console.log(err);
-
-    //this disregards all validation requirements
-
-    return next(
-      new AppError(
-        'There was an error resetting your password. Please try again later',
-        500
-      )
-    );
-  }
-});

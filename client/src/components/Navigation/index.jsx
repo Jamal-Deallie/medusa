@@ -9,13 +9,13 @@ import {
   LinkContainer,
   OptionsContainer,
   Text,
+  NavOption,
 } from './styles';
 import { navItems } from '../../shared/navItems';
 import { Bag, Search, ShopMenu } from '../../components';
-import useAuth from '../../hooks/useAuth';
+import use from '../../hooks/useAuth';
 
 export default function Navigation() {
-
   const [open, setOpen] = useState(false);
 
   function handleClick() {
@@ -23,27 +23,15 @@ export default function Navigation() {
   }
   // const token = localStorage.getItem('token');
 
- const token = false
-  
+  const token = false;
+
   // console.log(localStorage.getItem("token"));
   return (
     <>
       <Nav>
         <NavWrap>
           <LinkContainer>
-            <Typography
-              color='primary.main'
-              sx={{
-                fontSize: '1.6rem',
-                fontWeight: 'bold',
-                cursor: 'pointer',
-                textTransform: 'uppercase',
-                fontFamily: 'open Sans, sans-serif',
-                lineHeight: '1.5',
-              }}
-              onClick={handleClick}>
-              SHOP
-            </Typography>
+            <NavOption onClick={handleClick}>SHOP</NavOption>
             <NavLinks to='about' variant='text'>
               About
             </NavLinks>
@@ -66,6 +54,7 @@ export default function Navigation() {
         </NavWrap>
       </Nav>
       <ShopMenu handleClick={handleClick} open={open} />
+
     </>
   );
 }

@@ -1,12 +1,13 @@
 import { styled } from '@mui/system';
-import { Container, Grid, Typography, Button } from '@mui/material';
+import { Container, Grid, Typography, Box } from '@mui/material';
 
 export const Subheader = styled(Typography)(({ theme }) => ({
   color: theme.palette.primary.main,
-  fontSize: '10.5rem',
+  fontSize: '6.5rem',
   fontWeight: 400,
   fontFamily: 'Mightype',
   textAlign: 'center',
+  paddingBottom: '5.5rem',
 }));
 
 export const NewArrivalsSection = styled('section')(({ theme }) => ({
@@ -19,15 +20,19 @@ export const GridItem = styled(Grid)(({ theme }) => ({
   width: '100%',
 }));
 
-export const Image = styled('img')({});
+export const ContentContainer = styled(Box)({
+  padding: '5.5rem',
 
-export const ImageWrap = styled('div')({
-  height: '100%',
+});
+
+export const Image = styled('img')({ width: '100%' });
+
+export const ImageWrap = styled(Container)({
+  width: '100%',
 });
 
 export const ContentWrap = styled('div')({
   display: 'flex',
-  maxWidth: '135rem',
   width: '100%',
   alignItems: 'center',
   justifyContent: 'center',
@@ -35,12 +40,11 @@ export const ContentWrap = styled('div')({
 });
 
 export const GridContainer = styled(Grid)({
-  maxWidth: '130rem',
   display: 'flex',
   justifyContent: 'center',
   margin: '0 auto',
   minWidth: '35rem',
   '& .MuiGrid-root': {
-    padding: '1rem'
+    padding: '1rem',
   },
 });
