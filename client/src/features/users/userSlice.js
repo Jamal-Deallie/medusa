@@ -1,19 +1,37 @@
+import { createSelector, createEntityAdapter } from '@reduxjs/toolkit';
 import { apiSlice } from '../api/apiSlice';
+
+const userAdapter = createEntityAdapter({
+  selectId: data => data.id,
+});
+
+const initialState = userAdapter.getInitialState();
 
 export const extendedApiSlice = apiSlice.injectEndpoints({
   endpoints: builder => ({
     signUpUser: builder.mutation({
-      query: ({ name, email, password, passwordConfirm }) => ({
+      query: ({
+        firstName,
+        lastName,
+        email,
+        password,
+        passwordConfirm,
+      }) => ({
+        method: 'POST',
         url: '/users/signup',
-        method: 'post',
-        body: JSON.stringify({ name, email, password, passwordConfirm }),
+        body: {
+          firstName,
+          lastName,
+          email,
+          password,
+          passwordConfirm,
+        },
       }),
     }),
     signInUser: builder.mutation({
       query: ({ email, password }) => ({
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-
         url: '/users/signin',
         body: { email, password },
       }),
@@ -29,15 +47,19 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
       query: ({ token, password, passwordConfirm }) => ({
         url: `/users/forgotPassword${token}`,
         method: 'post',
-        body: { token, password, passwordConfirm },
+        body: { password, passwordConfirm },
       }),
     }),
-    refreshToken: builder.mutation({
-      query: ({ token, password, passwordConfirm }) => ({
-        url: '/users/refreshToken',
-        method: 'get',
-        body: { token, password, passwordConfirm },
-      }),
+    getMe: builder.query({
+      query: () => `/users/getme`,
+      transformResponse: response => {
+        const { data } = response;
+        return userAdapter.setAll(initialState, data);
+      },
+      providesTags: ['User'],
+    }),
+    logout: builder.query({
+      query: () => `/users/logout`,
     }),
   }),
 });
@@ -47,4 +69,26 @@ export const {
   useSignInUserMutation,
   useForgotPasswordMutation,
   useResetPasswordMutation,
+  useGetMeQuery,
 } = extendedApiSlice;
+
+export const selectUserResults = extendedApiSlice.endpoints.getMe.select();
+
+export const selectUserData = createSelector(
+  selectUserResults,
+  UserResult => UserResult.data
+
+  // normalized state object with ids & entities
+);
+
+export const {
+  selectAll: selectMe,
+  // Pass in a selector that returns the transaction slice of state
+} = userAdapter.getSelectors(state => selectUserData(state) ?? initialState);
+
+export const selectName = createSelector(
+  selectMe,
+  UserResult => UserResult.map(user => user.firstName)
+
+  // normalized state object with ids & entities
+);

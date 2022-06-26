@@ -1,7 +1,5 @@
-import { useEffect, useRef } from 'react';
-import {
-  LandingSection,
-} from './styles';
+import { useLayoutEffect, useRef } from 'react';
+import { LandingSection } from './styles';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
@@ -9,65 +7,85 @@ import { SplitText } from 'gsap/SplitText';
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(SplitText);
 
-export default function TestAnimation({ children }) {
+export default function LandingAnimation({ children }) {
   const tl = useRef();
-
-  useEffect(() => {
+  const button = useRef();
+  useLayoutEffect(() => {
     ScrollTrigger.matchMedia({
       // desktop
-      '(min-width: 1200px)': function () {
+      '(min-width: 600px)': function () {
         // ScrollTrigger (this automatically gets killed when the breakpoint no longer matches...
         gsap.to('#panel', {
           scrollTrigger: {
             trigger: '#panel',
-            scrub: 1,
-            end: '+=500',
           },
         });
-        let lineSplit = new SplitText('#text', { type: 'lines' });
+        const lineSplit1 = new SplitText('#line-1', {
+          type: 'chars, words',
+          linesClass: 'lineChildren',
+        });
+
+        const splitParent1 = new SplitText('#line-1', {
+          type: 'chars, words',
+          linesClass: 'lineParent',
+        });
+        const lineSplit2 = new SplitText('#line-2', {
+          type: 'chars, words',
+          linesClass: 'lineChildren',
+        });
+
+        const splitParent2 = new SplitText('#line-2', {
+          type: 'chars, words',
+          linesClass: 'lineParent',
+        });
+
         // other animations that aren't ScrollTrigger-related...
         tl.current = gsap.timeline();
         tl.current
-          .from('#image', { scale: 1.3 })
+
           .to('#mask', {
-            clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
-          })
-          .to('#image', {
-            ease: 'power1.in',
-            duration: 0.3,
-            scale: 1,
-          })
-          .to('#image', {
-            ease: 'power1.in',
-            duration: 0.3,
-            borderRadius: '50rem 55rem 0rem 0rem',
-          })
-          .fromTo(
-            '#line-1',
-            {
-              yPercent: 100,
-            },
-            { yPercent: 0, duration: 0.6 },
-            0
-          )
-          .fromTo(
-            '#line-2',
-            {
-              yPercent: -100,
-            },
-            { yPercent: 0, duration: 0.6 },
-            0
-          )
-          .from(lineSplit.lines, {
-            yPercent: -100,
-            stagger: 0.05,
+            clipPath: 'polygon(0% 100%, 100% 100%, 100% 0%, 0% 0%)',
+            ease: 'power3.in',
             duration: 0.7,
-            overflow: 'hidden',
-          });
+            scale: 1.1,
+          })
+          .to('#mask', {
+            width: '400',
+            height: '500',
+            delay: 1,
+            ease: 'expo.inOut',
+          })
+          // .to('#image', {
+          //   ease: 'power3.in',
+          //   duration: 0.3,
+          //   borderRadius: '50rem 55rem 0rem 0rem',
+          //   scale: 0.9,
+          // });
+          .from(lineSplit1.chars, {
+            opacity: 0,
+            y: 50,
+            duration: 2,
+            ease: 'back',
+            stagger: 0.05,
+          })
+          .from(
+            lineSplit2.chars,
+            { opacity: 0, y: 50, duration: 2, ease: 'back', stagger: 0.05 },
+            '-=1.5'
+          )
+          .to('#landing-button', { opacity: 1, ease: 'sine.in' }, '-=1');
+        // .to(lineSplit.chars, {
+        //   opacity: 1,
+        //   y: 90,
+        //   rotate: 0,
+        //   stagger: 0.04,
+        //   duration: 1.5,
+        //   ease: 'power3.inOut',
+        // });
 
         // THIS IS THE KEY! Return a function that'll get called when the breakpoint no longer matches so we can kill() the animation (or whatever)
         return function () {
-          tl.kill();
+          tl.current.kill();
           // other cleanup code can go here.
         };
       },

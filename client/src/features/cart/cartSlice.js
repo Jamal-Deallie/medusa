@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-
 const initialState = {
   cartItems: localStorage.getItem('cartItems')
     ? JSON.parse(localStorage.getItem('cartItems'))
@@ -55,12 +54,37 @@ const cartSlice = createSlice({
       localStorage.setItem('subtotal', JSON.stringify(state.subtotal));
     },
     decrementQuantity: (state, { payload }) => {
-      let cartItem = state.cartItems.find(item => item._id === payload._id);
+      let cartItem = state.find(item => item._id === payload._id);
+
+      if (cartItem.quantity === 1) {
+        const index = cartItem.state.findIndex(
+          item => item._id === payload._id
+        );
+        state.cartItems.splice(index, 1);
+        state.totalQuantity--;
+        state.subtotal -= payload.price;
+      } else {
+        state.cartItems.quantity--;
+        state.totalQuantity--;
+      }
+      localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
+      localStorage.setItem(
+        'totalQuantity',
+        JSON.stringify(state.totalQuantity)
+      );
+      localStorage.setItem('subtotal', JSON.stringify(state.subtotal));
     },
     removeItem: (state, { payload }) => {
-      state.cartItems = state.cartItems.filter(
-        item => item._id !== payload._id
+      const index = state.cartItems.findIndex(item => item._id === payload._id);
+      state.cartItems.splice(index, 1);
+      state.totalQuantity -= payload.quantity;
+      state.subtotal -= payload.price;
+      localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
+      localStorage.setItem(
+        'totalQuantity',
+        JSON.stringify(state.totalQuantity)
       );
+      localStorage.setItem('subtotal', JSON.stringify(state.subtotal));
     },
     getCartTotal: (state, { payload }) => {},
   },

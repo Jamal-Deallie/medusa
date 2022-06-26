@@ -34,7 +34,7 @@ export default function CategoryListContainer() {
           <CardWrap>
             <Image
               src={product.image}
-              alt='place-holder'
+              alt={product.name}
               onClick={() => navigate(`/shop/${product._id}`)}
             />
 

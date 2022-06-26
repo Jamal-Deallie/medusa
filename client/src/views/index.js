@@ -12,5 +12,5 @@ export { default as RegisterPage } from './Register';
 export { default as ForgotPasswordPage } from './ForgotPassword';
 export { default as DashboardPage } from './Dashboard';
 export { default as ResetPasswordPage } from './ResetPassword';
-export { default as ProductQueryPage } from './ProductQuery';
+export { default as ProductSearchPage } from './ProductSearch';
 export { default as CheckoutSuccessPage } from './CheckoutSuccess';

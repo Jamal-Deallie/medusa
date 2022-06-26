@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux';
 import { selectToken } from '../../features/auth/authSlice';
 
 export default function RequireAuthorization() {
-  const token = useSelector(selectToken);
   const location = useLocation();
+  const token = useSelector(selectToken);
   
   return token ? (
     <Outlet />

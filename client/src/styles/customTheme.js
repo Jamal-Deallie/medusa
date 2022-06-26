@@ -22,25 +22,40 @@ export const customTheme = createTheme({
       main: warningColor,
     },
   },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 850,
+      lg: 1200,
+      xl: 1536,
+    },
+  },
   typography: {
-    fontFamily: ['"Mightype"', 'open-sans, sans-serif'].join(','),
+    fontFamily: ['"tenez, sans-serif"', 'muli, sans-serif'].join(','),
     h1: {
-      fontFamily: 'Mightype',
+      fontFamily: 'tenez, sans-serif',
+    },
+    header1: {
+      fontFamily: 'tenez, sans-serif',
+      fontWeight: 400,
+      fontStyle: 'italic',
     },
     body1: {
       fontSize: '1.6rem',
-      fontFamily: 'open-sans, sans-serif',
+      fontFamily: 'muli, sans-serif',
     },
     body2: {
-      fontSize: '2.4rem',
-      fontFamily: 'open-sans, sans-serif',
-      fontWeight: 600,
+      fontSize: '1.8rem',
+      fontFamily: 'muli, sans-serif',
+      fontWeight: 400,
+      fontStyle: 'italic',
     },
   },
   components: {
     MuiButton: {
       fontSize: '1.6rem',
-      fontFamily: 'open-sans, sans-serif',
+      fontFamily: 'muli, sans-serif',
     },
   },
 });

@@ -13,7 +13,7 @@ export const Subheader = styled(Typography)(({ theme }) => ({
   color: theme.palette.secondary.main,
   fontSize: '10.5rem',
   fontWeight: 400,
-  fontFamily: 'Mightype',
+  fontFamily: ' tenez, sans-serif',
   textAlign: 'center',
   paddingBottom: '5rem',
 }));
@@ -41,10 +41,8 @@ export const IconWrap = styled(Box)({
 });
 
 export const GridContainer = styled(Grid)({
-  margin: '0 auto',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
   maxWidth: '140rem',
 });
-

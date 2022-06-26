@@ -5,7 +5,7 @@ export const Subheader = styled(Typography)(({ theme }) => ({
   color: theme.palette.primary.main,
   fontSize: '6.5rem',
   fontWeight: 400,
-  fontFamily: 'Mightype',
+  fontFamily: ' tenez, sans-serif',
   textAlign: 'center',
   paddingBottom: '5.5rem',
 }));
@@ -18,17 +18,25 @@ export const NewArrivalsSection = styled('section')(({ theme }) => ({
 export const GridItem = styled(Grid)(({ theme }) => ({
   minWidth: '35rem',
   width: '100%',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  flexDirection: 'column',
 }));
 
 export const ContentContainer = styled(Box)({
-  padding: '5.5rem',
-
+  width: '62rem',
 });
 
-export const Image = styled('img')({ width: '100%' });
+export const Text = styled(Typography)(({ theme }) => ({
+  display: 'inline-block',
+}));
+export const Image = styled('img')({ width: '100%', objectFit: 'cover' });
 
-export const ImageWrap = styled(Container)({
-  width: '100%',
+export const ImageReveal = styled(Box)({
+  position: 'relative',
+  overflow: 'hidden',
+  margin: 'calc(8px + 1.5625vw)',
 });
 
 export const ContentWrap = styled('div')({
@@ -47,4 +55,13 @@ export const GridContainer = styled(Grid)({
   '& .MuiGrid-root': {
     padding: '1rem',
   },
+});
+
+export const ImageContainer = styled(Box)({
+  margin: '0 auto',
+  display: 'flex',
+  alignItems: 'center',
+  position: 'relative',
+  justifyContent: 'center',
+  // visibility: 'hidden',
 });

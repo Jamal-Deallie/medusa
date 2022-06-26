@@ -1,83 +1,118 @@
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
+import React, { useState, useEffect } from 'react';
+import { MainButton, FormWrap, CustomLink, CustomInput, Text } from './styles';
+import { useNavigate } from 'react-router-dom';
+import {
+  Typography,
+  Box,
+  TextField,
+  Container,
+  InputAdornment,
+  IconButton,
+  InputLabel,
+  FormControl,
+  Stack,
+} from '@mui/material';
+import { useSignInUserMutation } from '../../features/users/userSlice';
+import { setCredentials } from '../../features/auth/authSlice';
+import { useDispatch } from 'react-redux';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
-function Copyright(props) {
-  return (
-    <Typography
-      variant='body2'
-      color='text.secondary'
-      align='center'
-      {...props}>
-      {'Copyright © '}
-      <Link color='inherit' href='https://mui.com/'>
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+export default function ForgotPassword() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
-export default function SignUp() {
-  const handleSubmit = event => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-    });
+  const [signInUser, { isLoading, isSuccess, data }] = useSignInUserMutation();
+
+  const canSave = [email, password].every(Boolean) && !isLoading;
+
+  if (isSuccess) {
+    dispatch(setCredentials({ token: data.token, user: data.user }));
+    localStorage.setItem('user', JSON.stringify(data.user));
+    localStorage.setItem('token', JSON.stringify(data.token));
+    setEmail('');
+    setPassword('');
+    navigate('/dashboard');
+  }
+  const handleClickShowPassword = () => {
+    setShowPassword(showPassword => !showPassword);
   };
+
+  const handleSubmit = async () => {
+    if (canSave) {
+      try {
+        await signInUser({ email, password }).unwrap();
+      } catch (err) {
+        if (!err?.originalStatus) {
+          // isLoading: true until timeout occurs
+          setError('No Server Response');
+        } else if (err.originalStatus === 400) {
+          setError('Missing Username or Password');
+        } else if (err.originalStatus === 401) {
+          setError('Unauthorized');
+        } else {
+          setError('Login Failed');
+        }
+      }
+    }
+  };
+
+  const handleEmailInput = e => setEmail(e.target.value);
+
+  const handlePasswordInput = e => setPassword(e.target.value);
+
   return (
-    <Container component='main' maxWidth='xs'>
-      <Box
-        sx={{
-          marginTop: 8,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}>
-        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}></Avatar>
-        <Typography component='h1' variant='h5'>
-          Forgot Password
-        </Typography>
-        <Box component='form' noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <TextField
-                required
+    <Box
+      sx={{
+        position: 'relative',
+        height: 'auto',
+        padding: '12.5rem 0',
+        backgroundColor: 'secondary.light',
+      }}>
+      <Container sx={{ position: 'relative', height: '60rem' }}>
+        <FormWrap noValidate>
+          {error && <Typography>{error}</Typography>}
+          <Typography
+            variant='h1'
+            sx={{
+              fontFamily: ' tenez, sans-serif',
+              textTransform: 'capitalize',
+              textAlign: 'center',
+            }}>
+            Forgot Password
+          </Typography>
+          <Text>We will send you an email to reset your password</Text>
+          <Box component='form' onSubmit={handleSubmit} sx={{ py: 5 }}>
+            <Stack spacing={5}>
+              <CustomInput
+                margin='normal'
                 fullWidth
-                id='email'
+                id='user'
+                placeholder='Email'
                 label='Email Address'
-                name='email'
-                autoComplete='email'
+                onChange={e => setEmail(e.target.value)}
+                value={email}
+                autoFocus
+                inputProps={{
+                  autoComplete: 'off',
+                }}
+                InputLabelProps={{
+                  shrink: true,
+                }}
               />
-            </Grid>
-          </Grid>
-          <Button
-            type='submit'
-            fullWidth
-            variant='contained'
-            sx={{ mt: 3, mb: 2 }}>
-            Submit
-          </Button>
-          <Grid container justifyContent='flex-end'>
-            <Grid item>
-              <Link href='#' variant='body2'>
-                Cancel
-              </Link>
-            </Grid>
-          </Grid>
-        </Box>
-      </Box>
-      <Copyright sx={{ mt: 5 }} />
-    </Container>
+
+              <MainButton onClick={handleSubmit}>Submit</MainButton>
+            </Stack>
+            <Box sx={{ textAlign: 'center', mt: 2.5, color: 'primary.main' }}>
+              <CustomLink to='/cancel'>Go Back</CustomLink>
+            </Box>
+          </Box>
+        </FormWrap>
+      </Container>
+    </Box>
   );
 }

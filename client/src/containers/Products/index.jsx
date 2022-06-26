@@ -1,16 +1,19 @@
-import { useMemo } from 'react';
 import { ProductsListContainer } from '../../containers';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { ProductsSection, ProductsWrap, Subheader } from './styles';
-import { Divider, Container } from '@mui/material';
+import {
+  ProductsSection,
+  ProductsWrap,
+  Subheader,
+  Container,
+  CustomDivider,
+} from './styles';
+
 
 export default function ProductsContainer() {
-
   return (
     <ProductsSection>
       <ProductsWrap>
-        <Subheader sx={{ textTransform: 'capitalize' }}>Shop All</Subheader>
-        <Divider />
+        <Subheader id="products-header">Shop All</Subheader>
+        <CustomDivider />
         <Container>
           <ProductsListContainer />
         </Container>

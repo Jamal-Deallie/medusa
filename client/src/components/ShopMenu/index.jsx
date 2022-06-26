@@ -1,161 +1,162 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   MenuSection,
   Links,
-  SocialSection,
-  MenuOptions,
-  ButtonWrap,
   AboutContainer,
   AddressContainer,
   LinkContainer,
-  SocialContainer,
+  SocialMediaSection,
+  Icons,
   Subheader,
   Logo,
-  RightContainer,
-  LeftContainer,
   Close,
   Button,
-  LinkWrap,
+  CustomDivider,
+  Text,
+  NavOption,
+  OptionWrapper,
+  MenuWrapper,
+  LinkWrapper,
+  MenuContainer,
 } from './styles';
 import { Link } from 'react-router-dom';
-import { Typography, Container, Box } from '@mui/material';
+import { Box } from '@mui/material';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
+import useArrayRef from '../../hooks/useArrayRef';
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(SplitText);
 
-export default function ShopMenu({ handleClick, open }) {
+export default function ShopMenu({ handleMenu, openMenu }) {
   const tl = useRef();
-  console.log(open);
+  const menu = useRef();
+  // const links = useRef();
+  const [links, setLinks] = useArrayRef();
+
   useEffect(() => {
-    let aboutSections = gsap.utils.toArray('#left-sections');
-    let menuLinks = gsap.utils.toArray('#menu-link');
+    // const linkSplit = new SplitText(links.current, {
+    //   type: 'lines',
+    //   linesClass: 'linkChildren',
+    // });
+
+    // const linkSplitParent = new SplitText(links.current, {
+    //   type: 'lines',
+    //   linesClass: 'linkParent',
+    // });
     tl.current = gsap.timeline({ pause: true });
-    gsap.set('#left-container', { yPercent: '-150' });
-    gsap.set('#right-container', { opacity: 0, yPercent: '100' });
+
     tl.current
-      .to('#left-container', {
-        duration: 0.5,
-        yPercent: '0',
-        ease: 'power3.inOut',
+      .to(menu.current, 1.5, {
+        opacity: 1,
+        display: 'block',
+        ease: 'Power2.out',
       })
-      .fromTo(
-        '#right-container',
-        { opacity: 0, yPercent: '100' },
-        { duration: 0.5, opacity: 1, yPercent: '0', ease: 'power3.inOut' },
-        0
-      )
-      .fromTo('#menu-close', { opacity: 0 }, { opacity: 1 })
-      .fromTo(
-        menuLinks,
-        { yPercent: '100' },
-        { yPercent: '0', stagger: 0.25 },
-        0
-      )
-      .fromTo(
-        aboutSections,
-        { yPercent: '100' },
-        { yPercent: '0', stagger: 0.25 },
-        0
-      );
+      .to(links.current, {
+        opacity: 1,
+        duration: 2,
+        ease: 'power3',
+        y: 0,
+        stagger: 0.1,
+      });
   }, []);
 
   useEffect(() => {
-    open ? tl.current.play() : tl.current.reverse();
-    if (open) {
+    openMenu ? tl.current.play() : tl.current.reverse();
+    if (openMenu) {
       document.body.classList.add('no-scroll');
     } else {
       document.body.classList.remove('no-scroll');
     }
-  }, [tl, open]);
+  }, [tl, openMenu]);
 
   return (
-    <MenuSection>
-      <MenuOptions id='right-container'>
-        <ButtonWrap onClick={handleClick}>
-          <Button id='menu-close'>
-            <Close>Close</Close>
-          </Button>
-        </ButtonWrap>
-
-        <RightContainer>
+    <MenuSection ref={menu}>
+      <MenuContainer id='menu-container'>
+        <Button onClick={handleMenu}>
+          <Close>Close</Close>
+        </Button>
+        <MenuWrapper>
           <LinkContainer>
-            <LinkWrap>
-              <Links onClick={handleClick} to='shop' id='menu-link'>
-                Shop All
-              </Links>
-            </LinkWrap>
+            <Links onClick={handleMenu} to='category/easy-care' ref={setLinks}>
+              Easy Care
+            </Links>
 
-            <LinkWrap>
-              <Links
-                onClick={handleClick}
-                to='category/easy-care'
-                id='menu-link'>
-                Easy Care
-              </Links>
-            </LinkWrap>
+            <Links
+              onClick={handleMenu}
+              to='category/large-plants'
+              ref={setLinks}>
+              Large Plants
+            </Links>
 
-            <LinkWrap>
-              <Links
-                onClick={handleClick}
-                to='category/large-plants'
-                id='menu-link'>
-                Large Plants
-              </Links>
-            </LinkWrap>
-
-            <LinkWrap>
-              <Links
-                onClick={handleClick}
-                to='category/pet-friendly'
-                id='menu-link'>
-                Pet Friendly
-              </Links>
-            </LinkWrap>
+            <Links
+              onClick={handleMenu}
+              to='category/pet-friendly'
+              ref={setLinks}>
+              Pet Friendly
+            </Links>
           </LinkContainer>
-        </RightContainer>
-      </MenuOptions>
-      <SocialSection id='left-container'>
-        <LeftContainer>
-          <Link to='/' id='menu-logo'>
-            <Logo src='/images/logos/logo-rough.svg' alt='medusa logo' />
-          </Link>
-          <AboutContainer>
-            <Box id='left-sections'>
-              <Subheader>About Us</Subheader>
-              <Typography>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur.
-              </Typography>
-            </Box>
-          </AboutContainer>
 
-          <AddressContainer>
-            <Box id='left-sections'>
-              <Subheader>Our Location</Subheader>
-              <Typography>Medusa's Garden</Typography>
-              <Typography>123 Main Street</Typography>
-              <Typography>Dallas, TX, 75202</Typography>
-              <Typography>123-123-4567</Typography>
-              <Typography>contact@medusagradens.com</Typography>
-            </Box>
-          </AddressContainer>
-          <SocialContainer>
-            <Box id='left-sections'>
-              <Subheader>Follow Us</Subheader>
-              <Typography>Instagram</Typography>
-              <Typography>Facebook</Typography>
-              <Typography>Tik Tok</Typography>
-              <Typography>Pinterest</Typography>
-            </Box>
-          </SocialContainer>
-        </LeftContainer>
-      </SocialSection>
+          <LinkContainer>
+            <Links
+              onClick={handleMenu}
+              to='category/pet-friendly'
+              ref={setLinks}>
+              Small Plants
+            </Links>
+
+            <Links onClick={handleMenu} to='shop' ref={setLinks}>
+              Shop All
+            </Links>
+          </LinkContainer>
+        </MenuWrapper>
+
+        {/* <Link to='/' id='menu-logo'>
+          <Logo src='/images/logos/logo-rough.svg' alt='medusa logo' />
+        </Link>
+        <CustomDivider /> */}
+        {/* <AboutContainer>
+          <Subheader>About Us</Subheader>
+          <Text>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam.
+          </Text>
+        </AboutContainer> */}
+
+        {/* <CustomDivider />
+        <AddressContainer>
+          <Subheader>Medusa Gardens</Subheader>
+          <Box>
+            <Text>123 Main Street</Text>
+            <Text>Dallas, Texas, 75202</Text>
+            <Text>214-123-4567</Text>
+          </Box>
+        </AddressContainer> */}
+
+        {/* <SocialMediaSection>
+          <Icons
+            src='/images/social-media-icons/social-media-1.svg'
+            alt='twitter'
+          />
+          <Icons
+            src='/images/social-media-icons/social-media-2.svg'
+            alt='twitter'
+          />
+          <Icons
+            src='/images/social-media-icons/social-media-3.svg'
+            alt='twitter'
+          />
+          <Icons
+            src='/images/social-media-icons/social-media-4.svg'
+            alt='twitter'
+          />
+          <Icons
+            src='/images/social-media-icons/social-media-5.svg'
+            alt='twitter'
+          />
+        </SocialMediaSection> */}
+      </MenuContainer>
     </MenuSection>
   );
 }

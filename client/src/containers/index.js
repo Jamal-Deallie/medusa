@@ -11,3 +11,5 @@ export { default as ProductsListContainer } from './ProductsList';
 export { default as ProductsContainer } from './Products';
 export { default as CategoryListContainer } from './CategoryList';
 export { default as CategoriesContainer } from './Categories';
+export { default as ContactContainer } from './Contact';
+export { default as CTAContainer } from './CTA';

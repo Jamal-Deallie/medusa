@@ -1,11 +1,11 @@
-import { useEffect, useRef, useState } from 'react';
+import { useLayoutEffect, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Typography, Box } from '@mui/material';
 import {
   Nav,
   NavWrap,
   Logo,
-  LinkContainer,
+  OptionWrap,
   OptionsContainer,
   NavOptions,
   Icons,
@@ -24,7 +24,7 @@ import {
   LinkWrap,
 } from './styles';
 import { navItems } from '../../shared/navItems';
-import { Bag, Search, ShopMenu } from '../../components';
+import { Cart, Search, ShopMenu } from '../../components';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
@@ -39,11 +39,11 @@ export default function MobileNavigation() {
   }
   const tl = useRef();
   console.log(open);
-  useEffect(() => {
+  useLayoutEffect(() => {
     let aboutSections = gsap.utils.toArray('#left-sections');
     let menuLinks = gsap.utils.toArray('#menu-link');
     tl.current = gsap.timeline({ pause: true });
-    gsap.set('#bottom-container', { xPercent: '-150' });
+    gsap.set('#bottom-container', { xPercent: '-100' });
     gsap.set('#top-container', { xPercent: '100' });
     tl.current
       .to('#bottom-container', {
@@ -51,9 +51,8 @@ export default function MobileNavigation() {
         xPercent: '0',
         ease: 'power3.inOut',
       })
-      .fromTo(
+      .to(
         '#top-container',
-        { opacity: 0, xPercent: '100' },
         { duration: 0.5, opacity: 1, xPercent: '0', ease: 'power3.inOut' },
         0
       )
@@ -105,7 +104,7 @@ export default function MobileNavigation() {
             ) : (
               <NavLinks to='signin'>Sign In</NavLinks>
             )} */}
-            <Bag />
+            <Cart />
           </OptionsContainer>
         </NavWrap>
 

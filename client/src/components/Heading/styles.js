@@ -13,10 +13,9 @@ export const Path = styled('path')({
 export const Text = styled(Typography, {
   shouldForwardProp: prop => prop !== '$color',
 })(({ theme, $color }) => ({
-  fontFamily: 'Mightype',
+  fontFamily: ' tenez, sans-serif',
   fontSize: 'clamp(2.59rem, calc(0.51rem + 10.42vw), 7.93rem)',
   display: 'inline-block',
-
 }));
 
 export const HeadingSection = styled('section')({

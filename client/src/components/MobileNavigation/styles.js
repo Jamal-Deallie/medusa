@@ -10,6 +10,7 @@ export const Nav = styled('div')(({ theme }) => ({
     position: 'relative',
     width: '100%',
     zIndex: 2,
+    overflow: 'hidden',
   },
 }));
 
@@ -50,7 +51,7 @@ export const NavOptions = styled(Typography)(({ theme }) => ({
   fontSize: '1.6rem',
   fontWeight: 'bold',
   cursor: 'pointer',
-  fontFamily: 'open Sans, sans-serif',
+  fontFamily: 'muli, sans-serif',
   textTransform: 'uppercase',
   transition: 'all color .2s ease',
   position: 'relative',
@@ -90,7 +91,7 @@ export const NavLinks = styled(NavLink)(({ theme }) => ({
   fontSize: '1.6rem',
   fontWeight: 'bold',
   cursor: 'pointer',
-  fontFamily: 'open Sans, sans-serif',
+  fontFamily: 'muli, sans-serif',
   textTransform: 'uppercase',
   transition: 'all color .2s ease',
   position: 'relative',
@@ -131,7 +132,7 @@ export const Text = styled(Typography)(({ theme }) => ({
   fontWeight: 'bold',
   cursor: 'pointer',
   textTransform: 'uppercase',
-  fontFamily: 'open Sans, sans-serif',
+  fontFamily: 'muli, sans-serif',
 }));
 
 export const OptionsContainer = styled('div')({
@@ -142,7 +143,7 @@ export const OptionsContainer = styled('div')({
 });
 
 export const NavButton = styled(Button)`
-  font-family: 'open Sans', sans-serif;
+  font-family: 'muli, sans-serif';
   font-size: 16px;
   letter-spacing: 2px;
   text-decoration: none;
@@ -169,7 +170,7 @@ export const NavOption = styled(Typography)(({ theme }) => ({
   fontSize: '1.6rem',
   fontWeight: 'bold',
   cursor: 'pointer',
-  fontFamily: 'open Sans, sans-serif',
+  fontFamily: 'muli, sans-serif',
   textTransform: 'uppercase',
   transition: 'all color .2s ease',
   position: 'relative',
@@ -229,6 +230,8 @@ export const MenuOptions = styled('div')({
   alignItems: 'center',
   justifyContent: 'flex-start',
   gap: '2.5rem',
+  top: 0,
+  position: 'fixed',
 });
 
 export const SocialSection = styled('div')({
@@ -242,6 +245,8 @@ export const SocialSection = styled('div')({
   alignItems: 'center',
   justifyContent: 'flex-start',
   gap: '2.5rem',
+  top: '70vh',
+  position: 'fixed',
 });
 
 export const LinkWrap = styled(Box)({
@@ -254,7 +259,7 @@ export const Links = styled(Link)(({ theme }) => ({
   transition: 'color .2s ease',
   position: 'relative',
   padding: '1rem 0',
-  fontFamily: 'Mightype, open-sans, sans-serif',
+  fontFamily: ' tenez, sans-serif',
   width: 'auto',
   display: 'block',
   '&:hover': {
@@ -309,7 +314,7 @@ export const AboutContainer = styled(Box)({
 
 export const Subheader = styled(Typography)(({ theme }) => ({
   color: theme.palette.primary.main,
-  fontFamily: 'Mightype, open-sans, sans-serif',
+  fontFamily: ' tenez, sans-serif',
   fontSize: '3.4rem',
 }));
 

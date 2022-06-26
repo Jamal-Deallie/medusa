@@ -1,18 +1,6 @@
 import { styled } from '@mui/system';
 import { Container, Button, Typography, Box } from '@mui/material';
-
-export const ImageContainer = styled('div', {
-  shouldForwardProp: prop => prop !== '$rotate',
-})(({ theme, $rotate }) => ({
-  borderRadius: '91% 25% 39% 70% / 60% 51% 52% 53%',
-  height: '30rem',
-  width: '30rem',
-  background: theme.palette.primary.dark,
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  transform: $rotate ? $rotate : 'none',
-}));
+import { Link } from 'react-router-dom';
 
 export const PlantImage = styled('img')({
   height: '25rem',
@@ -21,93 +9,138 @@ export const PlantImage = styled('img')({
 });
 
 export const Subheader = styled(Typography)(({ theme }) => ({
-  color: theme.palette.primary.main,
-  fontSize: ' clamp(2.59rem, calc(0.51rem + 10.42vw), 7.93rem)',
-  fontFamily: 'Mightype',
-  textAlign: 'center',
-  lineHeight: 1.5,
+  color: theme.palette.secondary.light,
+  fontSize: '32px',
+  fontFamily: ' tenez, sans-serif',
+  lineHeight: 'calc(1.5 * 32px)',
+  [theme.breakpoints.down('md')]: {
+    textAlign: 'center',
+  },
 }));
 
 export const StorySection = styled('section')(({ theme }) => ({
-  background: theme.palette.secondary.light,
+  background: theme.palette.primary.main,
   paddingTop: '12.5rem',
 }));
 
-export const StoryWrap = styled(Box)({
-  paddingTop: '5rem',
-  textAlign: 'center',
-  maxWidth: '70rem',
-  margin: '0 auto',
+export const ContentWrap = styled('div')({
+  backgroundColor: 'orange',
+  maxWidth: '75rem',
+  padding: 'calc(8px + 1.5625vw)',
 });
 
-export const CustomButton = styled(Button)(({ theme }) => ({
+export const CustomLink = styled(Link)(({ theme }) => ({
   marginTop: '5.5rem',
-  fontFamily: 'open-sans, sans-serif',
+  fontFamily: 'muli, sans-serif',
   alignItems: 'center',
-  transition: 'all .3s',
+  transition: 'color .3s ease',
   display: 'inline-flex',
   boxSizing: 'border-box',
   padding: '0 1.7rem',
   height: '4.8rem',
   backgroundColor: 'none',
-  border: `2px solid ${theme.palette.primary.main}`,
+  borderBottom: `1px solid ${theme.palette.secondary.light}`,
   fontSize: '1.6rem',
   fontWeight: '600',
-  color: theme.palette.primary.main,
+  color: theme.palette.secondary.light,
   '&:hover': {
-    backgroundColor: theme.palette.secondary.main,
+    color: theme.palette.secondary.main,
   },
 }));
 
-// <!-- HTML !-->
-// <button class="button-58" role="button">Button 58</button>
+export const Svg = styled('svg')({
+  width: '80rem',
+  height: '25rem',
+});
 
-// /* CSS */
-// .button-58 {
-//   align-items: center;
-//   background-color: #06f;
-//   border: 2px solid #06f;
-//   box-sizing: border-box;
-//   color: #fff;
-//   cursor: pointer;
-//   display: inline-flex;
-//   fill: #000;
-//   font-family: Inter,sans-serif;
-//   font-size: 16px;
-//   font-weight: 600;
-//   height: 48px;
-//   justify-content: center;
-//   letter-spacing: -.8px;
-//   line-height: 24px;
-//   min-width: 140px;
-//   outline: 0;
-//   padding: 0 17px;
-//   text-align: center;
-//   text-decoration: none;
-//   transition: all .3s;
-//   user-select: none;
-//   -webkit-user-select: none;
-//   touch-action: manipulation;
-// }
+export const Path = styled('path')({
+  marginTop: '2rem',
+});
 
-// .button-58:focus {
-//   color: #171e29;
-// }
+// export const Header = styled(Typography)(({ theme }) => ({
+//   fontFamily: ' tenez, sans-serif',
+//   fontSize: '48px',
+//   display: 'inline-block',
+//   lineHeight: 'calc(1.5 * 48px)',
+//   width: '100%',
+//   overflow: 'hidden',
+//   color: theme.palette.secondary.light,
+//   [theme.breakpoints.down('md')]: {
+//     textAlign: 'center',
+//   },
+// }));
 
-// .button-58:hover {
-//   background-color: #3385ff;
-//   border-color: #3385ff;
-//   fill: #06f;
-// }
+export const Heading = styled(Typography)(({ theme }) => ({
+  fontFamily: 'tenez, sans-serif',
+  fontSize: '4.8rem',
+  fontStyle: 'italic',
+  color: theme.palette.secondary.light,
+  lineHeight: 'calc(1.5 * 48px)',
+  width: '100%',
+  overflow: 'hidden',
+  [theme.breakpoints.down('md')]: {
+    textAlign: 'center',
+  },
+}));
 
-// .button-58:active {
-//   background-color: #3385ff;
-//   border-color: #3385ff;
-//   fill: #06f;
-// }
+export const Text = styled(Typography)(({ theme }) => ({
+  fontFamily: ' tenez, sans-serif',
+  display: 'inline-block',
+  color: theme.palette.secondary.light,
+  width: '100%',
+  fontSize: 'clamp(1.56rem, calc(1.22rem + 1.71vw), 2.44rem)',
+}));
 
-// @media (min-width: 768px) {
-//   .button-58 {
-//     min-width: 170px;
-//   }
-// }
+export const HeadingWrap = styled('div')({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  overflow: 'hidden',
+  textAlign: 'center',
+  backgroundColor: 'white',
+});
+
+export const HeadingContainer = styled('div')({});
+
+// export const Image = styled('img', {
+//   shouldForwardProp: prop=> prop !== '$br',
+// })({ theme, $color }) => ({
+//   borderRadius: '55rem 55rem 0 0',
+//   width: '100%',
+//   maxWidth: '53.5rem',
+//   height: 'auto',
+// }));
+
+export const Image = styled('img', {
+  shouldForwardProp: prop => prop !== '$br',
+})(({ $br }) => ({
+  borderRadius: $br ? $br : 'none',
+  width: '100%',
+  maxWidth: '53.5rem',
+  height: 'auto',
+}));
+
+export const ImageWrap = styled(Box)({});
+export const ImageContainer = styled(Box)({
+  backgroundColor: 'pink',
+  padding: 'calc(15px + 1.5625vw)',
+});
+
+export const StoryWrap = styled(Box, {
+  shouldForwardProp: prop => prop !== '$fd',
+})(({ theme, $fd }) => ({
+  maxWidth: '160rem',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  margin: '0 auto',
+  background: 'red',
+  gap: '5.5rem',
+  flexDirection: $fd ? '$fd' : 'row',
+  [theme.breakpoints.down('md')]: {
+    flexDirection: 'column-reverse',
+  },
+}));
+
+// max-width: 100%;
+// height: auto;

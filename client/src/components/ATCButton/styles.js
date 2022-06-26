@@ -1,10 +1,13 @@
 import { styled } from '@mui/system';
-import { Button } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 
 export const CardButton = styled(Button)(({ theme }) => ({
-  background: theme.palette.primary.main,
+  background: 'none',
+  borderLeft: `1px solid ${theme.palette.secondary.light}`,
+  borderRight: `1px solid ${theme.palette.secondary.light}`,
+  borderBottom: `1px solid ${theme.palette.secondary.light}`,
   color: theme.palette.secondary.main,
-  fontSize: '1.8rem',
+
   width: '100%',
   // minWidth: '30rem',
   borderRadius: '0',
@@ -15,4 +18,12 @@ export const CardButton = styled(Button)(({ theme }) => ({
     backgroundColor: theme.palette.secondary.main,
     color: theme.palette.primary.dark,
   },
+}));
+
+export const Text = styled(Typography)(({ theme }) => ({
+  fontFamily: 'muli, sans-serif',
+  color: theme.palette.secondary.light,
+  fontSize: 'clamp(1.56rem, calc(1.22rem + 1.71vw), 1.8rem)',
+  fontStyle: 'italic',
+  textTransform: 'capitalize',
 }));

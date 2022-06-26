@@ -1,21 +1,21 @@
 import {
-  // LandingContainer,
+  LandingContainer,
   FeaturedInContainer,
   NewArrivalsContainer,
   StoryContainer,
   ProcessContainer,
+  CTAContainer,
 } from '../../containers';
-import Landing from '../../animations/Landing/test';
+
 export default function HomePage() {
   return (
     <>
-      <Landing />
+      <LandingContainer />
       <StoryContainer />
-      {/* <LandingContainer /> */}
       <FeaturedInContainer />
       <ProcessContainer />
-
       <NewArrivalsContainer />
+      <CTAContainer />
     </>
   );
 }

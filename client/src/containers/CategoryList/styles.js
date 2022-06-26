@@ -2,7 +2,7 @@ import { styled } from '@mui/system';
 import { Container, Button, Typography } from '@mui/material';
 
 export const ProductWrapper = styled(Container)({
-  maxWidth: '1200px',
+  maxWidth: '160rem',
   margin: '0 auto',
   display: 'grid',
   gridGap: '5rem',
@@ -18,6 +18,7 @@ export const HeadingContainer = styled('div')(({ theme }) => ({
   display: 'flex',
   justifyContent: 'space-between',
   color: theme.palette.primary.main,
+  marginBottom: '1rem',
 }));
 
 export const Image = styled('img')`
@@ -29,8 +30,10 @@ export const Image = styled('img')`
 export const Text = styled(Typography)(({ theme }) => ({
   fontSize: '1.6rem',
   fontWeight: 400,
+  fontFamily: 'muli, sans-serif',
+  fontStyle: 'italic',
   textTransform: 'uppercase',
-  color: theme.palette.primary.main,
+  color: theme.palette.secondary.light,
 }));
 
 export const CardButton = styled(Button)(({ theme }) => ({

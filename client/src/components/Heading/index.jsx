@@ -9,7 +9,6 @@ gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(SplitText);
 
 export default function Heading({ heading, color }) {
-  const tl = useRef();
 
   useEffect(() => {
     let wordSplit = new SplitText('#headingText', { type: 'words' });
@@ -19,7 +18,7 @@ export default function Heading({ heading, color }) {
       {
         yPercent: 0,
         stagger: 0.5,
-        duration: 0.7,
+        duration: 0.5,
       }
     );
     ScrollTrigger.create({

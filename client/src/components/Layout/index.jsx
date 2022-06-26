@@ -12,7 +12,7 @@ export default function Layout() {
   return (
     <StyledLayout>
       <NavContainer>
-        <NavigationContainer />
+        <Navigation />
       </NavContainer>
       <ContentContainer>
         <Outlet />

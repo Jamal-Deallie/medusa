@@ -1,4 +1,4 @@
-import { CheckoutButton } from './styles';
+import { CheckoutButton, CustomButton } from './styles';
 import { selectCartItems } from '../../features/cart/cartSlice.js';
 import { useSelector } from 'react-redux';
 import { useCheckoutItemsMutation } from '../../features/checkout/checkoutSlice.js';
@@ -47,5 +47,5 @@ export default function CheckoutBtn() {
     }
   };
 
-  return <CheckoutButton onClick={handleCheckout}>Checkout Button</CheckoutButton>;
+  return <CustomButton onClick={handleCheckout}>Checkout Button</CustomButton>;
 }

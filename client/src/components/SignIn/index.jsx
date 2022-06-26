@@ -1,99 +1,157 @@
-import React, { useState, useCallback, useEffect, useRef } from 'react';
-import { Link } from './styles';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { Typography, Grid, Box, TextField, Button } from '@mui/material';
-
+import React, { useState, useEffect } from 'react';
+import {
+  MainButton,
+  FormWrap,
+  CustomLink,
+  CustomInput,
+  OutlineInput,
+} from './styles';
+import { useNavigate } from 'react-router-dom';
+import {
+  Typography,
+  Box,
+  TextField,
+  Container,
+  InputAdornment,
+  IconButton,
+  InputLabel,
+  FormControl,
+  Stack,
+} from '@mui/material';
 import { useSignInUserMutation } from '../../features/users/userSlice';
 import { setCredentials } from '../../features/auth/authSlice';
 import { useDispatch } from 'react-redux';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
-export default function Login() {
+export default function SignIn() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const location = useLocation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
-  const errRef = useRef();
+  const [signInUser, { isLoading, isSuccess, data }] = useSignInUserMutation();
 
-  const from = location.state?.from?.pathname || '/';
-
-  const [signInUser, { isLoading, isSuccess, isError, data }] =
-    useSignInUserMutation();
-
-  useEffect(() => {
-    if (isError) {
-      errRef.current.focus();
-    }
-  });
+  const canSave = [email, password].every(Boolean) && !isLoading;
 
   useEffect(() => {
     if (isSuccess) {
-      dispatch(setCredentials({ token: data.token, data }));
-      localStorage.setItem('token', JSON.stringify(data.token));
-      localStorage.setItem('name', JSON.stringify(data.user.firstName));
-      navigate(from, { replace: true });
+      dispatch(setCredentials({ token: data.token }));
+      setEmail('');
+      setPassword('');
+      navigate('/');
     }
-  });
+  }, [isSuccess]);
 
-  const canSave = [email, password].every(Boolean) && !isLoading;
-  console.log(email, password);
+  const handleClickShowPassword = () => {
+    setShowPassword(showPassword => !showPassword);
+  };
+
   const handleSubmit = async () => {
     if (canSave) {
       try {
-        await signInUser({ email, password }).unwrap;
+        await signInUser({ email, password }).unwrap();
       } catch (err) {
-        console.log(err);
+        if (!err?.originalStatus) {
+          // isLoading: true until timeout occurs
+          setError('No Server Response');
+        } else if (err.originalStatus === 400) {
+          setError('Missing Username or Password');
+        } else if (err.originalStatus === 401) {
+          setError('Unauthorized');
+        } else {
+          setError('Login Failed');
+        }
       }
     }
   };
 
+  const handleEmailInput = e => setEmail(e.target.value);
+
+  const handlePasswordInput = e => setPassword(e.target.value);
+
   return (
-    <Grid container component='main' sx={{ height: 'calc(100vh - 12rem)' }}>
-      {isError && <Typography ref={errRef}>{isError}</Typography>}
-      <Box component='form' noValidate sx={{ mt: 1 }}>
-        <Typography>Sign In</Typography>
-        <TextField
-          margin='normal'
-          required
-          fullWidth
-          id='user'
-          placeholder='Email'
-          label='Email Address'
-          onChange={e => setEmail(e.target.value)}
-          value={email}
-          autoFocus
-          aria-describedby='trash-desc'
-        />
-        {/* {userFocus && (
-          <Typography id='trash-desc'>
-            Please Enter Your Email Address
+    <Box
+      sx={{
+        position: 'relative',
+        height: 'auto',
+        padding: '12.5rem 0',
+        backgroundColor: 'secondary.light',
+      }}>
+      <Container sx={{ position: 'relative', height: '60rem' }}>
+        <FormWrap noValidate>
+          {error && <Typography>{error}</Typography>}
+          <Typography
+            variant='h1'
+            sx={{
+              fontFamily: ' tenez, sans-serif',
+              textTransform: 'capitalize',
+              textAlign: 'center',
+            }}>
+            Sign In
           </Typography>
-        )} */}
+          <Box component='form' onSubmit={handleSubmit} sx={{ p: 2 }}>
+            <Stack spacing={4}>
+              <CustomInput
+                margin='normal'
+                fullWidth
+                id='user'
+                placeholder='Email'
+                label='Email Address'
+                onChange={e => setEmail(e.target.value)}
+                value={email}
+                autoFocus
+                inputProps={{
+                  autoComplete: 'off',
+                }}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
 
-        <TextField
-          margin='normal'
-          required
-          fullWidth
-          label='Password'
-          id='password'
-          placeholder='Password'
-          type='password'
-          onChange={e => setPassword(e.target.value)}
-          value={password}
-        />
-        <Button
-          onClick={handleSubmit}
-          fullWidth
-          variant='contained'
-          sx={{ mt: 3, mb: 2 }}>
-          Submit
-        </Button>
-        {/* <CustomButton onClick={handleSubmit}>Login</CustomButton> */}
-      </Box>
-      <Link onClick={() => navigate('/forgotpassword')}>Forget Password</Link>
+              <FormControl fullWidth>
+                <InputLabel htmlFor='outlined-adornment-password'>
+                  Password
+                </InputLabel>
+                <OutlineInput
+                  id='outlined-adornment-password'
+                  type={showPassword ? 'text' : 'password'}
+                  onChange={e => setPassword(e.target.value)}
+                  name='password'
+                  value={password}
+                  autoComplete='new-password'
+                  startAdornment={
+                    <InputAdornment position='start'>
+                      <IconButton
+                        onClick={handleClickShowPassword}
+                        aria-label='toggle password visibility'
+                        sx={{ pointerEvents: 'click', color: 'primary.main' }}>
+                        {showPassword ? (
+                          <VisibilityOff
+                            fontSize='large'
+                            sx={{ fill: 'primary.main' }}
+                          />
+                        ) : (
+                          <Visibility fontSize='large' />
+                        )}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                  label='Password'
+                />
+              </FormControl>
+              <Box sx={{ textAlign: 'center', mt: 2.5, color: 'primary.main' }}>
+                <CustomLink to='/forgotpassword'>Forgot Password</CustomLink> |
+                <CustomLink to='/signup'>Create An Account</CustomLink>
+              </Box>
 
-      <Link onClick={() => navigate('/signup')}>Create Account</Link>
-    </Grid>
+              <MainButton onClick={handleSubmit}>Submit</MainButton>
+            </Stack>
+          </Box>
+        </FormWrap>
+      </Container>
+    </Box>
   );
 }

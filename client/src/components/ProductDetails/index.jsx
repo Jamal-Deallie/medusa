@@ -10,14 +10,20 @@ import {
   DetailsSection,
   DetailsContainer,
   ImageWrap,
+  CardButton,
+  Subheader,
+  Text,
+  Caption,
+  CustomDivider,
 } from './styles';
 import { ATCButton } from '../../components';
 import { useParams } from 'react-router-dom';
+import { addItem } from '../../features/cart/cartSlice';
 import {
   selectProductById,
   useGetProductsByIdQuery,
 } from '../../features/product/productSlice';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 export default function ProductDetails() {
   const { id } = useParams();
@@ -25,13 +31,26 @@ export default function ProductDetails() {
 
   const { isLoading, isSuccess, isError, error } = useGetProductsByIdQuery(id);
 
-  let products;
+  const dispatch = useDispatch();
+
+  const handleAddToCart = product => {
+    console.log({ product });
+    if (product) {
+      dispatch(
+        addItem({
+          ...product,
+        })
+      );
+    } else {
+      console.log('An error has occurred');
+    }
+  };
 
   const renderProduct = useCallback(() => {
     if (isLoading) {
-      products = <div>...is Loading</div>;
+      <div>...is Loading</div>;
     } else if (isSuccess) {
-      const { _id, image, description, name, price, category } = loadedProducts;
+      const { _id, image, description, name, price } = loadedProducts;
       return (
         <DetailsSection>
           <DetailsContainer>
@@ -45,30 +64,43 @@ export default function ProductDetails() {
                 <ContentContainer>
                   <div>
                     <HeaderWrap>
-                      <Typography variant='h1'>{name}</Typography>
-                      <Typography sx={{ fontSize: '4rem' }}>
-                        ${price}
-                      </Typography>
+                      <Subheader>{name}</Subheader>
+                      <Subheader>${price}</Subheader>
                     </HeaderWrap>
-                    <Divider />
+                    <CustomDivider />
                   </div>
-                  <Typography>{description}</Typography>
-                  <ATCButton />
-                  <Divider />
-                  <IconContainer>
-                    <IconWrap>
+                  <Text>{description}</Text>
+                  <CardButton
+                    sx={{ fontFamily: 'muli, sans-serif' }}
+                    onClick={() =>
+                      handleAddToCart({
+                        _id: _id,
+                        price: price,
+                        name: name,
+                        image: image,
+                      })
+                    }>
+                    Add to Cart
+                  </CardButton>
+                  <CustomDivider />
+                  <IconContainer container spacing={2}>
+                    <IconWrap item lg={4} md={4}>
                       <Icon
-                        src='/images/icons/badge.svg'
+                        src='/images/icons/shipping.svg'
                         alt='30 Day Returns Guaranteed'
                       />
-                      <Typography>
-                        We guarantee that every plant
-                        <br /> will arrive in good health
-                      </Typography>
+                      <Caption>Carbon Neutral Shippings</Caption>
                     </IconWrap>
-                    <IconWrap>
-                      <Icon src='/images/icons/truck.svg' alt='free shipping' />
-                      <Typography>Free Express shipping</Typography>
+                    <IconWrap item lg={4} md={4}>
+                      <Icon
+                        src='/images/icons/guarantee.svg'
+                        alt='free shipping'
+                      />
+                      <Caption>30-Day Guarantee</Caption>
+                    </IconWrap>
+                    <IconWrap item lg={4} md={4}>
+                      <Icon src='/images/icons/shop.svg' alt='free shipping' />
+                      <Caption>Available Online & In Store</Caption>
                     </IconWrap>
                   </IconContainer>
                 </ContentContainer>
@@ -78,9 +110,9 @@ export default function ProductDetails() {
         </DetailsSection>
       );
     } else if (isError) {
-      products = <div>{error}</div>;
+      <div>{error}</div>;
     }
-  }, [isLoading, isSuccess, isError, error, products, loadedProducts]);
+  }, [isLoading, isSuccess, isError, error, , loadedProducts]);
 
   return <> {renderProduct()}</>;
 }
