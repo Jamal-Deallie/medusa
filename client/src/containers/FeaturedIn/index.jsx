@@ -9,22 +9,61 @@ import {
   SubheaderContainer,
 } from './styles';
 import { Container, Typography } from '@mui/material';
-import { featuredIn } from '../../shared/featuredIn';
+import { featuredIn } from '../../shared/featuredItems';
 import { Heading } from '../../components';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { SplitText } from 'gsap/SplitText';
 import { useEnhancedEffect } from '../../hooks/useEnhancedEffect';
 import { textAnimation } from '../../animations/textAnimation';
 import { batchAnimation } from '../../animations/batchAnimation';
 import useArrayRef from '../../hooks/useArrayRef';
+import { LogoContainer } from '../../containers';
+gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(SplitText);
 
 export default function FeaturedInContainer() {
-  const textContainer = useRef();
+  const containerRef = useRef();
   const batchContainer = useRef();
-  const desc = useRef();
+  const descRef = useRef();
   const [logos, setLogos] = useArrayRef();
-  console.log(logos);
+
   const tl = useRef();
+
+  //register ScrollTrigger & SplitText
+  useEffect(() => {
+    let lineSplit = new SplitText(descRef.current, {
+      type: 'lines',
+    });
+    tl.current = gsap.timeline({
+      onComplete() {
+        lineSplit.revert();
+      },
+    });
+    const lineAnimation = tl.current.fromTo(
+      lineSplit.lines,
+      { y: 40, opacity: 0 },
+      {
+        duration: 1,
+        y: 0,
+        opacity: 1,
+        stagger: 0.1,
+        ease: 'power4.out',
+        overflow: 'hidden',
+      }
+    );
+    let st = ScrollTrigger.create({
+      trigger: containerRef.current,
+      start: 'top center',
+      end: 'bottom',
+      animation: lineAnimation,
+    });
+    return () => {
+      lineAnimation.progress(1); // reverts the SplitText in the onComplete
+      st.kill();
+    };
+  }, []);
+
   // useEffect(() => {
   // let targets = gsap.utils.toArray('#logo');
   //   gsap.set(targets, { opacity: 0, y: 100 });
@@ -41,64 +80,25 @@ export default function FeaturedInContainer() {
   //   };
   // }, []);
 
-  useEnhancedEffect(() => {
-    textAnimation(tl.current, desc.current, textContainer.current);
-  });
-  useEffect(() => {
-    batchAnimation(logos.current, batchContainer.current);
-  });
+  // useEnhancedEffect(() => {
+  //   textAnimation(tl.current, desc.current, textContainer.current);
+  // });
+
+  // useEnhancedEffect(() => {
+  //   batchAnimation(logos.current, batchContainer.current);
+  // }, [batchContainer]);
 
   return (
-    <FeaturedInSection ref={textContainer}>
-      <SubheaderContainer>
-        <Subheader ref={desc} sx={{ overflow: 'hidden' }}>
+    <FeaturedInSection>
+      <SubheaderContainer ref={containerRef}>
+        <Subheader ref={descRef} sx={{ overflow: 'hidden' }}>
           Quisque velit nisi, pretium ut lacinia in, elementum id enim. Vivamus
           suscipit tortor eget felis porttitor volutpat. Sed porttitor lectus
           nibh. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
         </Subheader>
       </SubheaderContainer>
 
-      <GridContainer container ref={batchContainer}>
-        {/* {featuredIn.map(featured => {
-          return (
-            <GridItem item s={6} md={3} key={featured.id}>
-              <Container sx={{ overflow: 'hidden' }}>
-                <LogoWrap id='logo'>
-                  <Logo src={featured.src} alt={featured.name} />
-                </LogoWrap>
-              </Container>
-            </GridItem>
-          );
-        })} */}
-        <GridItem item s={6} md={3} ref={setLogos}>
-          <Container sx={{ overflow: 'hidden' }}>
-            <LogoWrap id='logos'>
-              <Logo src='images/logos/apartment-therapy.svg' alt='test' />
-            </LogoWrap>
-          </Container>
-        </GridItem>
-        <GridItem item s={6} md={3}>
-          <Container sx={{ overflow: 'hidden' }}>
-            <LogoWrap ref={setLogos} id='logos'>
-              <Logo src='images/logos/bhag.svg' alt='test' />
-            </LogoWrap>
-          </Container>
-        </GridItem>
-        <GridItem item s={6} md={3}>
-          <Container sx={{ overflow: 'hidden' }}>
-            <LogoWrap ref={setLogos} id='logos'>
-              <Logo src='images/logos/elle-decor.svg' alt='test' />
-            </LogoWrap>
-          </Container>
-        </GridItem>
-        <GridItem item s={6} md={3}>
-          <Container sx={{ overflow: 'hidden' }}>
-            <LogoWrap ref={setLogos} id='logos'>
-              <Logo src='images/logos/esquire.svg' alt='test' />
-            </LogoWrap>
-          </Container>
-        </GridItem>
-      </GridContainer>
+      <LogoContainer />
     </FeaturedInSection>
   );
 }

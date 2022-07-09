@@ -1,13 +1,11 @@
-import { CheckoutButton, CustomButton } from './styles';
 import { selectCartItems } from '../../features/cart/cartSlice.js';
 import { useSelector } from 'react-redux';
 import { useCheckoutItemsMutation } from '../../features/checkout/checkoutSlice.js';
+import { Button } from '@mui/material';
+
 export default function CheckoutBtn() {
   const [checkoutItems, { isLoading, isError, isSuccess, data }] =
     useCheckoutItemsMutation();
-
-  console.log(useCheckoutItemsMutation());
-
 
   const items = useSelector(selectCartItems);
 
@@ -47,5 +45,9 @@ export default function CheckoutBtn() {
     }
   };
 
-  return <CustomButton onClick={handleCheckout}>Checkout Button</CustomButton>;
+  return (
+    <Button variant='main' onClick={handleCheckout}>
+      Checkout Button
+    </Button>
+  );
 }

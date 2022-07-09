@@ -26,7 +26,6 @@ export const textAnimation = (tlElem, descElem, containerElem) => {
   );
   ScrollTrigger.create({
     trigger: containerElem,
-    markers: true,
     start: 'top center',
     end: 'bottom',
     animation: lineAnimation,

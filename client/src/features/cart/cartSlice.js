@@ -37,7 +37,6 @@ const cartSlice = createSlice({
       localStorage.setItem('subtotal', JSON.stringify(state.subtotal));
     },
     increaseQuantity: (state, { payload }) => {
-      console.log(payload);
       const itemAdded = state.cartItems.find(item => item._id === payload._id);
 
       if (itemAdded) {

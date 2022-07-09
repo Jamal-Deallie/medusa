@@ -5,11 +5,15 @@ import {
   CustomLink,
   CustomInput,
   OutlineInput,
+  Heading,
+  LinkContainer,
+  FormContainer,
 } from './styles';
 import { useNavigate } from 'react-router-dom';
 import {
   Typography,
   Box,
+  Button,
   TextField,
   Container,
   InputAdornment,
@@ -73,85 +77,73 @@ export default function SignIn() {
   const handlePasswordInput = e => setPassword(e.target.value);
 
   return (
-    <Box
-      sx={{
-        position: 'relative',
-        height: 'auto',
-        padding: '12.5rem 0',
-        backgroundColor: 'secondary.light',
-      }}>
-      <Container sx={{ position: 'relative', height: '60rem' }}>
-        <FormWrap noValidate>
-          {error && <Typography>{error}</Typography>}
-          <Typography
-            variant='h1'
-            sx={{
-              fontFamily: ' tenez, sans-serif',
-              textTransform: 'capitalize',
-              textAlign: 'center',
-            }}>
-            Sign In
-          </Typography>
-          <Box component='form' onSubmit={handleSubmit} sx={{ p: 2 }}>
-            <Stack spacing={4}>
-              <CustomInput
-                margin='normal'
-                fullWidth
-                id='user'
-                placeholder='Email'
-                label='Email Address'
-                onChange={e => setEmail(e.target.value)}
-                value={email}
-                autoFocus
-                inputProps={{
-                  autoComplete: 'off',
-                }}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-              />
+    <Container sx={{ position: 'relative', height: '60rem' }}>
+      <FormWrap noValidate>
+        {error && <Typography>{error}</Typography>}
+        <Heading>Sign In</Heading>
+        <Box component='form' onSubmit={handleSubmit} sx={{ p: 2 }}>
+          <Stack spacing={4}>
+            <CustomInput
+              margin='normal'
+              fullWidth
+              id='user'
+              placeholder='Email'
+              label='Email Address'
+              onChange={e => setEmail(e.target.value)}
+              value={email}
+              autoFocus
+              inputProps={{
+                autoComplete: 'off',
+              }}
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
+            <CustomInput
+              label='Password'
+              id='outlined-start-adornment'
+              sx={{ m: 1 }}
+              type={showPassword ? 'text' : 'password'}
+              onChange={e => setPassword(e.target.value)}
+              name='password'
+              value={password}
+              placeholder='Password'
+              autoComplete='new-password'
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position='start'>
+                    {' '}
+                    <IconButton
+                      onClick={handleClickShowPassword}
+                      aria-label='toggle password visibility'
+                      sx={{
+                        pointerEvents: 'click',
+                        color: 'secondary.light',
+                      }}>
+                      {showPassword ? (
+                        <VisibilityOff
+                          fontSize='large'
+                          sx={{ fill: 'secondary.light' }}
+                        />
+                      ) : (
+                        <Visibility fontSize='large' />
+                      )}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+            />
 
-              <FormControl fullWidth>
-                <InputLabel htmlFor='outlined-adornment-password'>
-                  Password
-                </InputLabel>
-                <OutlineInput
-                  id='outlined-adornment-password'
-                  type={showPassword ? 'text' : 'password'}
-                  onChange={e => setPassword(e.target.value)}
-                  name='password'
-                  value={password}
-                  autoComplete='new-password'
-                  startAdornment={
-                    <InputAdornment position='start'>
-                      <IconButton
-                        onClick={handleClickShowPassword}
-                        aria-label='toggle password visibility'
-                        sx={{ pointerEvents: 'click', color: 'primary.main' }}>
-                        {showPassword ? (
-                          <VisibilityOff
-                            fontSize='large'
-                            sx={{ fill: 'primary.main' }}
-                          />
-                        ) : (
-                          <Visibility fontSize='large' />
-                        )}
-                      </IconButton>
-                    </InputAdornment>
-                  }
-                  label='Password'
-                />
-              </FormControl>
-              <Box sx={{ textAlign: 'center', mt: 2.5, color: 'primary.main' }}>
-                <CustomLink to='/forgotpassword'>Forgot Password</CustomLink> |
-                <CustomLink to='/signup'>Create An Account</CustomLink>
-              </Box>
+            <LinkContainer>
+              <CustomLink to='/forgotpassword'>Forgot Password</CustomLink>
+              <Typography>|</Typography>
+              <CustomLink to='/signup'>Create An Account</CustomLink>
+            </LinkContainer>
 
-              <MainButton onClick={handleSubmit}>Submit</MainButton>
-            </Stack>
-          </Box>
-        </FormWrap>
-      </Container>
-    </Box>
+            <Button variant="main"onClick={handleSubmit}>Submit</Button>
+          </Stack>
+        </Box>
+      </FormWrap>
+    </Container>
   );
 }

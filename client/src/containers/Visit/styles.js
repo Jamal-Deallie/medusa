@@ -12,7 +12,7 @@ export const Subheader = styled(Typography)(({ theme }) => ({
 
 export const NewArrivalsSection = styled('section')(({ theme }) => ({
   background: theme.palette.secondary.light,
-  padding: '12.5rem 1rem',
+  padding: '1rem',
 }));
 
 export const GridItem = styled(Grid)(({ theme }) => ({

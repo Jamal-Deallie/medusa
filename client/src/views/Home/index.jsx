@@ -1,7 +1,7 @@
 import {
   LandingContainer,
   FeaturedInContainer,
-  NewArrivalsContainer,
+  VisitContainer,
   StoryContainer,
   ProcessContainer,
   CTAContainer,
@@ -14,7 +14,7 @@ export default function HomePage() {
       <StoryContainer />
       <FeaturedInContainer />
       <ProcessContainer />
-      <NewArrivalsContainer />
+      <VisitContainer />
       <CTAContainer />
     </>
   );

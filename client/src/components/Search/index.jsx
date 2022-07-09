@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate, useSearchParams, useLocation } from 'react-router-dom';
+import React, { useState, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import {
   SearchSection,
@@ -12,21 +12,20 @@ import {
   CloseSearchBtn,
   SubmitBtn,
 } from './styles';
-import { Drawer, Button, Typography, Box } from '@mui/material';
-
+import { Drawer, Box, Typography } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
 
 export default function Search() {
-  const [open, setOpen] = useState(false);
+  const [openCart, setOpenCart] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
-  const location = useLocation();
 
-  function handleClick() {
-    setOpen(open => !open);
-  }
+  const cart = useCallback(
+    () => setOpenCart(openCart => !openCart),
 
+    [setOpenCart]
+  );
   const handleSearch = e => {
     const query = e.target.value.replaceAll(' ', '&');
     setSearchTerm(query);
@@ -35,29 +34,23 @@ export default function Search() {
   function handleSubmit(e) {
     e.preventDefault();
     //set search
-    handleClick();
+
     navigate(`/search?term=${searchTerm}`);
+    setOpenCart(false);
     //navigate to search page
   }
   return (
     <>
-      <div onClick={handleClick}>
-        <Typography
-          color='primary.main'
-          sx={{
-            fontSize: '1.6rem',
-            fontWeight: 'bold',
-            cursor: 'pointer',
-            textTransform: 'uppercase',
-            fontFamily: 'muli, sans-serif',
-          }}>
-          Search
-        </Typography>
-      </div>
-      <Drawer anchor='top' open={open} onClose={handleClick}>
+      <Typography variant='navOption' onClick={cart}>
+        Search
+      </Typography>
+      <Drawer anchor='top' open={openCart} onClose={cart}>
         <Box>
           <SearchSection>
             <FormWrapper>
+              <CloseSearchBtn onClick={cart}>
+                <CloseIcon sx={{ color: 'secondary.main', fontSize: 25 }} />
+              </CloseSearchBtn>
               <Heading>Search</Heading>
               <Form onSubmit={handleSubmit} type='POST'>
                 <SearchBar>
@@ -74,9 +67,6 @@ export default function Search() {
                   />
                   <SubmitBtn type='submit'></SubmitBtn>
                 </SearchBar>
-                <CloseSearchBtn onClick={handleClick}>
-                  <CloseIcon sx={{ color: 'secondary.main', fontSize: 25 }} />
-                </CloseSearchBtn>
               </Form>
             </FormWrapper>
           </SearchSection>

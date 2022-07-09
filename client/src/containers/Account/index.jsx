@@ -1,10 +1,6 @@
-import { useSelector } from 'react-redux';
-import { selectToken, selectUser } from '../../features/auth/authSlice';
 import { useState } from 'react';
-import { Box } from '@mui/material';
-import Tabs from '@mui/material/Tabs';
-
-import { TabContainer, CustomTab } from './styles';
+import { Box, Tabs } from '@mui/material';
+import { TabContainer, CustomTab, Heading, CustomTabs } from './styles';
 
 const Panel = props => (
   <div hidden={props.value !== props.index}>
@@ -19,17 +15,18 @@ export default function AccountContainer() {
   };
 
   return (
-    <Box sx={{ width: '100%' }}>
+    <AccountContainer>
+      <Heading>My Account</Heading>
       <TabContainer>
-        <Tabs value={index} onChange={onTabClicked}>
-          <CustomTab label='Enter Transaction' />
-          <CustomTab label='Update Profile' />
-          <CustomTab label='Upload Avatar' />
-        </Tabs>
+        <CustomTabs value={index} onChange={onTabClicked}>
+          <CustomTab label='Account Details' />
+          <CustomTab label='Order History' />
+          <CustomTab label='Saved Credit Cards' />
+        </CustomTabs>
       </TabContainer>
       <Panel value={index} index={0}></Panel>
       <Panel value={index} index={1}></Panel>
       <Panel value={index} index={2}></Panel>
-    </Box>
+    </AccountContainer>
   );
 }

@@ -12,7 +12,7 @@ export const Subheader = styled(Typography)(({ theme }) => ({
   color: theme.palette.secondary.light,
   fontSize: '32px',
   fontFamily: ' tenez, sans-serif',
-  lineHeight: 'calc(1.5 * 32px)',
+  lineHeight: 1.5,
   [theme.breakpoints.down('md')]: {
     textAlign: 'center',
   },
@@ -23,11 +23,19 @@ export const StorySection = styled('section')(({ theme }) => ({
   paddingTop: '12.5rem',
 }));
 
-export const ContentWrap = styled('div')({
-  backgroundColor: 'orange',
-  maxWidth: '75rem',
-  padding: 'calc(8px + 1.5625vw)',
-});
+export const ContentContainer = styled(Box)(({ theme }) => ({
+  width: '50%',
+  padding: 'calc(8px + 1vw)',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  [theme.breakpoints.down('md')]: {
+    width: '100%',
+    maxWidth: '50rem',
+  },
+}));
+
+export const ContentWrap = styled(Box)({ margin: '0 auto' });
 
 export const CustomLink = styled(Link)(({ theme }) => ({
   marginTop: '5.5rem',
@@ -48,36 +56,19 @@ export const CustomLink = styled(Link)(({ theme }) => ({
   },
 }));
 
-export const Svg = styled('svg')({
-  width: '80rem',
-  height: '25rem',
-});
-
 export const Path = styled('path')({
   marginTop: '2rem',
 });
-
-// export const Header = styled(Typography)(({ theme }) => ({
-//   fontFamily: ' tenez, sans-serif',
-//   fontSize: '48px',
-//   display: 'inline-block',
-//   lineHeight: 'calc(1.5 * 48px)',
-//   width: '100%',
-//   overflow: 'hidden',
-//   color: theme.palette.secondary.light,
-//   [theme.breakpoints.down('md')]: {
-//     textAlign: 'center',
-//   },
-// }));
 
 export const Heading = styled(Typography)(({ theme }) => ({
   fontFamily: 'tenez, sans-serif',
   fontSize: '4.8rem',
   fontStyle: 'italic',
   color: theme.palette.secondary.light,
-  lineHeight: 'calc(1.5 * 48px)',
+  lineHeight: 1.2,
   width: '100%',
   overflow: 'hidden',
+  marginBottom: '3.5rem',
   [theme.breakpoints.down('md')]: {
     textAlign: 'center',
   },
@@ -88,7 +79,7 @@ export const Text = styled(Typography)(({ theme }) => ({
   display: 'inline-block',
   color: theme.palette.secondary.light,
   width: '100%',
-  fontSize: 'clamp(1.56rem, calc(1.22rem + 1.71vw), 2.44rem)',
+  fontSize: '1.953rem',
 }));
 
 export const HeadingWrap = styled('div')({
@@ -97,19 +88,9 @@ export const HeadingWrap = styled('div')({
   alignItems: 'center',
   overflow: 'hidden',
   textAlign: 'center',
-  backgroundColor: 'white',
 });
 
 export const HeadingContainer = styled('div')({});
-
-// export const Image = styled('img', {
-//   shouldForwardProp: prop=> prop !== '$br',
-// })({ theme, $color }) => ({
-//   borderRadius: '55rem 55rem 0 0',
-//   width: '100%',
-//   maxWidth: '53.5rem',
-//   height: 'auto',
-// }));
 
 export const Image = styled('img', {
   shouldForwardProp: prop => prop !== '$br',
@@ -118,29 +99,37 @@ export const Image = styled('img', {
   width: '100%',
   maxWidth: '53.5rem',
   height: 'auto',
+  aspectRatio: '3/4',
+  objectFit: 'cover',
 }));
 
-export const ImageWrap = styled(Box)({});
-export const ImageContainer = styled(Box)({
-  backgroundColor: 'pink',
-  padding: 'calc(15px + 1.5625vw)',
-});
+export const ImageContainer = styled(Box, {
+  shouldForwardProp: prop => prop !== '$br' && 'theme',
+})(({ $order, theme }) => ({
+  padding: 'calc(4px + 1vw)',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: '50%',
+  order: $order ? 1 : 'none',
+  [theme.breakpoints.down('md')]: {
+    width: '100%',
+    order: 'none',
+  },
+}));
 
 export const StoryWrap = styled(Box, {
   shouldForwardProp: prop => prop !== '$fd',
 })(({ theme, $fd }) => ({
-  maxWidth: '160rem',
+  maxWidth: '125rem',
+
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
   margin: '0 auto',
-  background: 'red',
-  gap: '5.5rem',
+  gap: '2rem',
   flexDirection: $fd ? '$fd' : 'row',
   [theme.breakpoints.down('md')]: {
     flexDirection: 'column-reverse',
   },
 }));
-
-// max-width: 100%;
-// height: auto;

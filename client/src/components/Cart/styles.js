@@ -1,6 +1,26 @@
 import { styled } from '@mui/material/styles';
-import { Box, Typography, Divider, Button } from '@mui/material';
+import { Box, Typography, Divider, Button, Drawer } from '@mui/material';
 
+export const CartSection = styled('section')(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'space-between',
+  background: theme.palette.secondary.light,
+  height: '100vh',
+  width: '50rem',
+}));
+
+
+
+export const CartFooter = styled('div')(({ theme }) => ({
+  padding: '2rem',
+  height: '25rem',
+  borderTop: `1px solid ${theme.palette.primary.main}`,
+}));
+
+export const CustomDivider = styled(Divider)(({ theme }) => ({
+  background: theme.palette.primary.main,
+}));
 export const ProductImage = styled('img')({
   width: '10rem',
 });
@@ -37,12 +57,6 @@ export const SubheaderContainer = styled(Box)(({ theme }) => ({
   bottomBorder: `1px solid ${theme.palette.primary.main}`,
 }));
 
-export const CartFooter = styled('div')(({ theme }) => ({
-  padding: '2rem',
-  height: '25rem',
-  borderTop: `1px solid ${theme.palette.primary.main}`,
-}));
-
 export const SubtotalWrap = styled('div')({
   display: 'flex',
   alignItems: 'center',
@@ -63,13 +77,7 @@ export const Text = styled(Typography)(({ theme }) => ({
   fontStyle: 'italic',
 }));
 
-export const TextWrapper = styled(Box)({
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  marginRight: '-50%',
-  transform: 'translate(-50%, -50%)',
-});
+export const TextWrapper = styled(Box)({});
 
 export const NavOption = styled(Typography)(({ theme }) => ({
   color: theme.palette.secondary.light,
@@ -82,7 +90,6 @@ export const NavOption = styled(Typography)(({ theme }) => ({
   position: 'relative',
   display: 'inline-block',
   padding: '3px 0',
-  transform: 'translate(0, 150px)',
   '&::before': {
     content: '""',
     position: 'absolute',
@@ -112,14 +119,6 @@ export const NavOption = styled(Typography)(({ theme }) => ({
   },
 }));
 
-export const Header = styled(Typography)(({ theme }) => ({
-  color: theme.palette.primary.main,
-}));
-
-export const CustomDivider = styled(Divider)(({ theme }) => ({
-  background: theme.palette.primary.main,
-}));
-
 export const QuantitySection = styled(Box)({
   display: 'flex',
 });
@@ -140,15 +139,6 @@ export const Quantity = styled(Box)({
   justifyContent: 'center',
   alignItems: 'center',
 });
-
-export const CartSection = styled(Box)(({ theme }) => ({
-  width: '50rem',
-  height: '100vh',
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'space-between',
-  background: theme.palette.secondary.light,
-}));
 
 export const CustomButton = styled(Button)(({ theme }) => ({
   background: theme.palette.secondary.main,

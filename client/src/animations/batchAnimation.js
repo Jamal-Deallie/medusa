@@ -1,12 +1,14 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
 gsap.registerPlugin(ScrollTrigger);
 
 export const batchAnimation = (batchElem, containerElem) => {
   gsap.set(batchElem, { opacity: 0, y: 100 });
+
   ScrollTrigger.batch(batchElem, {
     trigger: containerElem,
-    markers: true,
+
 
     start: 'top center',
     end: 'bottom',

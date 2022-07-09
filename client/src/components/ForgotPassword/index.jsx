@@ -1,22 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { MainButton, FormWrap, CustomLink, CustomInput, Text } from './styles';
 import { useNavigate } from 'react-router-dom';
-import {
-  Typography,
-  Box,
-  TextField,
-  Container,
-  InputAdornment,
-  IconButton,
-  InputLabel,
-  FormControl,
-  Stack,
-} from '@mui/material';
+import { Typography, Box, Container, Stack } from '@mui/material';
 import { useSignInUserMutation } from '../../features/users/userSlice';
 import { setCredentials } from '../../features/auth/authSlice';
 import { useDispatch } from 'react-redux';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 export default function ForgotPassword() {
   const navigate = useNavigate();

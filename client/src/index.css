@@ -3,6 +3,12 @@ body {
   font-size: 62.5%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-kerning: none;
+  -webkit-text-rendering: optimizeSpeed;
+  text-rendering: optimizeSpeed;
+  -webkit-transform: translateZ(0);
+  transform-style: preserve-3d;
+  backface-visibility: 'hidden';
 }
 
 html {
@@ -98,11 +104,9 @@ video {
   margin: 0;
   padding: 0;
   border: 0;
-  font: inherit;
-  vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article,
+/* article,
 aside,
 details,
 figcaption,
@@ -114,10 +118,8 @@ menu,
 nav,
 section {
   display: block;
-}
-body {
-  line-height: 1;
-}
+} */
+
 ol,
 ul {
   list-style: none;
@@ -178,16 +180,6 @@ h2 {
 p {
   font-size: 1.618rem;
 }
-
-
-@font-face {
-  font-family:Mightype;
-  src: url("/font/mightype-script.otf ");
-  format: ("opentype");
-  font-display: swap;
-}
-
-
 
 .no-scroll {
   overflow: hidden !important;

@@ -9,18 +9,19 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { extendedApiSlice } from './features/product/productSlice';
 import { store } from './app/store';
 import { Provider } from 'react-redux';
-
+import { BrowserRouter as Router } from 'react-router-dom';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 //loads products at app load time
 store.dispatch(extendedApiSlice.endpoints.getProducts.initiate());
-
 
 root.render(
   <Provider store={store}>
     <ThemeProvider theme={customTheme}>
       <CssBaseline />
       <React.StrictMode>
-        <App />
+        <Router>
+          <App />
+        </Router>
       </React.StrictMode>
     </ThemeProvider>
   </Provider>

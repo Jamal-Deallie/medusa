@@ -6,6 +6,8 @@ import {
   TextField,
   OutlinedInput,
   Button,
+  FormControl,
+  InputBase,
 } from '@mui/material';
 
 export const LoginWrap = styled('div')({
@@ -14,8 +16,8 @@ export const LoginWrap = styled('div')({
 });
 
 export const MainButton = styled(Button)(({ theme }) => ({
-  background: theme.palette.primary.main,
-  color: theme.palette.secondary.main,
+  background: theme.palette.secondary.main,
+  color: theme.palette.primary.main,
   fontSize: 16,
   fontFamily: 'muli, sans-serif',
   fontWeight: 400,
@@ -36,7 +38,7 @@ export const Links = styled(Link)(({ theme }) => ({
   fontSize: '1.2rem',
   transition: 'color 0.5s ease-in-out',
   '&:hover': {
-    color: theme.palette.primary.main,
+    color: theme.palette.secondary.light,
   },
 }));
 
@@ -52,9 +54,15 @@ export const FormWrap = styled(Box)(({ theme }) => ({
   height: '100%',
   gap: '5rem',
 }));
+export const FormContainer = styled(FormControl)(({ theme }) => ({
+  color: theme.palette.secondary.light,
+  '& .Mui-focused': {
+    color: theme.palette.secondary.light,
+  },
+}));
 
 export const CustomLink = styled(Link)(({ theme }) => ({
-  color: theme.palette.primary.main,
+  color: theme.palette.secondary.light,
   cursor: 'pointer',
   fontSize: '1.6rem',
   transition: 'color 0.5s ease-in-out',
@@ -66,26 +74,37 @@ export const CustomLink = styled(Link)(({ theme }) => ({
 export const CustomInput = styled(TextField)(({ theme }) => ({
   '& .MuiOutlinedInput-root': {
     '& > fieldset': {
-      border: `1px solid ${theme.palette.primary.main}`,
+      border: `1px solid ${theme.palette.secondary.light}`,
       background: 'none',
     },
   },
+
   '&& .MuiOutlinedInput-root:hover': {
-    '& > fieldset': { border: `1px solid ${theme.palette.primary.main}` },
+    '& > fieldset': { border: `1px solid ${theme.palette.secondary.light}` },
+  },
+  '&& .MuiOutlinedInput-root.Mui-focused': {
+    '& > fieldset': { border: `1px solid ${theme.palette.secondary.light}` },
+  },
+  '&& .MuiOutlinedInput-root:active': {
+    '& > fieldset': { border: `1px solid ${theme.palette.secondary.light}` },
   },
   '& label': {
-    color: theme.palette.primary.main,
+    color: theme.palette.secondary.light,
     fontFamily: 'muli, sans-serif',
     fontSize: 16,
     margin: 'dense',
   },
 
+  '& .MuiInputLabel-root.Mui-focused': {
+    color: theme.palette.secondary.light,
+  },
+
   '& .MuiTypography-root': {
-    color: theme.palette.primary.main,
+    color: theme.palette.secondary.light,
   },
 
   '& .MuiInputBase-root': {
-    color: theme.palette.primary.main,
+    color: theme.palette.secondary.light,
   },
 
   ' & ::-webkit-calendar-picker-indicator': {
@@ -94,31 +113,59 @@ export const CustomInput = styled(TextField)(({ theme }) => ({
 }));
 
 export const OutlineInput = styled(OutlinedInput)(({ theme }) => ({
-  color: theme.palette.primary.main,
+  color: theme.palette.secondary.light,
   '& .MuiOutlinedInput-notchedOutline': {
-    border: `1px solid ${theme.palette.primary.main}`,
+    border: `1px solid ${theme.palette.secondary.light}`,
     background: 'none',
   },
 
   '&& .MuiOutlinedInput-root:hover': {
-    '& > fieldset': { border: `1px solid ${theme.palette.primary.main}` },
+    '& > fieldset': { border: `1px solid ${theme.palette.secondary.light}` },
+  },
+  '&& .MuiOutlinedInput-root:focus': {
+    '& > fieldset': { border: `1px solid ${theme.palette.secondary.light}` },
   },
   '& label': {
-    color: theme.palette.primary.main,
+    color: theme.palette.secondary.light,
     fontFamily: 'muli, sans-serif',
     fontSize: 16,
     margin: 'dense',
   },
 
+  '& .MuiInputLabel-formControl.MuiFormLabel-root.Mui-focused': {
+    color: theme.palette.secondary.light,
+  },
+
   '& .MuiTypography-root': {
-    color: theme.palette.primary.main,
+    color: theme.palette.secondary.light,
   },
 
   '& .MuiInputBase-root': {
-    color: theme.palette.primary.main,
+    color: theme.palette.secondary.light,
   },
 
   ' & ::-webkit-calendar-picker-indicator': {
     filter: 'invert(100%)',
   },
+}));
+
+export const Heading = styled(Typography)(({ theme }) => ({
+  fontFamily: 'tenez, sans-serif',
+  fontSize: '4.8rem',
+  fontStyle: 'italic',
+  color: theme.palette.secondary.light,
+  lineHeight: 'calc(1.5 * 48px)',
+  width: '100%',
+  overflow: 'hidden',
+  paddingBottom: '2.5rem',
+  textAlign: 'center',
+}));
+
+export const LinkContainer = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  justifyContent: 'center',
+  gap: '5px',
+  marginTop: '2.5rem',
+  textAlign: 'center',
+  color: theme.palette.secondary.light,
 }));

@@ -1,4 +1,4 @@
-import { useCallback, useState, useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import {
   ProductWrapper,
   ContentContainer,
@@ -7,7 +7,7 @@ import {
   Text,
   CardWrap,
 } from './styles';
-import { useParams, useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 import {
   selectAllProducts,
   useGetProductsQuery,

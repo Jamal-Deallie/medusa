@@ -1,10 +1,8 @@
 import { CardButton, Text } from './styles';
-import { Typography } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { addItem } from '../../features/cart/cartSlice';
 import {
   selectProductById,
-  useGetProductsQuery,
 } from '../../features/product/productSlice';
 import { useSelector } from 'react-redux';
 export default function ATCButton({ productId }) {
@@ -12,7 +10,6 @@ export default function ATCButton({ productId }) {
   const dispatch = useDispatch();
   const items = useSelector(state => selectProductById(state, productId));
 
-  console.log(items);
 
   const handleAddToCart = product => {
     console.log({ product });

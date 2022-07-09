@@ -1,25 +1,22 @@
 import { styled } from '@mui/system';
-import { Box } from '@mui/material';
-export const StyledLayout = styled('div')`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: stretch;
-  width: 100%;
-`;
-// export const NavContainer = styled('div')`
-//   flex: 1;
-//   position: fixed,
-//   height: 10rem;
 
-// `;
+export const StyledLayout = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  width: '100%',
+  position: 'relative',
+});
 
-export const NavContainer = styled('div')(({ theme }) => ({
+export const NavContainer = styled('div')({
   flexGrow: 1,
   height: '10rem',
-  background: theme.palette.primary.main,
   width: '100%',
-}));
+  zIndex: 4,
+
+  top: 0,
+  left: 0,
+  right: 0,
+});
 
 export const ContentContainer = styled('main')({
   flexGrow: 2,
@@ -28,9 +25,9 @@ export const ContentContainer = styled('main')({
   width: '100%',
 });
 
-export const FooterContainer = styled('div')(({ theme }) => ({
-  position: 'relative',
+export const FooterContainer = styled('div')({
   flexGrow: 1,
+  position: 'relative',
   height: '40rem',
   width: '100%',
-}));
+});

@@ -1,22 +1,23 @@
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
+import { ProductContainer } from '../../containers';
 
 export default function ProductSearchPage() {
   const location = useLocation();
 
   const { search } = location;
   const navigate = useNavigate();
-  console.log(!search);
+  console.log(search);
 
   useEffect(() => {
-    if (!search) {
+    if (search === '?term=') {
       navigate('*');
     }
   });
 
   return (
-    <div>
-      <h1>Product Query search</h1>
-    </div>
+    <>
+      <ProductContainer />
+    </>
   );
 }

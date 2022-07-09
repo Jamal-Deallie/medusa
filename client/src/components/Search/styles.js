@@ -1,11 +1,5 @@
 import { styled } from '@mui/material/styles';
-import {
-  Container,
-  Typography,
-  TextField,
-  Button,
-  InputBase,
-} from '@mui/material';
+import { InputBase } from '@mui/material';
 import { InputUnstyled } from '@mui/base';
 
 export const SearchSection = styled('div')(({ theme }) => ({

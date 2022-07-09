@@ -3,7 +3,7 @@ import { Container, Button, Typography, Box, Grid } from '@mui/material';
 
 export const CategoryMenuSection = styled('section')(({ theme }) => ({
   background: theme.palette.primary.main,
-  padding: '12.5rem 0 12.25rem 0',
+  padding: '5.5rem 0 12.25rem 0',
 }));
 
 export const MenuWrap = styled(Grid)({

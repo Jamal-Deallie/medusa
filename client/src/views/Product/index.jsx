@@ -1,8 +1,8 @@
-import { ProductsContainer } from '../../containers';
+import { ProductContainer } from '../../containers';
 export default function ProductPage() {
   return (
     <>
-      <ProductsContainer />
+      <ProductContainer />
     </>
   );
 }

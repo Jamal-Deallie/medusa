@@ -39,16 +39,6 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
     }),
     getProductsBySearch: builder.query({
       query: term => `/products/search?term=${term}`,
-      transformResponse: response => {
-        const { data } = response.data;
-
-        const loadedProduct = [data].reduce((acc, curr) => {
-          acc[curr._id] = curr;
-          return acc;
-        }, {});
-        return productAdapter.setAll(initialState, loadedProduct);
-      },
-      providesTags: ['Product'],
     }),
   }),
 });
@@ -71,8 +61,6 @@ export const selectProductsData = createSelector(
 
   // normalized state object with ids & entities
 );
-
-
 
 //getSelectors creates these selectors and we rename them with aliases using destructuring
 export const {

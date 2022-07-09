@@ -1,13 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Paper from '@mui/material/Paper';
-import { Typography, Grid, Box, Container } from '@mui/material';
+import React, { useState } from 'react';
+import { Typography, Grid, Box } from '@mui/material';
 import {
-  MainButton,
   CustomInput,
   Text,
   ContactFormWrap,
@@ -65,7 +58,6 @@ export default function ContactForm() {
   };
 
   return (
-    // <Grid container component='main' sx={{ height: 'calc(100vh - 10rem)' }}>
     <ContactFormWrap>
       <Box
         sx={{
@@ -138,20 +130,4 @@ export default function ContactForm() {
       </Box>
     </ContactFormWrap>
   );
-}
-
-{
-  /* <Grid
-        item
-        sm={false}
-        md={7}
-        sx={{
-          backgroundImage: 'url(/images/planting.jpg)',
-          backgroundRepeat: 'no-repeat',
-          backgroundColor: 'primary.light',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      />
-    </Grid> */
 }

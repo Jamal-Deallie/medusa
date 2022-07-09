@@ -1,10 +1,16 @@
 import { styled } from '@mui/system';
-import { Button, Box, TextField, OutlinedInput } from '@mui/material';
+import {
+  Button,
+  Box,
+  TextField,
+  OutlinedInput,
+  Typography,
+} from '@mui/material';
 import { Link } from 'react-router-dom';
 
 export const MainButton = styled(Button)(({ theme }) => ({
-  background: theme.palette.primary.main,
-  color: theme.palette.secondary.main,
+  background: theme.palette.secondary.main,
+  color: theme.palette.secondary.light,
   fontSize: 16,
   fontFamily: 'muli, sans-serif',
   fontWeight: 400,
@@ -16,7 +22,7 @@ export const MainButton = styled(Button)(({ theme }) => ({
   transition: 'background border color 0.5s ease-in-out',
   '&:hover': {
     background: theme.palette.secondary.main,
-    color: theme.palette.primary.main,
+    color: theme.palette.secondary.light,
   },
 }));
 
@@ -35,26 +41,34 @@ export const Container = styled(Box)(({ theme }) => ({
 export const CustomInput = styled(TextField)(({ theme }) => ({
   '& .MuiOutlinedInput-root': {
     '& > fieldset': {
-      border: `1px solid ${theme.palette.primary.main}`,
+      border: `1px solid ${theme.palette.secondary.light}`,
       background: 'none',
     },
   },
   '&& .MuiOutlinedInput-root:hover': {
-    '& > fieldset': { border: `1px solid ${theme.palette.primary.main}` },
+    '& > fieldset': { border: `1px solid ${theme.palette.secondary.light}` },
+  },
+  '&& .MuiOutlinedInput-root:active': {
+    '& > fieldset': { border: `1px solid ${theme.palette.secondary.light}` },
   },
   '& label': {
-    color: theme.palette.primary.main,
+    color: theme.palette.secondary.light,
     fontFamily: 'muli, sans-serif',
     fontSize: 16,
     margin: 'dense',
   },
 
+  '& .MuiInputLabel-root.Mui-focused': {
+    marginLeft: 0,
+    color: theme.palette.secondary.light,
+  },
+
   '& .MuiTypography-root': {
-    color: theme.palette.primary.main,
+    color: theme.palette.secondary.light,
   },
 
   '& .MuiInputBase-root': {
-    color: theme.palette.primary.main,
+    color: theme.palette.secondary.light,
   },
 
   ' & ::-webkit-calendar-picker-indicator': {
@@ -64,26 +78,26 @@ export const CustomInput = styled(TextField)(({ theme }) => ({
 
 export const OutlineInput = styled(OutlinedInput)(({ theme }) => ({
   '& .MuiOutlinedInput-notchedOutline': {
-    border: `1px solid ${theme.palette.primary.main}`,
+    border: `1px solid ${theme.palette.secondary.light}`,
     background: 'none',
   },
 
   '&& .MuiOutlinedInput-root:hover': {
-    '& > fieldset': { border: `1px solid ${theme.palette.primary.main}` },
+    '& > fieldset': { border: `1px solid ${theme.palette.secondary.light}` },
   },
   '& label': {
-    color: theme.palette.primary.main,
+    color: theme.palette.secondary.light,
     fontFamily: 'muli, sans-serif',
     fontSize: 16,
     margin: 'dense',
   },
 
   '& .MuiTypography-root': {
-    color: theme.palette.primary.main,
+    color: theme.palette.secondary.light,
   },
 
   '& .MuiInputBase-root': {
-    color: theme.palette.primary.main,
+    color: theme.palette.secondary.light,
   },
 
   ' & ::-webkit-calendar-picker-indicator': {
@@ -92,11 +106,23 @@ export const OutlineInput = styled(OutlinedInput)(({ theme }) => ({
 }));
 
 export const CustomLink = styled(Link)(({ theme }) => ({
-  color: theme.palette.primary.main,
+  color: theme.palette.secondary.light,
   cursor: 'pointer',
   fontSize: '1.6rem',
   transition: 'color 0.5s ease-in-out',
   '&:hover': {
     color: theme.palette.secondary.dark,
   },
+}));
+
+export const Heading = styled(Typography)(({ theme }) => ({
+  fontFamily: 'tenez, sans-serif',
+  fontSize: '4.8rem',
+  fontStyle: 'italic',
+  color: theme.palette.secondary.light,
+  lineHeight: 'calc(1.5 * 48px)',
+  width: '100%',
+  overflow: 'hidden',
+  paddingBottom: '2.5rem',
+  textAlign: 'center',
 }));

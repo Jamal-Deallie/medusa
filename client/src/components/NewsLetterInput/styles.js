@@ -11,6 +11,7 @@ export const NewsLetterContent = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
+  padding: 'calc(8px + 1.5625vw)',
 }));
 
 export const NewsLetterHeader = styled(Typography)(({ theme }) => ({
