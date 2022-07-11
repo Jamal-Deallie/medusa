@@ -1,4 +1,4 @@
-import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { ProductContainer } from '../../containers';
 
@@ -7,7 +7,6 @@ export default function ProductSearchPage() {
 
   const { search } = location;
   const navigate = useNavigate();
-  console.log(search);
 
   useEffect(() => {
     if (search === '?term=') {

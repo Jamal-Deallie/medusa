@@ -8,23 +8,22 @@ import {
   OptionsContainer,
 } from './styles';
 import { Cart, Search, ShopMenu } from '../../components';
-
+import { selectToken } from '../../features/auth/authSlice';
+import { useSelector } from 'react-redux';
 
 export default function Navigation() {
   // const token = localStorage.getItem('token');
-
-  const token = false;
-
+  // const token = false;
+  const token = useSelector(selectToken);
+  console.log(token);
   // console.log(localStorage.getItem("token"));
-
-
 
   return (
     <>
       <Nav>
         <NavWrap>
           <LinkContainer>
-            <ShopMenu/>
+            <ShopMenu />
             <NavLinks to='about' $dn={'none'}>
               About
             </NavLinks>

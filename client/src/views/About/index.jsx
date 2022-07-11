@@ -1,9 +1,5 @@
-import { AboutContainer } from '../../containers';
+import { FounderContainer } from '../../containers';
 
 export default function AboutPage() {
-  return (
-    <>
-      <AboutContainer />
-    </>
-  );
+  return <FounderContainer />;
 }

@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { ErrorBoundary } from 'react-error-boundary';
 import {
   HomePage,
@@ -18,12 +18,13 @@ import {
   CategoriesPage,
   AccountPage,
 } from './views';
-import { Layout } from './components';
+import { Layout, RequireAuth, RedirectRoute } from './components';
+import { NotFoundContainer } from './containers';
 import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   return (
-    <ErrorBoundary fallback={<div>Oh no</div>}>
+    <ErrorBoundary fallback={<NotFoundContainer />}>
       <ScrollToTop>
         <Routes>
           <Route path='/' element={<Layout />}>
@@ -33,19 +34,24 @@ function App() {
             <Route path='shop/:id' element={<ProductDetailsPage />} />
             <Route path='about' element={<AboutPage />} />
             <Route path='contactus' element={<ContactPage />} />
-            <Route path='signup' element={<SignUpPage />} />
             <Route path='location' element={<LocationPage />} />
-            <Route path='signin' element={<SignInPage />} />
+
+            <Route element={<RedirectRoute />}>
+              <Route path='signup' element={<SignUpPage />} />
+              <Route path='signin' element={<SignInPage />} />
+            </Route>
+
             <Route path='forgotpassword' element={<ForgotPasswordPage />} />
             <Route
               path='resetpassword/:resetToken'
               element={<ResetPasswordPage />}
             />
             <Route path='dashboard' element={<DashboardPage />} />
-
             <Route path={'search'} element={<ProductSearchPage />} />
             <Route path='checkout-success' element={<CheckoutSuccessPage />} />
-            <Route path='account' element={<AccountPage />} />
+            <Route element={<RequireAuth />}>
+              <Route path='account' element={<AccountPage />} />
+            </Route>
             {/* 404 route */}
             <Route path='*' element={<NotFoundPage />} />
           </Route>

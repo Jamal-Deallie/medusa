@@ -1,25 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import {
-  MainButton,
   FormWrap,
   CustomLink,
   CustomInput,
-  OutlineInput,
   Heading,
   LinkContainer,
-  FormContainer,
 } from './styles';
 import { useNavigate } from 'react-router-dom';
 import {
   Typography,
   Box,
   Button,
-  TextField,
   Container,
   InputAdornment,
   IconButton,
-  InputLabel,
-  FormControl,
   Stack,
 } from '@mui/material';
 import { useSignInUserMutation } from '../../features/users/userSlice';
@@ -39,10 +33,13 @@ export default function SignIn() {
   const [signInUser, { isLoading, isSuccess, data }] = useSignInUserMutation();
 
   const canSave = [email, password].every(Boolean) && !isLoading;
+  console.log(data);
 
   useEffect(() => {
     if (isSuccess) {
-      dispatch(setCredentials({ token: data.token }));
+      dispatch(
+        setCredentials({ token: data.token, name: data.user.firstName })
+      );
       setEmail('');
       setPassword('');
       navigate('/');
@@ -112,7 +109,6 @@ export default function SignIn() {
               InputProps={{
                 startAdornment: (
                   <InputAdornment position='start'>
-                    {' '}
                     <IconButton
                       onClick={handleClickShowPassword}
                       aria-label='toggle password visibility'
@@ -140,7 +136,9 @@ export default function SignIn() {
               <CustomLink to='/signup'>Create An Account</CustomLink>
             </LinkContainer>
 
-            <Button variant="main"onClick={handleSubmit}>Submit</Button>
+            <Button variant='main' onClick={handleSubmit}>
+              Submit
+            </Button>
           </Stack>
         </Box>
       </FormWrap>

@@ -10,13 +10,7 @@ const initialState = userAdapter.getInitialState();
 export const extendedApiSlice = apiSlice.injectEndpoints({
   endpoints: builder => ({
     signUpUser: builder.mutation({
-      query: ({
-        firstName,
-        lastName,
-        email,
-        password,
-        passwordConfirm,
-      }) => ({
+      query: ({ firstName, lastName, email, password, passwordConfirm }) => ({
         method: 'POST',
         url: '/users/signup',
         body: {
@@ -58,7 +52,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
       },
       providesTags: ['User'],
     }),
-    logout: builder.query({
+    getLogout: builder.query({
       query: () => `/users/logout`,
     }),
   }),
@@ -70,6 +64,7 @@ export const {
   useForgotPasswordMutation,
   useResetPasswordMutation,
   useGetMeQuery,
+  useGetLogoutQuery,
 } = extendedApiSlice;
 
 export const selectUserResults = extendedApiSlice.endpoints.getMe.select();

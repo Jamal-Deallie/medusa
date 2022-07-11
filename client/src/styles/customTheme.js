@@ -38,9 +38,20 @@ export const customTheme = createTheme({
       fontFamily: 'tenez, sans-serif',
     },
     header1: {
-      fontFamily: 'tenez, sans-serif',
       fontWeight: 400,
+      fontFamily: 'tenez, sans-serif',
+      textTransform: 'capitalize',
       fontStyle: 'italic',
+      fontSize: '4.8rem',
+      color: secondaryLight,
+    },
+    header2: {
+      fontWeight: 400,
+      fontFamily: 'tenez, sans-serif',
+      textTransform: 'capitalize',
+      fontStyle: 'italic',
+      fontSize: '4.8rem',
+      color: primaryColor,
     },
     body1: {
       fontSize: '1.6rem',

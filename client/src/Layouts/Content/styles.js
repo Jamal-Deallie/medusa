@@ -2,20 +2,20 @@ import { styled } from '@mui/system';
 import { Typography, Box } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-export const ContentOuter = styled(Box)(({ theme }) => ({
+export const ContentSection = styled('section')(({ theme }) => ({
   background: theme.palette.primary.main,
   paddingTop: '12.5rem',
 }));
 
 export const ContentContainer = styled(Box)(({ theme }) => ({
+  margin: '0 auto',
+  marginTop: '15%',
   width: '50%',
   padding: 'calc(8px + 1vw)',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
   [theme.breakpoints.down('md')]: {
     width: '100%',
     maxWidth: '50rem',
+    marginTop: 0,
   },
 }));
 
@@ -54,7 +54,6 @@ export const Heading = styled(Typography)(({ theme }) => ({
 
 export const Text = styled(Typography)(({ theme }) => ({
   fontFamily: ' tenez, sans-serif',
-  display: 'inline-block',
   color: theme.palette.secondary.light,
   width: '100%',
   fontSize: '1.953rem',
@@ -63,7 +62,7 @@ export const Text = styled(Typography)(({ theme }) => ({
 export const Image = styled('img', {
   shouldForwardProp: prop => prop !== '$br',
 })(({ $br }) => ({
-  borderRadius: $br ? $br : 'none',
+  borderRadius: '55rem 55rem 0 0',
   width: '100%',
   maxWidth: '53.5rem',
   height: 'auto',
@@ -86,27 +85,16 @@ export const ImageContainer = styled(Box, {
   },
 }));
 
-export const ContentWrap = styled(Box, {
+export const ContentInner = styled(Box, {
   shouldForwardProp: prop => prop !== '$fd',
 })(({ theme, $fd }) => ({
   maxWidth: '125rem',
   display: 'flex',
-  alignItems: 'center',
   justifyContent: 'center',
   margin: '0 auto',
   gap: '2rem',
-  flexDirection: $fd ? '$fd' : 'row',
+  flexDirection: $fd ? 'row-reverse' : 'row',
   [theme.breakpoints.down('md')]: {
     flexDirection: 'column-reverse',
   },
-}));
-
-export const ContentInner = styled(Box, {
-  shouldForwardProp: prop => prop !== '$fd',
-})(({ theme, $fd }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  gap: '2rem',
-  flexDirection: 'column',
 }));

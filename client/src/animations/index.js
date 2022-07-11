@@ -1,1 +1,2 @@
-export { default as LandingAnimation} from './Landing';
+export { default as FounderAnimation } from './Founder';
+

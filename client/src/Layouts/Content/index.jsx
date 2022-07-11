@@ -1,14 +1,11 @@
-import { useRef } from 'react';
 import {
-  ContentWrap,
-  CustomLink,
   ContentInner,
   Heading,
   Image,
   ImageContainer,
   Text,
   ContentContainer,
-  ContentOuter,
+  CustomLink,
 } from './styles';
 import { ContentAnimation } from '../../components';
 
@@ -24,30 +21,22 @@ export default function ContentLayout({
   id,
   webLink,
   link,
+  label,
 }) {
   return (
     <ContentAnimation link={link} id={id}>
-      <ContentOuter $pt={pt} $pb={pb} id={`${id}-container`}>
-        <ContentWrap $fd={fd}>
-          <ImageContainer>
-            <Image $br={br} src={src} alt={alt} id={`${id}-image`} />
-          </ImageContainer>
-          <ContentContainer>
-            <ContentInner>
-              <Heading id={`${id}-heading`}>{title}</Heading>
-              <Text sx={{ overflow: 'hidden' }} id={`${id}-text`}>
-                {description}
-              </Text>
-
-              {link && (
-                <CustomLink to={webLink} id={`${id}-link`}>
-                  Learn More
-                </CustomLink>
-              )}
-            </ContentInner>
-          </ContentContainer>
-        </ContentWrap>
-      </ContentOuter>
+      <ContentInner $fd={fd} id={`${id}-container`}>
+        <ImageContainer>
+          <Image $br={br} src={src} alt={alt} id={`${id}-image`} />
+        </ImageContainer>
+        <ContentContainer>
+          <Heading id={`${id}-heading`}>{title}</Heading>
+          <Text sx={{ overflow: 'hidden' }} id={`${id}-text`}>
+            {description}
+          </Text>
+          {link && <CustomLink to={webLink} id={`${id}-link`}>{label}</CustomLink>}
+        </ContentContainer>
+      </ContentInner>
     </ContentAnimation>
   );
 }

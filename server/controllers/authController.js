@@ -204,7 +204,7 @@ exports.signin = catchAsync(async (req, res, next) => {
   // 2) Check if user exists && password is correct
   const user = await User.findOne({ email }).select('+password');
   const correctPassword = await user.correctPassword(password, user.password);
-  console.log(correctPassword);
+
   //since the password is encrypted via bcrypt the correctPassword function can confirm the hashed PW matches the inputted PW
   if (!user || !correctPassword) {
     return next(new AppError('Incorrect email or password', 401));
@@ -215,13 +215,7 @@ exports.signin = catchAsync(async (req, res, next) => {
   createSendToken(user, 200, req, res);
 });
 
-exports.logout = (req, res) => {
-  res.cookie('jwt', 'loggedout', {
-    expires: new Date(Date.now() + 10 * 1000),
-    httpOnly: true,
-  });
-  res.status(200).json({ status: 'success' });
-};
+
 
 
 exports.protect = catchAsync(async (req, res, next) => {

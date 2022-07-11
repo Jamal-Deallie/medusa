@@ -1,30 +1,86 @@
 import { styled } from '@mui/system';
+import { Typography, Box } from '@mui/material';
 
-export const FounderSection = styled('section')(({ theme }) => ({
-  paddingTop: '12.5rem',
+
+export const ContentSection = styled('section')(({ theme }) => ({
   background: theme.palette.primary.main,
+  paddingTop: '12.5rem',
 }));
 
-export const QuoteContainer = styled('div')(({ theme }) => ({
-  marginTop: '7.5rem',
-  borderRadius: '1rem',
-  background: theme.palette.primary.dark,
+export const ContentContainer = styled(Box)(({ theme }) => ({
+  margin: '0 auto',
+  marginTop: '15%',
+  width: '50%',
+  padding: 'calc(8px + 1vw)',
+  [theme.breakpoints.down('md')]: {
+    width: '100%',
+    maxWidth: '50rem',
+    marginTop: 0,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+}));
+
+export const Heading = styled(Typography)(({ theme }) => ({
+  fontFamily: 'tenez, sans-serif',
+  fontSize: '4.8rem',
+  fontStyle: 'italic',
+  color: theme.palette.secondary.light,
+  lineHeight: 1.2,
+  width: '100%',
+  overflow: 'hidden',
+  marginBottom: '3.5rem',
+  [theme.breakpoints.down('md')]: {
+    textAlign: 'center',
+  },
+}));
+
+export const Text = styled(Typography)(({ theme }) => ({
+  fontFamily: ' tenez, sans-serif',
+  color: theme.palette.secondary.light,
+  width: '100%',
+  fontSize: '1.953rem',
+  overflow: 'hidden'
+}));
+
+export const Image = styled('img', {
+  shouldForwardProp: prop => prop !== '$br',
+})(({ $br }) => ({
+  borderRadius: '55rem 55rem 0 0',
+  width: '100%',
+  maxWidth: '53.5rem',
+  height: 'auto',
+  aspectRatio: '3/4',
+  objectFit: 'cover',
+}));
+
+export const ImageContainer = styled(Box, {
+  shouldForwardProp: prop => prop !== '$br' && 'theme',
+})(({ $order, theme }) => ({
+  padding: 'calc(4px + 1vw)',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: '50%',
+  order: $order ? 1 : 'none',
+  [theme.breakpoints.down('md')]: {
+    width: '100%',
+    order: 'none',
+  },
+}));
+
+export const ContentInner = styled(Box, {
+  shouldForwardProp: prop => prop !== '$fd',
+})(({ theme, $fd }) => ({
+  maxWidth: '125rem',
   display: 'flex',
   justifyContent: 'center',
-  flexDirection: 'column',
-  alignItems: 'flex-start',
-  padding: '5rem',
-}));
-
-export const FounderImage = styled('img')({});
-
-export const SignatureWrap = styled('div')({});
-
-export const Signature = styled('img')({
-  width: '30rem',
-});
-
-export const FounderWrap = styled('div')({
-  maxWidth: '140rem',
   margin: '0 auto',
-});
+  gap: '2rem',
+  flexDirection: $fd ? 'row-reverse' : 'row',
+  [theme.breakpoints.down('md')]: {
+    flexDirection: 'column-reverse',
+  },
+}));

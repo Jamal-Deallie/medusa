@@ -18,3 +18,4 @@ export { default as SignInContainer } from './SignIn';
 export { default as SignUpContainer } from './SignUp';
 export { default as LogoContainer } from './Logo';
 export { default as ContainerTest } from './ContainerTest';
+export { default as NotFoundContainer } from './NotFound';

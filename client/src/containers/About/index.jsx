@@ -1,5 +1,4 @@
-import { Typography, Container } from '@mui/material';
-import { AboutWrap, Image, AboutSection } from './styles';
+
 import { ContentLayout } from '../../components';
 
 export default function AboutContainer() {

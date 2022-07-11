@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { ContentSection } from './styles';
+import { FounderSection } from './styles';
 import { useEnhancedEffect } from '../../hooks/useEnhancedEffect';
 import useRefSelector from '../../hooks/useRefSelector';
 import { gsap } from 'gsap';
@@ -10,33 +10,38 @@ gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(SplitText);
 gsap.registerPlugin(DrawSVGPlugin);
 
-export default function ContentAnimation({ children, link, id }) {
+export default function FounderAnimation({ children }) {
   const tl = useRef();
   const [q, ref] = useRefSelector();
+  let arrTargets = gsap.utils.toArray('#founder-words');
 
   useEnhancedEffect(() => {
-    let lineSplit = new SplitText(q(`#${id}-text`), {
+    let lineSplit = new SplitText(q('#founder-text'), {
       type: 'lines',
     });
 
-    let wordSplit = new SplitText(q(`#${id}-heading`), {
+    let wordSplit1 = new SplitText(q(arrTargets[0]), {
+      type: 'words',
+    });
+    let wordSplit2 = new SplitText(q(arrTargets[1]), {
       type: 'words',
     });
     tl.current = gsap.timeline({
       onComplete() {
         lineSplit.revert();
-        wordSplit.revert();
+        wordSplit1.revert();
+        wordSplit2.revert();
       },
     });
 
-    if (link) {
-      gsap.set(q(`#${id}-link`), { autoAlpha: 0 });
-    }
     gsap.set(lineSplit.lines, { y: 40, opacity: 0 });
+    gsap.set(wordSplit1.words, { y: 50, opacity: 0 });
+    gsap.set(wordSplit2.words, { y: 50, opacity: 0 });
+
     const contentAnimation = tl.current
-      .from(wordSplit.words, {
-        opacity: 0,
-        y: 50,
+      .to(wordSplit1.words, {
+        opacity: 1,
+        y: 0,
         duration: 0.5,
         ease: 'power2',
         stagger: 0.05,
@@ -50,20 +55,30 @@ export default function ContentAnimation({ children, link, id }) {
         overflow: 'hidden',
       })
       .fromTo(
-        q(`#${id}-image`),
+        q('#founder-image'),
         { autoAlpha: 0 },
-        { duration: 1, autoAlpha: 1, ease: 'sine.in' }
+        { duration: 1, autoAlpha: 1, ease: 'sine.in' },
+        '-=1'
+      )
+      .fromTo(
+        q('#founder-svg'),
+        { drawSVG: '0' },
+        { duration: 0.7, drawSVG: '100%' }
+      )
+      .to(
+        wordSplit2.words,
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.5,
+          ease: 'power2',
+          stagger: 0.05,
+        },
+        '-=1'
       );
-
-    // outro animation
-    if (link) {
-      contentAnimation.add(
-        gsap.to(q(`#${id}-link`), { duration: 0.7, autoAlpha: 1 }, '-=1')
-      );
-    }
 
     let st = ScrollTrigger.create({
-      trigger: q(`#${id}-container`),
+      trigger: q('#founder-container'),
       start: 'top center',
       end: 'bottom',
       markers: true,
@@ -76,5 +91,5 @@ export default function ContentAnimation({ children, link, id }) {
     };
   }, []);
 
-  return <ContentSection ref={ref}>{children}</ContentSection>;
+  return <FounderSection ref={ref}>{children}</FounderSection>;
 }
