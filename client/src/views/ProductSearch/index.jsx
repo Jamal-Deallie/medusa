@@ -14,9 +14,5 @@ export default function ProductSearchPage() {
     }
   });
 
-  return (
-    <>
-      <ProductContainer />
-    </>
-  );
+  return <ProductContainer />;
 }

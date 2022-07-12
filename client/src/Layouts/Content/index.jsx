@@ -7,7 +7,7 @@ import {
   ContentContainer,
   CustomLink,
 } from './styles';
-import { ContentAnimation } from '../../components';
+import { ContentAnimation } from '../../animations';
 
 export default function ContentLayout({
   src,
@@ -16,8 +16,6 @@ export default function ContentLayout({
   br,
   title,
   description,
-  pb,
-  pt,
   id,
   webLink,
   link,
@@ -34,7 +32,11 @@ export default function ContentLayout({
           <Text sx={{ overflow: 'hidden' }} id={`${id}-text`}>
             {description}
           </Text>
-          {link && <CustomLink to={webLink} id={`${id}-link`}>{label}</CustomLink>}
+          {link && (
+            <CustomLink to={webLink} id={`${id}-link`}>
+              {label}
+            </CustomLink>
+          )}
         </ContentContainer>
       </ContentInner>
     </ContentAnimation>

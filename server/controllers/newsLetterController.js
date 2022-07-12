@@ -22,7 +22,7 @@ exports.newsletter = catchAsync(async (req, res, next) => {
     const message =
       'This email serves as confirmation that you have signed up for our newsletter';
     const subject = 'Newsletter Confirmation - Medusa Gardens';
-    console.log(email, message, subject);
+
     sendMail(email, message, subject);
     console.log('Test email sent successfully');
     res.status(200).json({

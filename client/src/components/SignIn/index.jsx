@@ -33,7 +33,6 @@ export default function SignIn() {
   const [signInUser, { isLoading, isSuccess, data }] = useSignInUserMutation();
 
   const canSave = [email, password].every(Boolean) && !isLoading;
-  console.log(data);
 
   useEffect(() => {
     if (isSuccess) {
@@ -69,14 +68,16 @@ export default function SignIn() {
     }
   };
 
-  const handleEmailInput = e => setEmail(e.target.value);
-
-  const handlePasswordInput = e => setPassword(e.target.value);
-
   return (
     <Container sx={{ position: 'relative', height: '60rem' }}>
       <FormWrap noValidate>
-        {error && <Typography>{error}</Typography>}
+        {error && (
+          <Typography
+            variant='body1'
+            sx={{ color: 'secondary.light', textAlign: 'center' }}>
+            {error}
+          </Typography>
+        )}
         <Heading>Sign In</Heading>
         <Box component='form' onSubmit={handleSubmit} sx={{ p: 2 }}>
           <Stack spacing={4}>

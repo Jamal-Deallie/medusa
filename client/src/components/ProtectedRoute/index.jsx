@@ -2,7 +2,7 @@ import { Navigate } from 'react-router-dom';
 
 export default function ProtectedRoute({
   user,
-  redirectPath = '/landing',
+  redirectPath = '/',
   children,
 }) {
   if (!user) {

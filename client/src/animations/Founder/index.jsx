@@ -13,17 +13,16 @@ gsap.registerPlugin(DrawSVGPlugin);
 export default function FounderAnimation({ children }) {
   const tl = useRef();
   const [q, ref] = useRefSelector();
-  let arrTargets = gsap.utils.toArray('#founder-words');
 
   useEnhancedEffect(() => {
     let lineSplit = new SplitText(q('#founder-text'), {
       type: 'lines',
     });
 
-    let wordSplit1 = new SplitText(q(arrTargets[0]), {
+    let wordSplit1 = new SplitText(q('#founder-header'), {
       type: 'words',
     });
-    let wordSplit2 = new SplitText(q(arrTargets[1]), {
+    let wordSplit2 = new SplitText(q('#founder-name'), {
       type: 'words',
     });
     tl.current = gsap.timeline({
@@ -81,7 +80,6 @@ export default function FounderAnimation({ children }) {
       trigger: q('#founder-container'),
       start: 'top center',
       end: 'bottom',
-      markers: true,
       animation: contentAnimation,
     });
 

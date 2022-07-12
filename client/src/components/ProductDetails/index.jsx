@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { Grid, Typography, Divider } from '@mui/material';
+import { Grid } from '@mui/material';
 import {
   Image,
   Icon,
@@ -16,7 +16,6 @@ import {
   Caption,
   CustomDivider,
 } from './styles';
-import { ATCButton } from '../../components';
 import { useParams } from 'react-router-dom';
 import { addItem } from '../../features/cart/cartSlice';
 import {
@@ -24,6 +23,7 @@ import {
   useGetProductsByIdQuery,
 } from '../../features/product/productSlice';
 import { useSelector, useDispatch } from 'react-redux';
+import { ATCButton } from '../../components';
 
 export default function ProductDetails() {
   const { id } = useParams();
@@ -34,7 +34,6 @@ export default function ProductDetails() {
   const dispatch = useDispatch();
 
   const handleAddToCart = product => {
-    console.log({ product });
     if (product) {
       dispatch(
         addItem({
@@ -50,7 +49,7 @@ export default function ProductDetails() {
     if (isLoading) {
       <div>...is Loading</div>;
     } else if (isSuccess) {
-      const { _id, image, description, name, price } = loadedProducts;
+      const { _id, image, description, name, price } = loadedProducts || {};
       return (
         <DetailsSection>
           <DetailsContainer>
@@ -70,18 +69,8 @@ export default function ProductDetails() {
                     <CustomDivider />
                   </div>
                   <Text>{description}</Text>
-                  <CardButton
-                    sx={{ fontFamily: 'muli, sans-serif' }}
-                    onClick={() =>
-                      handleAddToCart({
-                        _id: _id,
-                        price: price,
-                        name: name,
-                        image: image,
-                      })
-                    }>
-                    Add to Cart
-                  </CardButton>
+
+                  <ATCButton productId={_id} main={true} />
                   <CustomDivider />
                   <IconContainer container spacing={2}>
                     <IconWrap item lg={4} md={4}>
@@ -112,7 +101,7 @@ export default function ProductDetails() {
     } else if (isError) {
       <div>{error}</div>;
     }
-  }, [isLoading, isSuccess, isError, error, , loadedProducts]);
+  }, [isLoading, isSuccess, isError, error, loadedProducts]);
 
   return <> {renderProduct()}</>;
 }

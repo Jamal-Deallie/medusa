@@ -3,7 +3,8 @@ import {
   ProductsListContainer,
   SearchListContainer,
   CategoryListContainer,
-} from '..';
+  NotFoundContainer,
+} from '../../containers';
 import { useLocation } from 'react-router-dom';
 import {
   SearchSection,
@@ -20,8 +21,9 @@ export default function ProductContainer() {
     () => location.pathname.split('/').at(-1).replace('-', ' '),
     [location]
   );
+  console.log(location);
+  console.log({ subheader: subheader });
 
-  console.log(subheader);
   const Products = () => {
     switch (subheader) {
       case 'search':
@@ -30,12 +32,17 @@ export default function ProductContainer() {
       case 'shop':
         return <ProductsListContainer />;
 
-      case 'easy-care' || 'pet-friendly' || 'large-plants' || 'small-plant':
-        <CategoryListContainer />;
-        break;
+      case 'easy care':
+        return <CategoryListContainer />;
+        
+      case 'pet friendly':
+        return <CategoryListContainer />;
+        
+      case 'large plants':
+        return <CategoryListContainer />;
 
       default:
-        <div>Default</div>;
+        <NotFoundContainer />;
     }
   };
 

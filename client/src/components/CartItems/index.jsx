@@ -14,8 +14,10 @@ import {
   Quantity,
   QuantityBtn,
   TextWrapper,
+  CustomListItem,
+  CustomList,
 } from './styles';
-import { Typography, Box, List, ListItem, IconButton } from '@mui/material';
+import { Typography, Box, IconButton } from '@mui/material';
 import { Add, Remove, Delete, Close } from '@mui/icons-material';
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -72,23 +74,10 @@ export default function CartItems({ cart, quantity }) {
           <Typography variant='body2'>Your cart is currently empty!</Typography>
         </TextWrapper>
       ) : (
-        <List
-          sx={{
-            overflow: 'auto',
-            paddingTop: 0,
-            height: '100%',
-          }}>
+        <CustomList>
           {items?.map(item => {
             return (
-              <ListItem
-                key={item._id}
-                disablePadding
-                sx={{
-                  display: 'flex',
-                  justifyContent: 'flex-start',
-                  marginBottom: '1rem',
-                  borderBottom: `1px solid`,
-                }}>
+              <CustomListItem key={item._id} disablePadding sx={{}}>
                 <ProductImage src={item.image} alt={item.name} />
                 <DetailsSection>
                   <ItemHeader>
@@ -115,10 +104,10 @@ export default function CartItems({ cart, quantity }) {
                     <Typography>${item.price}</Typography>
                   </Details>
                 </DetailsSection>
-              </ListItem>
+              </CustomListItem>
             );
           })}
-        </List>
+        </CustomList>
       )}
 
       <CartFooter>

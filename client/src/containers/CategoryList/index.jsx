@@ -1,51 +1,34 @@
-import { useMemo } from 'react';
-import {
-  ProductWrapper,
-  ContentContainer,
-  Image,
-  HeadingContainer,
-  Text,
-  CardWrap,
-} from './styles';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useCallback } from 'react';
+import { useParams } from 'react-router-dom';
 import { useGetProductsByCategoryQuery } from '../../features/product/productSlice';
-import { ATCButton } from '../../components';
+import { CustomCard } from '../../components';
+import { Box, Typography, CircularProgress } from '@mui/material';
 
 export default function CategoryListContainer() {
   const params = useParams();
-  const navigate = useNavigate();
   const { category } = params;
-  const { currentData, isLoading, isSuccess, isError, error } =
+
+  const { currentData, isLoading, isSuccess, isError } =
     useGetProductsByCategoryQuery(category);
 
-  let products;
-
-  if (isLoading) {
-    products = <div>...is Loading</div>;
-  } else if (isSuccess) {
-    const { data } = currentData.data;
-    products = data.map(product => {
+  const renderedProducts = useCallback(() => {
+    if (isLoading) {
       return (
-        <ContentContainer key={product._id}>
-          <HeadingContainer>
-            <Text>${product.price}</Text>
-            <Text>{product.name}</Text>
-          </HeadingContainer>
-          <CardWrap>
-            <Image
-              src={product.image}
-              alt={product.name}
-              onClick={() => navigate(`/shop/${product._id}`)}
-            />
-
-            <ATCButton productId={product._id} />
-          </CardWrap>
-        </ContentContainer>
+        <Box sx={{ display: 'flex' }}>
+          <CircularProgress />
+        </Box>
       );
-    });
-  } else if (isError) {
-    products = <div>{error}</div>;
-  }
+    } else if (isSuccess) {
+      const { data } = currentData.data || {};
+      return <CustomCard product={data} />;
+    } else if (isError) {
+      return (
+        <Typography variant='header1' sx={{ color: 'secondary.light' }}>
+          An Error has occurred
+        </Typography>
+      );
+    }
+  }, [isLoading, isSuccess, isError, currentData]);
 
-  return <ProductWrapper>{products}</ProductWrapper>;
+  return <Box>{renderedProducts()}</Box>;
 }

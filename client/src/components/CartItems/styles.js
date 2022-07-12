@@ -1,5 +1,12 @@
 import { styled } from '@mui/material/styles';
-import { Box, Typography, Divider, Button } from '@mui/material';
+import {
+  Box,
+  Typography,
+  Divider,
+  Button,
+  ListItem,
+  List,
+} from '@mui/material';
 
 export const CartSection = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -10,7 +17,7 @@ export const CartSection = styled(Box)(({ theme }) => ({
   width: '50rem',
 }));
 
-export const CartFooter = styled('div')(({ theme }) => ({
+export const CartFooter = styled(Box)(({ theme }) => ({
   padding: '2rem',
   height: '25rem',
   borderTop: `1px solid ${theme.palette.primary.main}`,
@@ -24,14 +31,14 @@ export const ProductImage = styled('img')({
   width: '10rem',
 });
 
-export const ItemHeader = styled('div')({
+export const ItemHeader = styled(Box)({
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
   height: '5rem',
 });
 
-export const DetailsSection = styled('div')({
+export const DetailsSection = styled(Box)({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
@@ -69,7 +76,6 @@ export const Heading = styled(Typography)(({ theme }) => ({
   fontSize: 'clamp(1.56rem, calc(1.22rem + 1.71vw), 1.8rem)',
   fontStyle: 'italic',
 }));
-
 
 export const TextWrapper = styled(Box)({
   width: '100%',
@@ -159,3 +165,16 @@ export const CustomButton = styled(Button)(({ theme }) => ({
     border: `2px solid ${theme.palette.secondary.main}`,
   },
 }));
+
+export const CustomListItem = styled(ListItem)({
+  display: 'flex',
+  justifyContent: 'flex-start',
+  marginBottom: '1rem',
+  borderBottom: '1px solid',
+});
+
+export const CustomList = styled(List)({
+  overflow: 'auto',
+  paddingTop: 0,
+  height: '100%',
+});

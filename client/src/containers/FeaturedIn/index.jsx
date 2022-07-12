@@ -35,7 +35,6 @@ export default function FeaturedInContainer() {
         opacity: 1,
         stagger: 0.1,
         ease: 'power4.out',
-        overflow: 'hidden',
       }
     );
     let st = ScrollTrigger.create({

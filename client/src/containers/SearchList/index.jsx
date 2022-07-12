@@ -1,36 +1,39 @@
-import { useCallback, useMemo, useEffect, useRef } from 'react';
-import {
-  ProductWrapper,
-  ContentContainer,
-  Image,
-  HeadingContainer,
-  Text,
-  CardWrap,
-} from './styles';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useCallback, useMemo, useRef } from 'react';
+import { ProductWrapper } from './styles';
+import { useLocation } from 'react-router-dom';
 import { useGetProductsBySearchQuery } from '../../features/product/productSlice';
-import { ATCButton } from '../../components';
-import { batchAnimation } from '../../animations/batchAnimation';
-import { useEnhancedEffect } from '../../hooks/useEnhancedEffect';
+import { CustomCard } from '../../components';
 import { Box, Typography, CircularProgress } from '@mui/material';
 import { gsap } from 'gsap';
-import useArrayRef from '../../hooks/useArrayRef';
+import { useEnhancedEffect } from '../../hooks/useEnhancedEffect';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-gsap.registerPlugin(ScrollTrigger);
 
 export default function SearchListContainer() {
-  const navigate = useNavigate();
   const location = useLocation();
+  const ref = useRef();
   const { search } = location;
-  const batchContainer = useRef();
-  const [cards, setCards] = useArrayRef();
   const term = useMemo(() => search.split('=').at(-1), [search]);
-  const { isLoading, isSuccess, isError, data, results } =
+  const { isLoading, isSuccess, isError, data } =
     useGetProductsBySearchQuery(term);
-  console.log(useGetProductsBySearchQuery(term));
-  // useEnhancedEffect(() => {
-  //   batchAnimation(cards.current, batchContainer.current);
-  // });
+
+  useEnhancedEffect(() => {
+    let targets = gsap.utils.toArray('#product-cards');
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.set(targets, { opacity: 0, y: 100 });
+
+    ScrollTrigger.batch(targets, {
+      trigger: ref.current,
+      start: 'top 75%',
+      end: 'bottom 25%',
+      toggleActions: 'play none none reverse',
+      invalidateOnRefresh: true,
+      onEnter: batch => gsap.to(batch, { opacity: 1, y: 0, stagger: 0.1 }),
+    });
+
+    return () => {
+      ScrollTrigger.refresh();
+    };
+  }, []);
 
   const renderedProducts = useCallback(() => {
     if (isLoading) {
@@ -40,37 +43,13 @@ export default function SearchListContainer() {
         </Box>
       );
     } else if (isSuccess) {
-      if (data.results === 0) {
-        return (
-          <Box>
-            <Text>No Matches Found</Text>
-          </Box>
-        );
-      }
-      return data.data.doc.map(product => {
-        return (
-          <ContentContainer ref={setCards} key={product._id}>
-            <HeadingContainer>
-              <Text>${product.price}</Text>
-              <Text>{product.name}</Text>
-            </HeadingContainer>
-            <CardWrap>
-              <Image
-                src={product.image}
-                alt='place-holder'
-                onClick={() => navigate(`shop/${product._id}`)}
-              />
-              <ATCButton productId={product._id} />
-            </CardWrap>
-          </ContentContainer>
-        );
-      });
+      const { doc } = data || {};
+
+      return <CustomCard product={doc} />;
     } else if (isError) {
       return <Typography>An Error has occurred</Typography>;
     }
-  }, [isLoading, isSuccess, isError, data, navigate, setCards]);
+  }, [isLoading, isSuccess, isError, data]);
 
-  return (
-    <ProductWrapper ref={batchContainer}>{renderedProducts()}</ProductWrapper>
-  );
+  return <ProductWrapper ref={ref}>{renderedProducts()}</ProductWrapper>;
 }

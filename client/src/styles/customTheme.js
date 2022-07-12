@@ -56,6 +56,8 @@ export const customTheme = createTheme({
     body1: {
       fontSize: '1.6rem',
       fontFamily: 'muli, sans-serif',
+      fontWeight: 400,
+      fontStyle: 'italic',
     },
     body2: {
       fontSize: '1.8rem',
@@ -126,6 +128,25 @@ export const customTheme = createTheme({
               background: 'none',
               color: secondaryColor,
               border: `2px solid ${secondaryColor}`,
+            },
+          },
+        },
+        {
+          props: { variant: 'secondary' },
+          style: {
+            background: 'none',
+            borderLeft: `1px solid ${secondaryLight}`,
+            borderRight: `1px solid ${secondaryLight}`,
+            borderBottom: `1px solid ${secondaryLight}`,
+            color: secondaryColor,
+            width: '100%',
+            borderRadius: '0',
+            height: '6.5rem',
+            transition: 'all transform 250ms',
+            fontWeight: 600,
+            '&:hover': {
+              backgroundColor: secondaryColor,
+              color: primaryDark,
             },
           },
         },

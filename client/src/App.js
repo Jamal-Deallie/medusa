@@ -8,7 +8,6 @@ import {
   AboutPage,
   NotFoundPage,
   ContactPage,
-  LocationPage,
   SignUpPage,
   SignInPage,
   ForgotPasswordPage,
@@ -34,7 +33,6 @@ function App() {
             <Route path='shop/:id' element={<ProductDetailsPage />} />
             <Route path='about' element={<AboutPage />} />
             <Route path='contactus' element={<ContactPage />} />
-            <Route path='location' element={<LocationPage />} />
 
             <Route element={<RedirectRoute />}>
               <Route path='signup' element={<SignUpPage />} />

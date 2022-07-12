@@ -1,9 +1,5 @@
-import { CategoriesContainer } from '../../containers';
-
+// import { CategoriesContainer } from '../../containers';
+import { ProductContainer } from '../../containers';
 export default function CategoriesPage() {
-  return (
-    <>
-      <CategoriesContainer />
-    </>
-  );
+  return <ProductContainer />;
 }

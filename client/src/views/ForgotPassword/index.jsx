@@ -1,9 +1,5 @@
 import { ForgotPassword } from '../../components';
 
 export default function ForgotPasswordPage() {
-  return (
-    <>
-      <ForgotPassword />
-    </>
-  );
+  return <ForgotPassword />;
 }

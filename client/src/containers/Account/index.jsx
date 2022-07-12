@@ -27,7 +27,7 @@ export default function FormContainer() {
 
   const name = useSelector(selectUser);
 
-  console.log(name);
+
 
   return (
     <AccountSection>

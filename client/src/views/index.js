@@ -7,7 +7,6 @@ export { default as SignInPage } from './SignIn';
 export { default as AboutPage } from './About';
 export { default as AccountPage } from './Account';
 export { default as ContactPage } from './Contact';
-export { default as LocationPage } from './Location';
 export { default as SignUpPage } from './SignUp';
 export { default as ForgotPasswordPage } from './ForgotPassword';
 export { default as DashboardPage } from './Dashboard';

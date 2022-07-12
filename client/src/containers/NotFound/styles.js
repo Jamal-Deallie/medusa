@@ -4,7 +4,7 @@ import { Box } from '@mui/material';
 export const NotFoundSection = styled(Box)(({ theme }) => ({
   padding: '12.5rem 0',
   background: theme.palette.secondary.light,
-  minHeight: 'calc(100vh - 20rem)',
+  minHeight: '100vh',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',

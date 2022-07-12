@@ -20,7 +20,7 @@ export default function FounderContainer() {
           />
         </ImageContainer>
         <ContentContainer>
-          <Heading id='founder-words'>Plants are the world's jewels</Heading>
+          <Heading id='founder-header'>Plants are the world's jewels</Heading>
           <Text id='founder-text'>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
@@ -42,7 +42,7 @@ export default function FounderContainer() {
               stroke-linejoin='round'
             />
           </svg>
-          <Typography id='founder-words' color='secondary.main' sx={{ mt: 5 }}>
+          <Typography id='founder-name' color='secondary.main' sx={{ mt: 5 }}>
             DORIS DIXON, CEO & CO-FOUNDER
           </Typography>
         </ContentContainer>

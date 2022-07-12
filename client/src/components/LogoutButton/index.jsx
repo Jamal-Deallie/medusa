@@ -9,7 +9,7 @@ export default function LogoutButton() {
 
   function handleLogout() {
     dispatch(logOut());
-    console.log('Logged Out');
+
     <Navigate to='/' state={{ from: location }} replace />;
   }
   return (

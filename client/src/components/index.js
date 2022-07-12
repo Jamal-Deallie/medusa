@@ -1,16 +1,15 @@
 export { default as ATCButton } from './ATCButton';
+export {default as CustomCard } from './Card';
 export { default as Cart } from './Cart';
 export { default as CartItems } from './CartItems';
 export { default as CheckoutBtn } from './CheckoutBtn';
 export { default as ContentLayout } from '../Layouts/Content';
 export { default as ContactForm } from './ContactForm';
-export { default as ContentAnimation } from './ContentAnimation';
+
 export { default as Footer } from './Footer';
 export { default as ForgotPassword } from './ForgotPassword';
-export { default as Heading } from './Heading';
 export { default as Layout } from './Layout';
 export { default as LogoutButton } from './LogoutButton';
-export { default as Links } from './Links';
 export { default as Navigation } from './Navigation';
 export { default as NewsLetterInput } from './NewsLetterInput';
 export { default as ProductDetails } from './ProductDetails';
@@ -18,7 +17,6 @@ export { default as ResetPassword } from './ResetPassword';
 export { default as RequireAuth } from './RequireAuth';
 export { default as RedirectRoute } from './RedirectRoute';
 export { default as Search } from './Search';
-export { default as SearchBar } from './SearchBar';
 export { default as ShopMenu } from './ShopMenu';
 export { default as SignUp } from './SignUp';
 export { default as SignIn } from './SignIn';

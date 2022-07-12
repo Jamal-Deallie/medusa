@@ -1,22 +1,21 @@
 import { styled } from '@mui/system';
 import { Button, Typography } from '@mui/material';
 
-export const CardButton = styled(Button)(({ theme }) => ({
-  background: 'none',
-  borderLeft: `1px solid ${theme.palette.secondary.light}`,
-  borderRight: `1px solid ${theme.palette.secondary.light}`,
-  borderBottom: `1px solid ${theme.palette.secondary.light}`,
+export const CardButton = styled(Button, {
+  shouldForwardProp: prop => prop !== '$main',
+})(({ theme, $main }) => ({
+  background: $main ? theme.palette.secondary.main : 'none',
+  borderColor: theme.palette.secondary.light,
+  borderStyle: 'solid',
+  borderWidth: $main ? 'none' : '0 1px 1px 1px',
   color: theme.palette.secondary.main,
-
   width: '100%',
-  // minWidth: '30rem',
   borderRadius: '0',
   height: '6.5rem',
-  transition: 'all transform 250ms',
+  transition: 'background transform 250ms',
   fontWeight: 600,
   '&:hover': {
-    backgroundColor: theme.palette.secondary.main,
-    color: theme.palette.primary.dark,
+    background: theme.palette.primary.light,
   },
 }));
 

@@ -94,7 +94,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
     }://localhost:3000/resetPassword/${resetToken}`;
     const subject = 'Reset Password - Medusa Gardens'
     sendMail(req.body.email, message, subject);
-    console.log('Test email sent successfully');
+
   } catch (err) {
     user.passwordResetToken = undefined;
     user.passwordResetExpires = undefined;
@@ -194,7 +194,7 @@ exports.signup = catchAsync(async (req, res, next) => {
 });
 
 exports.signin = catchAsync(async (req, res, next) => {
-  console.log(req.body);
+
   const { email, password } = req.body;
 
   // 1) Check if email and password exist

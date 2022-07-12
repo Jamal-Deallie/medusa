@@ -13,7 +13,7 @@ const stripe = Stripe(process.env.STRIPE_TEST_API_KEY);
 
 router.post('/create-checkout-session', async (req, res) => {
   const { line_items } = req.body;
-  console.log(line_items);
+
 
   let session;
   try {
