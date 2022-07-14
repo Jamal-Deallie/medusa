@@ -17,3 +17,6 @@ export { default as Search } from './Search';
 export { default as ShopMenu } from './ShopMenu';
 export { default as SignUp } from './SignUp';
 export { default as SignIn } from './SignIn';
+export { default as ContentLayout } from './Content';
+export { default as MainLayout } from './Main';
+export { default as GridLayout } from './Grid';

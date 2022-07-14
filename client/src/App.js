@@ -16,9 +16,8 @@ import {
   CategoriesPage,
   AccountPage,
 } from './views';
-import { RequireAuth, RedirectRoute } from './components';
+import { RequireAuth, RedirectRoute, MainLayout } from './components';
 import { NotFoundContainer } from './containers';
-import {MainLayout} from './layouts'
 import ScrollToTop from './components/ScrollToTop';
 
 function App() {
