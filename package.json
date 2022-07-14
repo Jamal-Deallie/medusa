@@ -1,0 +1,13 @@
+{
+  "name": "Medusa",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Jamal-Deallie/medusa.git",
+  "license": "MIT",
+  "engines": {
+    "node": "17.x"
+  },
+  "scripts": {
+    "start": "node server.js"
+  }
+}
