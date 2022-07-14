@@ -24,6 +24,7 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.0"
   },
+  "proxy": "http://localhost:5001/",
   "scripts": {
     "start-client": "react-scripts start",
     "build": "react-scripts build && (cd server && yarn install)",
@@ -50,3 +51,4 @@
     ]
   }
 }
+
