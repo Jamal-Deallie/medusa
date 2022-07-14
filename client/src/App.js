@@ -18,7 +18,7 @@ import {
 } from './views';
 import { RequireAuth, RedirectRoute } from './components';
 import { NotFoundContainer } from './containers';
-import {MainLayout } from './layouts'
+import { MainLayout } from './layouts';
 import ScrollToTop from './components/ScrollToTop';
 
 function App() {
