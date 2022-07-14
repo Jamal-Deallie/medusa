@@ -4,6 +4,9 @@
   "main": "server.js",
   "author": "Jamal Samuel DeAllie",
   "license": "MIT",
+    "engines": {
+    "node": "17.x"
+  },
   "scripts": {
     "start": "node server.js"
   },
