@@ -8,7 +8,6 @@ export default function ATCButton({ productId, main }) {
   const items = useSelector(state => selectProductById(state, productId));
 
   const handleAddToCart = product => {
-    console.log({ product });
     if (product) {
       dispatch(
         addItem({
@@ -16,12 +15,13 @@ export default function ATCButton({ productId, main }) {
         })
       );
     } else {
-      console.log('An error has occurred');
+      alert('An error has occurred');
     }
   };
 
   return (
-    <CardButton $main={main}
+    <CardButton
+      $main={main}
       onClick={() =>
         handleAddToCart({
           _id: items._id,

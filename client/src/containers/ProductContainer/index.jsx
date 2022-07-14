@@ -21,8 +21,6 @@ export default function ProductContainer() {
     () => location.pathname.split('/').at(-1).replace('-', ' '),
     [location]
   );
-  console.log(location);
-  console.log({ subheader: subheader });
 
   const Products = () => {
     switch (subheader) {
@@ -34,10 +32,10 @@ export default function ProductContainer() {
 
       case 'easy care':
         return <CategoryListContainer />;
-        
+
       case 'pet friendly':
         return <CategoryListContainer />;
-        
+
       case 'large plants':
         return <CategoryListContainer />;
 

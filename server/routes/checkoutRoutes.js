@@ -14,7 +14,6 @@ const stripe = Stripe(process.env.STRIPE_TEST_API_KEY);
 router.post('/create-checkout-session', async (req, res) => {
   const { line_items } = req.body;
 
-
   let session;
   try {
     session = await stripe.checkout.sessions.create({
@@ -28,7 +27,7 @@ router.post('/create-checkout-session', async (req, res) => {
 
     res.send({ url: session.url });
   } catch (err) {
-    console.log(err);
+    alert(err);
     res
       .status(400)
       .json({ error: 'an error occurred. Unable to create session' });

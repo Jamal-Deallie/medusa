@@ -6,7 +6,6 @@ const AppError = require('./../utils/appError');
 const { promisify } = require('util');
 const { sendMail } = require('../utils/sendMail');
 
-
 const signToken = id => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN,
@@ -89,12 +88,9 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
 
   // 3) Send it to user's email
   try {
-    const message = `Please use the link to reset your password: ${
-      req.protocol
-    }://localhost:3000/resetPassword/${resetToken}`;
-    const subject = 'Reset Password - Medusa Gardens'
+    const message = `Please use the link to reset your password: ${req.protocol}://localhost:3000/resetPassword/${resetToken}`;
+    const subject = 'Reset Password - Medusa Gardens';
     sendMail(req.body.email, message, subject);
-
   } catch (err) {
     user.passwordResetToken = undefined;
     user.passwordResetExpires = undefined;
@@ -128,10 +124,10 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
   if (!user) {
     return next(new AppError('Token is invalid or has expired', 400));
   }
-    // 3) Update changedPasswordAt property for the user
+  // 3) Update changedPasswordAt property for the user
   user.password = req.body.password;
   user.passwordConfirm = req.body.passwordConfirm;
-    // 4) Delete ResetToken 
+  // 4) Delete ResetToken
   user.passwordResetToken = undefined;
   user.passwordResetExpires = undefined;
   await user.save();
@@ -161,7 +157,6 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
 
 // Register User Controller
 exports.signup = catchAsync(async (req, res, next) => {
-
   //abstract items from body
   const { firstName, lastName, email, password, passwordConfirm } = req.body;
   //if required items are undefined send error
@@ -186,7 +181,7 @@ exports.signup = catchAsync(async (req, res, next) => {
     });
     createSendToken(newUser, 201, req, res);
   } catch (err) {
-    console.log('signup error', err);
+    alert('signup error', err);
     res.status(500).json({
       errorMessage: `Server Error: ${err.message}`,
     });
@@ -194,7 +189,6 @@ exports.signup = catchAsync(async (req, res, next) => {
 });
 
 exports.signin = catchAsync(async (req, res, next) => {
-
   const { email, password } = req.body;
 
   // 1) Check if email and password exist
@@ -214,9 +208,6 @@ exports.signin = catchAsync(async (req, res, next) => {
   //   createSendToken(user, 200, req, res);
   createSendToken(user, 200, req, res);
 });
-
-
-
 
 exports.protect = catchAsync(async (req, res, next) => {
   // 1) Getting token and check it's there

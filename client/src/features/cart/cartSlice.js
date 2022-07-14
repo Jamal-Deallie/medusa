@@ -74,7 +74,7 @@ const cartSlice = createSlice({
     },
     removeItem: (state, { payload }) => {
       const index = state.cartItems.findIndex(item => item._id === payload._id);
-      console.log(payload.price * payload.quantity);
+;
       state.cartItems.splice(index, 1);
       state.totalQuantity -= payload.quantity;
       state.subtotal -= payload.price * payload.quantity;

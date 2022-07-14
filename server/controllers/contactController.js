@@ -20,7 +20,7 @@ exports.contactus = catchAsync(async (req, res, next) => {
       text: message,
     });
   } catch (err) {
-    console.log(err);
+    alert(err);
 
     return next(
       new AppError('There was an error sending the email. Try again later!'),

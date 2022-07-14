@@ -24,14 +24,14 @@ exports.newsletter = catchAsync(async (req, res, next) => {
     const subject = 'Newsletter Confirmation - Medusa Gardens';
 
     sendMail(email, message, subject);
-    console.log('Test email sent successfully');
+    alert('Test email sent successfully');
     res.status(200).json({
       status: 'success',
       message: 'You have successfully signed up for our Newsletter!',
       newRecipient,
     });
   } catch (err) {
-    console.log('signup error', err);
+    alert('signup error', err);
     res.status(500).json({
       errorMessage: `Server Error: ${err.message}`,
     });
