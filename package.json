@@ -8,8 +8,7 @@
     "node": "17.x"
   },
   "scripts": {
-    "start": "node server/server.js",
-
+    "start": "node server/server.js"
   },
     "dependencies": {
     "@sendgrid/mail": "^7.7.0",
