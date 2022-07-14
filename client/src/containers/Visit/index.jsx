@@ -1,4 +1,4 @@
-import { ContentLayout } from '../../components';
+import { ContentLayout } from '../../layouts';
 
 export default function VisitContainer() {
   return (
