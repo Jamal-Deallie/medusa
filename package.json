@@ -1,8 +1,0 @@
-{
-  "name": "Medusa",
-  "version": "1.0.0",
-  "main": "index.js",
-  "repository": "https://github.com/Jamal-Deallie/medusa.git",
-  "license": "MIT",
-  "dependencies": {}
-}
