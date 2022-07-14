@@ -1,10 +1,9 @@
 import { styled } from '@mui/system';
 import { Typography, Box } from '@mui/material';
 
-
 export const ContentSection = styled('section')(({ theme }) => ({
   background: theme.palette.primary.main,
-  paddingTop: '12.5rem',
+  paddingTop: '8.5rem',
 }));
 
 export const ContentContainer = styled(Box)(({ theme }) => ({
@@ -38,11 +37,13 @@ export const Heading = styled(Typography)(({ theme }) => ({
 }));
 
 export const Text = styled(Typography)(({ theme }) => ({
-  fontFamily: ' tenez, sans-serif',
+  fontFamily: 'tenez, sans-serif',
   color: theme.palette.secondary.light,
   width: '100%',
-  fontSize: '1.953rem',
-  overflow: 'hidden'
+  fontSize: '2.4rem',
+  [theme.breakpoints.down('md')]: {
+    fontSize: '1.8rem',
+  },
 }));
 
 export const Image = styled('img', {

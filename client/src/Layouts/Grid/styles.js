@@ -1,17 +1,9 @@
 import { styled } from '@mui/system';
-import { Grid, Typography, Box } from '@mui/material';
+import { Grid, Box } from '@mui/material';
 export const FeatureInner = styled('div')({});
 
 export const Item = styled('img')({
   width: '15rem',
-});
-
-export const FeatureOuter = styled('div')({
-  height: '30rem',
-});
-
-export const HeadingContainer = styled('div')({
-  padding: '10rem 5rem 0 5rem',
 });
 
 export const GridItem = styled(Grid)(({ theme }) => ({
@@ -21,26 +13,8 @@ export const GridItem = styled(Grid)(({ theme }) => ({
   gap: '2.5rem',
   padding: '5rem',
 }));
-export const SubheaderContainer = styled(Box)({
-  paddingTop: '2.5rem',
-  textAlign: 'center',
-  maxWidth: '70rem',
-  margin: '0 auto',
-});
 
-export const Subheader = styled(Typography)(({ theme }) => ({
-  color: theme.palette.secondary.light,
-  fontSize: '32px',
-  fontWeight: 400,
-  fontFamily: ' tenez, sans-serif',
-  textAlign: 'center',
-}));
-export const FeaturedInSection = styled('section')(({ theme }) => ({
-  background: theme.palette.primary.main,
-  padding: '12.5rem 0 6.25rem',
-}));
-
-export const InnerContainer= styled(Box)({
+export const InnerContainer = styled(Box)({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',

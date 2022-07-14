@@ -14,8 +14,8 @@ export default function ProductAnimation({ children }) {
 
     ScrollTrigger.batch(targets, {
       trigger: ref.current,
-      start: 'top 75%',
-      end: 'bottom 25%',
+      start: 'center bottom',
+      end: 'center top',
       toggleActions: 'play none none reverse',
       invalidateOnRefresh: true,
       onEnter: batch => gsap.to(batch, { opacity: 1, y: 0, stagger: 0.1 }),
@@ -24,7 +24,7 @@ export default function ProductAnimation({ children }) {
     return () => {
       ScrollTrigger.refresh();
     };
-  }, []);
+  }, [q, ref]);
 
   return <ProductContainer ref={ref}>{children} </ProductContainer>;
 }

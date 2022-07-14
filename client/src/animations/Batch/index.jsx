@@ -14,9 +14,8 @@ export default function BatchAnimation({ children, id }) {
 
     ScrollTrigger.batch(targets, {
       trigger: ref.current,
-
-      start: 'top center',
-      end: 'bottom',
+      start: 'top 80%',
+      end: 'bottom 20%',
       toggleActions: 'play none none reverse',
       invalidateOnRefresh: true,
       onEnter: batch => gsap.to(batch, { opacity: 1, y: 0, stagger: 0.1 }),

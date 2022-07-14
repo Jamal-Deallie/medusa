@@ -4,6 +4,6 @@ import { Box } from '@mui/material';
 export const SignInSection = styled(Box)(({ theme }) => ({
   position: 'relative',
   height: 'auto',
-  background: theme.palette.primary.main,
-  padding: '7.5rem 0',
+  background: theme.palette.secondary.light,
+  padding: '8.5rem 0',
 }));

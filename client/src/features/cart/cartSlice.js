@@ -57,7 +57,6 @@ const cartSlice = createSlice({
       );
 
       if (state.cartItems[itemIndex].quantity > 1) {
-
         state.cartItems[itemIndex].quantity--;
         state.totalQuantity--;
         state.subtotal -= payload.price;
@@ -75,9 +74,10 @@ const cartSlice = createSlice({
     },
     removeItem: (state, { payload }) => {
       const index = state.cartItems.findIndex(item => item._id === payload._id);
+      console.log(payload.price * payload.quantity);
       state.cartItems.splice(index, 1);
       state.totalQuantity -= payload.quantity;
-      state.subtotal -= payload.price;
+      state.subtotal -= payload.price * payload.quantity;
       localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
       localStorage.setItem(
         'totalQuantity',
@@ -85,10 +85,11 @@ const cartSlice = createSlice({
       );
       localStorage.setItem('subtotal', JSON.stringify(state.subtotal));
     },
-    getCartTotal: (state, { payload }) => {},
   },
   clearCart: (state, { payload }) => {
     state.cartItems = [];
+    state.totalQuantity = '';
+    state.subtotal = '';
   },
 });
 
@@ -97,7 +98,6 @@ export const {
   decrementQuantity,
   increaseQuantity,
   removeItem,
-  getCartTotal,
   clearCart,
 } = cartSlice.actions;
 

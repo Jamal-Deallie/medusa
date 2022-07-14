@@ -2,9 +2,12 @@ import { styled } from '@mui/system';
 import { Typography, Box } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-export const ContentSection = styled('section')(({ theme }) => ({
+export const ContentSection = styled('section', {
+  shouldForwardProp: prop => prop !== '$pb',
+})(({ theme, $pb }) => ({
   background: theme.palette.primary.main,
-  paddingTop: '12.5rem',
+  paddingTop: '8.5rem',
+
 }));
 
 export const ContentContainer = styled(Box)(({ theme }) => ({
@@ -53,10 +56,13 @@ export const Heading = styled(Typography)(({ theme }) => ({
 }));
 
 export const Text = styled(Typography)(({ theme }) => ({
-  fontFamily: ' tenez, sans-serif',
+  fontFamily: 'tenez, sans-serif',
   color: theme.palette.secondary.light,
   width: '100%',
-  fontSize: '1.953rem',
+  fontSize: '2.4rem',
+  [theme.breakpoints.down('md')]: {
+    fontSize: '1.8rem',
+  },
 }));
 
 export const Image = styled('img', {
@@ -86,14 +92,15 @@ export const ImageContainer = styled(Box, {
 }));
 
 export const ContentInner = styled(Box, {
-  shouldForwardProp: prop => prop !== '$fd',
-})(({ theme, $fd }) => ({
+  shouldForwardProp: prop => prop !== '$fd' && '$pb',
+})(({ theme, $fd, $pb }) => ({
   maxWidth: '125rem',
   display: 'flex',
   justifyContent: 'center',
   margin: '0 auto',
   gap: '2rem',
   flexDirection: $fd ? 'row-reverse' : 'row',
+  paddingBottom: $pb ? '8.5rem' : 'none',
   [theme.breakpoints.down('md')]: {
     flexDirection: 'column-reverse',
   },

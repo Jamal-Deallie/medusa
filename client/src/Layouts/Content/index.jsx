@@ -20,10 +20,11 @@ export default function ContentLayout({
   webLink,
   link,
   label,
+  pb,
 }) {
   return (
     <ContentAnimation link={link} id={id}>
-      <ContentInner $fd={fd} id={`${id}-container`}>
+      <ContentInner $fd={fd} $pb={pb} id={`${id}-container`}>
         <ImageContainer>
           <Image $br={br} src={src} alt={alt} id={`${id}-image`} />
         </ImageContainer>

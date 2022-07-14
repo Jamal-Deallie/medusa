@@ -1,5 +1,5 @@
 import { styled } from '@mui/system';
-import { Container, Button, Typography, Box, Grid } from '@mui/material';
+import { Grid } from '@mui/material';
 
 export const CategoryMenuSection = styled('section')(({ theme }) => ({
   background: theme.palette.primary.main,
@@ -7,9 +7,5 @@ export const CategoryMenuSection = styled('section')(({ theme }) => ({
 }));
 
 export const MenuWrap = styled(Grid)({
-//   display: 'grid',
-//   gridTemplateColumns: 'repeat(4,1fr)',
-//   gridTemplateRows: 'auto',
-//   gap: '4rem',
   padding: 'calc(8px + 1.5625vw)',
 });

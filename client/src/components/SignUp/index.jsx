@@ -5,17 +5,9 @@ import {
   Box,
   InputAdornment,
   IconButton,
-  InputLabel,
-  FormControl,
+  Button,
 } from '@mui/material';
-import {
-  MainButton,
-  CustomInput,
-  OutlineInput,
-  CustomLink,
-  Heading,
-} from './styles';
-
+import { CustomInput, CustomLink, Heading, Container } from './styles';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useSignUpUserMutation } from '../../features/users/userSlice';
 import Visibility from '@mui/icons-material/Visibility';
@@ -59,29 +51,13 @@ export default function SignUp() {
           passwordConfirm,
         }).unwrap();
       } catch (err) {
-        if (!err?.originalStatus) {
-          setError('No Server Response');
-        } else if (err.originalStatus === 400) {
-          setError('Missing Required Fields');
-        } else if (err.originalStatus === 401) {
-          setError('Unauthorized');
-        } else {
-          setError('Registration Failed');
-        }
+        setError('Registration Failed');
       }
     }
   };
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        maxWidth: '60rem',
-        margin: '0 auto',
-      }}>
+    <Container>
       {error && error.message && (
         <Typography sx={{ textAlign: 'center' }}>{error}</Typography>
       )}
@@ -114,7 +90,6 @@ export default function SignUp() {
               name='lastName'
               onChange={e => setLastName(e.target.value)}
               value={lastName}
-          
               inputProps={{
                 autoComplete: 'off',
               }}
@@ -141,59 +116,27 @@ export default function SignUp() {
           </Grid>
 
           <Grid item xs={12}>
-            <FormControl fullWidth>
-              <InputLabel
-                htmlFor='outlined-adornment-password'
-                sx={{ color: 'secondary.light' }}>
-                Password
-              </InputLabel>
-              <OutlineInput
-                id='outlined-adornment-password'
-                type={showPassword ? 'text' : 'password'}
-                onChange={e => setPassword(e.target.value)}
-                name='password'
-                autoComplete='new-password'
-                value={password}
-                startAdornment={
+            <CustomInput
+              fullWidth
+              label='Password'
+              id='outlined-start-adornment'
+              type={showPassword ? 'text' : 'password'}
+              onChange={e => setPassword(e.target.value)}
+              name='password'
+              value={password}
+              autoComplete='new-password'
+              InputLabelProps={{
+                shrink: true,
+              }}
+              InputProps={{
+                endAdornment: (
                   <InputAdornment position='start'>
                     <IconButton
                       onClick={handleClickShowPassword}
                       aria-label='toggle password visibility'
-                      sx={{ pointerEvents: 'click', color: 'secondary.light' }}>
-                      {showPassword ? (
-                        <VisibilityOff
-                          fontSize='large'
-                          sx={{ fill: 'secondary.light' }}
-                        />
-                      ) : (
-                        <Visibility fontSize='large' />
-                      )}
-                    </IconButton>
-                  </InputAdornment>
-                }
-                label='Password'
-              />
-            </FormControl>
-          </Grid>
-          <Grid item xs={12}>
-            <FormControl fullWidth>
-              <InputLabel
-                htmlFor='outlined-adornment-password-confirm'
-                sx={{ color: 'secondary.light' }}>
-                Password Confirm
-              </InputLabel>
-              <OutlineInput
-                type={showPassword ? 'text' : 'password'}
-                onChange={e => setPasswordConfirm(e.target.value)}
-                name='passwordConfirm'
-                autoComplete='new-password'
-                value={passwordConfirm}
-                startAdornment={
-                  <InputAdornment position='start'>
-                    <IconButton
-                      onClick={handleClickShowPassword}
-                      aria-label='toggle password visibility'
-                      sx={{ pointerEvents: 'click', color: 'secondary.light' }}>
+                      sx={{
+                        pointerEvents: 'click',
+                      }}>
                       {showPassword ? (
                         <VisibilityOff fontSize='large' />
                       ) : (
@@ -201,19 +144,51 @@ export default function SignUp() {
                       )}
                     </IconButton>
                   </InputAdornment>
-                }
-                label='Password Confirm'
-              />
-            </FormControl>
+                ),
+              }}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <CustomInput
+              fullWidth
+              label='Password Confirm'
+              id='outlined-start-adornment-confirm'
+              type={showPassword ? 'text' : 'password'}
+              onChange={e => setPasswordConfirm(e.target.value)}
+              name='password'
+              value={passwordConfirm}
+              autoComplete='new-password'
+              InputLabelProps={{
+                shrink: true,
+              }}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position='start'>
+                    <IconButton
+                      onClick={handleClickShowPassword}
+                      aria-label='toggle password visibility'
+                      sx={{
+                        pointerEvents: 'click',
+                      }}>
+                      {showPassword ? (
+                        <VisibilityOff fontSize='large' />
+                      ) : (
+                        <Visibility fontSize='large' />
+                      )}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+            />
           </Grid>
         </Grid>
-        <MainButton
+        <Button
+          variant='tertiary'
           type='submit'
           fullWidth
-          variant='contained'
           sx={{ mt: 5.5, mb: 2 }}>
           Sign Up
-        </MainButton>
+        </Button>
 
         <Grid item xs={12} sx={{ textAlign: 'center', pt: 5.5 }}>
           <CustomLink to='/signin' variant='body2'>
@@ -221,6 +196,6 @@ export default function SignUp() {
           </CustomLink>
         </Grid>
       </Box>
-    </Box>
+    </Container>
   );
 }

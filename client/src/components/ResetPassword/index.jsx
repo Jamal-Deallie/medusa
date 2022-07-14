@@ -1,17 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import {
-  MainButton,
-  FormWrap,
-  CustomLink,
-  CustomInput,
-  Tex,
-  OutlineInput,
-} from './styles';
+import React, { useState } from 'react';
+import { FormWrap, CustomLink, OutlineInput } from './styles';
 import { useNavigate } from 'react-router-dom';
 import {
   Typography,
   Box,
-  TextField,
+  Button,
   Container,
   InputAdornment,
   IconButton,
@@ -19,32 +12,25 @@ import {
   FormControl,
   Stack,
 } from '@mui/material';
-import { useSignInUserMutation } from '../../features/users/userSlice';
-import { setCredentials } from '../../features/auth/authSlice';
-import { useDispatch } from 'react-redux';
+import { useResetPasswordMutation } from '../../features/users/userSlice';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 export default function ResetPassword() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
-  const [signInUser, { isLoading, isSuccess, data }] = useSignInUserMutation();
+  const [resetPassword, { isLoading, isSuccess }] = useResetPasswordMutation();
 
-  const canSave = [email, password].every(Boolean) && !isLoading;
+  const canSave = [password, passwordConfirmation].every(Boolean) && !isLoading;
 
   if (isSuccess) {
-    dispatch(setCredentials({ token: data.token, user: data.user }));
-    localStorage.setItem('user', JSON.stringify(data.user));
-    localStorage.setItem('token', JSON.stringify(data.token));
-    setEmail('');
     setPassword('');
-    navigate('/dashboard');
+    setPasswordConfirmation('');
+    navigate('/');
   }
   const handleClickShowPassword = () => {
     setShowPassword(showPassword => !showPassword);
@@ -53,25 +39,12 @@ export default function ResetPassword() {
   const handleSubmit = async () => {
     if (canSave) {
       try {
-        await signInUser({ email, password }).unwrap();
+        await resetPassword({ password, passwordConfirmation }).unwrap();
       } catch (err) {
-        if (!err?.originalStatus) {
-          // isLoading: true until timeout occurs
-          setError('No Server Response');
-        } else if (err.originalStatus === 400) {
-          setError('Missing Username or Password');
-        } else if (err.originalStatus === 401) {
-          setError('Unauthorized');
-        } else {
-          setError('Login Failed');
-        }
+        setError(err);
       }
     }
   };
-
-  const handleEmailInput = e => setEmail(e.target.value);
-
-  const handlePasswordInput = e => setPassword(e.target.value);
 
   return (
     <Box
@@ -84,16 +57,9 @@ export default function ResetPassword() {
       <Container sx={{ position: 'relative', height: '60rem' }}>
         <FormWrap noValidate>
           {error && <Typography>{error}</Typography>}
-          <Typography
-            variant='h1'
-            sx={{
-              fontFamily: ' tenez, sans-serif',
-              textTransform: 'capitalize',
-              textAlign: 'center',
-              mb: '2.5rem',
-            }}>
-            Rest Password
-          </Typography>
+          <Box sx={{ textAlign: 'center' }}>
+            <Typography variant='header2'>Rest Password</Typography>
+          </Box>
           <Box component='form' onSubmit={handleSubmit} sx={{ p: 2 }}>
             <Stack spacing={4}>
               <FormControl fullWidth>
@@ -107,8 +73,8 @@ export default function ResetPassword() {
                   name='password'
                   value={password}
                   autoComplete='new-password'
-                  startAdornment={
-                    <InputAdornment position='start'>
+                  endAdornment={
+                    <InputAdornment position='end'>
                       <IconButton
                         onClick={handleClickShowPassword}
                         aria-label='toggle password visibility'
@@ -128,18 +94,18 @@ export default function ResetPassword() {
                 />
               </FormControl>
               <FormControl fullWidth>
-                <InputLabel htmlFor='outlined-adornment-password'>
+                <InputLabel htmlFor='outlined-adornment-password-confirm'>
                   Password Confirmation
                 </InputLabel>
                 <OutlineInput
-                  id='outlined-adornment-password'
+                  id='outlined-adornment-password-confirm'
                   type={showPassword ? 'text' : 'password'}
-                  onChange={e => setPassword(e.target.value)}
+                  onChange={e => setPasswordConfirmation(e.target.value)}
                   name='passwordConfirmation'
                   value={passwordConfirmation}
                   autoComplete='new-password'
-                  startAdornment={
-                    <InputAdornment position='start'>
+                  endAdornment={
+                    <InputAdornment position='end'>
                       <IconButton
                         onClick={handleClickShowPassword}
                         aria-label='toggle password visibility'
@@ -159,7 +125,9 @@ export default function ResetPassword() {
                 />
               </FormControl>
 
-              <MainButton onClick={handleSubmit}>Submit</MainButton>
+              <Button variant='tertiary' type='submit'>
+                Submit
+              </Button>
             </Stack>
           </Box>
           <Box sx={{ textAlign: 'center', mt: 2.5, color: 'primary.main' }}>

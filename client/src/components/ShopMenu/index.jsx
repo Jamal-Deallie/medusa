@@ -21,7 +21,6 @@ export default function ShopMenu() {
   const token = false;
   const [openMenu, setOpenMenu] = useState(false);
 
-
   const openShopMenu = useCallback(
     () => setOpenMenu(openMenu => !openMenu),
 
@@ -82,10 +81,11 @@ export default function ShopMenu() {
               })}
               <LinkWrap>
                 <Links
+                  ref={setLinks}
                   onClick={openShopMenu}
                   to={token ? 'account' : 'signin'}
                   $dn={'none'}>
-                  Logout
+                  Account
                 </Links>
               </LinkWrap>
             </LinkContainer>

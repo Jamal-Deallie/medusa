@@ -11,7 +11,7 @@ import { FounderAnimation } from '../../animations';
 export default function FounderContainer() {
   return (
     <FounderAnimation>
-      <ContentInner $id='founder-container'>
+      <ContentInner id='founder-container'>
         <ImageContainer>
           <Image
             src='https://res.cloudinary.com/dtwk4dm3g/image/upload/v1656146851/Medusa/pexels-cottonbro-10049370_ce4eee.webp'
@@ -21,7 +21,7 @@ export default function FounderContainer() {
         </ImageContainer>
         <ContentContainer>
           <Heading id='founder-header'>Plants are the world's jewels</Heading>
-          <Text id='founder-text'>
+          <Text id='founder-text' sx={{ mt: 5 }}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -48,34 +48,5 @@ export default function FounderContainer() {
         </ContentContainer>
       </ContentInner>
     </FounderAnimation>
-
-    // <FounderSection>
-    //   <FounderWrap>
-    //     <Grid container spacing={10}>
-    //       <Grid item md={6}>
-    //         <Typography
-    //           variant='h1'
-    //           sx={{ textAlign: 'center' }}
-    //           color='secondary.main'>
-    //           tempor incididunt ut labore
-    //         </Typography>
-    //         <QuoteContainer>
-    //           <Typography color='secondary.main'>
-
-    //           </Typography>
-    //           <SignatureWrap>
-
-    //           </SignatureWrap>
-    //         </QuoteContainer>
-    //       </Grid>
-    //       <Grid item md={6}>
-    //         <FounderImage
-    //           src='/images/medusa-founder.png'
-    //           alt='Founder of Medusa'
-    //         />
-    //       </Grid>
-    //     </Grid>
-    //   </FounderWrap>
-    // </FounderSection>
   );
 }

@@ -7,7 +7,6 @@ import {
   OutlinedInput,
   Button,
   FormControl,
-  InputBase,
 } from '@mui/material';
 
 export const LoginWrap = styled('div')({
@@ -62,7 +61,7 @@ export const FormContainer = styled(FormControl)(({ theme }) => ({
 }));
 
 export const CustomLink = styled(Link)(({ theme }) => ({
-  color: theme.palette.secondary.light,
+  color: theme.palette.primary.main,
   cursor: 'pointer',
   fontSize: '1.6rem',
   transition: 'color 0.5s ease-in-out',
@@ -74,74 +73,34 @@ export const CustomLink = styled(Link)(({ theme }) => ({
 export const CustomInput = styled(TextField)(({ theme }) => ({
   '& .MuiOutlinedInput-root': {
     '& > fieldset': {
-      border: `1px solid ${theme.palette.secondary.light}`,
+      border: `1px solid ${theme.palette.primary.main}`,
       background: 'none',
+      color: theme.palette.primary.main,
     },
   },
-
   '&& .MuiOutlinedInput-root:hover': {
-    '& > fieldset': { border: `1px solid ${theme.palette.secondary.light}` },
-  },
-  '&& .MuiOutlinedInput-root.Mui-focused': {
-    '& > fieldset': { border: `1px solid ${theme.palette.secondary.light}` },
+    '& > fieldset': { border: `1px solid ${theme.palette.primary.main}` },
   },
   '&& .MuiOutlinedInput-root:active': {
-    '& > fieldset': { border: `1px solid ${theme.palette.secondary.light}` },
+    '& > fieldset': { border: `1px solid ${theme.palette.primary.main}` },
   },
   '& label': {
-    color: theme.palette.secondary.light,
     fontFamily: 'muli, sans-serif',
     fontSize: 16,
     margin: 'dense',
   },
 
   '& .MuiInputLabel-root.Mui-focused': {
-    color: theme.palette.secondary.light,
+    marginLeft: 0,
+    color: theme.palette.primary.main,
   },
 
   '& .MuiTypography-root': {
-    color: theme.palette.secondary.light,
+    color: theme.palette.primary.main,
   },
 
   '& .MuiInputBase-root': {
-    color: theme.palette.secondary.light,
-  },
-
-  ' & ::-webkit-calendar-picker-indicator': {
-    filter: 'invert(100%)',
-  },
-}));
-
-export const OutlineInput = styled(OutlinedInput)(({ theme }) => ({
-  color: theme.palette.secondary.light,
-  '& .MuiOutlinedInput-notchedOutline': {
-    border: `1px solid ${theme.palette.secondary.light}`,
-    background: 'none',
-  },
-
-  '&& .MuiOutlinedInput-root:hover': {
-    '& > fieldset': { border: `1px solid ${theme.palette.secondary.light}` },
-  },
-  '&& .MuiOutlinedInput-root:focus': {
-    '& > fieldset': { border: `1px solid ${theme.palette.secondary.light}` },
-  },
-  '& label': {
-    color: theme.palette.secondary.light,
-    fontFamily: 'muli, sans-serif',
-    fontSize: 16,
-    margin: 'dense',
-  },
-
-  '& .MuiInputLabel-formControl.MuiFormLabel-root.Mui-focused': {
-    color: theme.palette.secondary.light,
-  },
-
-  '& .MuiTypography-root': {
-    color: theme.palette.secondary.light,
-  },
-
-  '& .MuiInputBase-root': {
-    color: theme.palette.secondary.light,
+    color: theme.palette.primary.main,
   },
 
   ' & ::-webkit-calendar-picker-indicator': {
@@ -153,7 +112,7 @@ export const Heading = styled(Typography)(({ theme }) => ({
   fontFamily: 'tenez, sans-serif',
   fontSize: '4.8rem',
   fontStyle: 'italic',
-  color: theme.palette.secondary.light,
+  color: theme.palette.primary.main,
   lineHeight: 'calc(1.5 * 48px)',
   width: '100%',
   overflow: 'hidden',
@@ -167,5 +126,5 @@ export const LinkContainer = styled(Box)(({ theme }) => ({
   gap: '5px',
   marginTop: '2.5rem',
   textAlign: 'center',
-  color: theme.palette.secondary.light,
+  color: theme.palette.primary.main,
 }));

@@ -1,5 +1,15 @@
-import { FounderContainer } from '../../containers';
+import {
+  FounderContainer,
+  CustomersContainer,
+  NurseryContainer,
+} from '../../containers';
 
 export default function AboutPage() {
-  return <FounderContainer />;
+  return (
+    <>
+      <CustomersContainer />
+      <FounderContainer />
+      <NurseryContainer />
+    </>
+  );
 }

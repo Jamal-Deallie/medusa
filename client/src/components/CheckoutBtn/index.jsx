@@ -4,7 +4,7 @@ import { useCheckoutItemsMutation } from '../../features/checkout/checkoutSlice.
 import { Button } from '@mui/material';
 
 export default function CheckoutBtn() {
-  const [checkoutItems, { isLoading, isError, isSuccess, data }] =
+  const [checkoutItems, { isError, isSuccess, data }] =
     useCheckoutItemsMutation();
 
   const items = useSelector(selectCartItems);

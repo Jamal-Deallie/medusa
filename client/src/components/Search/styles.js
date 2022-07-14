@@ -1,6 +1,6 @@
 import { styled } from '@mui/material/styles';
 import { InputBase } from '@mui/material';
-import { InputUnstyled } from '@mui/base';
+import SearchIcon from '@mui/icons-material/Search';
 
 export const SearchSection = styled('div')(({ theme }) => ({
   width: '100%',
@@ -65,6 +65,9 @@ export const FormWrapper = styled('div')(({ theme }) => ({
   width: '100%',
   padding: '0 10rem',
   height: 'auto',
+  [theme.breakpoints.down('md')]: {
+    padding: '0 calc(8px + 1.5625vw)',
+  },
 }));
 
 export const CloseSearchBtn = styled('button')(({ theme }) => ({
@@ -82,4 +85,10 @@ export const CloseSearchBtn = styled('button')(({ theme }) => ({
 
 export const SubmitBtn = styled('button')(({ theme }) => ({
   display: 'none',
+}));
+
+export const Icon = styled(SearchIcon)(({ theme }) => ({
+  fontSize: 28,
+  transform: 'scaleX(-1)',
+  color: theme.palette.secondary.light,
 }));

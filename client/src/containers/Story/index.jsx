@@ -1,4 +1,4 @@
-import { ContentLayout } from '../../Layouts';
+import { ContentLayout } from '../../layouts';
 
 export default function StoryContainer() {
   return (

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   FormWrap,
   CustomLink,
@@ -6,7 +6,7 @@ import {
   Heading,
   LinkContainer,
 } from './styles';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import {
   Typography,
   Box,
@@ -24,26 +24,22 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 export default function SignIn() {
   const navigate = useNavigate();
+  const location = useLocation();
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-
+  const from = location.state?.from?.pathname || '/';
   const [signInUser, { isLoading, isSuccess, data }] = useSignInUserMutation();
-
   const canSave = [email, password].every(Boolean) && !isLoading;
 
-  useEffect(() => {
-    if (isSuccess) {
-      dispatch(
-        setCredentials({ token: data.token, name: data.user.firstName })
-      );
-      setEmail('');
-      setPassword('');
-      navigate('/');
-    }
-  }, [isSuccess]);
+  if (isSuccess) {
+    dispatch(setCredentials({ token: data.token, name: data.user.firstName }));
+    setEmail('');
+    setPassword('');
+    navigate(from, { replace: true });
+  }
 
   const handleClickShowPassword = () => {
     setShowPassword(showPassword => !showPassword);
@@ -55,13 +51,6 @@ export default function SignIn() {
         await signInUser({ email, password }).unwrap();
       } catch (err) {
         if (!err?.originalStatus) {
-          // isLoading: true until timeout occurs
-          setError('No Server Response');
-        } else if (err.originalStatus === 400) {
-          setError('Missing Username or Password');
-        } else if (err.originalStatus === 401) {
-          setError('Unauthorized');
-        } else {
           setError('Login Failed');
         }
       }
@@ -71,21 +60,27 @@ export default function SignIn() {
   return (
     <Container sx={{ position: 'relative', height: '60rem' }}>
       <FormWrap noValidate>
-        {error && (
-          <Typography
-            variant='body1'
-            sx={{ color: 'secondary.light', textAlign: 'center' }}>
-            {error}
-          </Typography>
-        )}
+        <Box sx={{ textAlign: 'center' }}>
+          {error && (
+            <Typography
+              variant='body1'
+              sx={{ color: 'primary.main', textAlign: 'center' }}>
+              {error}
+            </Typography>
+          )}
+        </Box>
         <Heading>Sign In</Heading>
-        <Box component='form' onSubmit={handleSubmit} sx={{ p: 2 }}>
+        <Box
+          action='localhost:4000/api/v1/users/signin'
+          component='form'
+          onSubmit={handleSubmit}
+          sx={{ p: 2 }}
+          type='POST'>
           <Stack spacing={4}>
             <CustomInput
               margin='normal'
               fullWidth
               id='user'
-              placeholder='Email'
               label='Email Address'
               onChange={e => setEmail(e.target.value)}
               value={email}
@@ -98,30 +93,28 @@ export default function SignIn() {
               }}
             />
             <CustomInput
+              fullWidth
               label='Password'
               id='outlined-start-adornment'
-              sx={{ m: 1 }}
               type={showPassword ? 'text' : 'password'}
               onChange={e => setPassword(e.target.value)}
               name='password'
               value={password}
-              placeholder='Password'
               autoComplete='new-password'
+              InputLabelProps={{
+                shrink: true,
+              }}
               InputProps={{
-                startAdornment: (
+                endAdornment: (
                   <InputAdornment position='start'>
                     <IconButton
                       onClick={handleClickShowPassword}
                       aria-label='toggle password visibility'
                       sx={{
                         pointerEvents: 'click',
-                        color: 'secondary.light',
                       }}>
                       {showPassword ? (
-                        <VisibilityOff
-                          fontSize='large'
-                          sx={{ fill: 'secondary.light' }}
-                        />
+                        <VisibilityOff fontSize='large' />
                       ) : (
                         <Visibility fontSize='large' />
                       )}
@@ -137,7 +130,7 @@ export default function SignIn() {
               <CustomLink to='/signup'>Create An Account</CustomLink>
             </LinkContainer>
 
-            <Button variant='main' onClick={handleSubmit}>
+            <Button variant='tertiary' type='submit'>
               Submit
             </Button>
           </Stack>

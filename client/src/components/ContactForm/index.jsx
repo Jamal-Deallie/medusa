@@ -47,7 +47,7 @@ export default function ContactForm() {
     if (canSave) {
       try {
         await contactus({
-          formValue,
+          ...formValue,
         });
       } catch (err) {
         if (!err?.originalStatus) {
@@ -66,7 +66,13 @@ export default function ContactForm() {
           alignItems: 'center',
         }}>
         {error && error.message && (
-          <Typography sx={{ textAlign: 'center' }}>{error}</Typography>
+          <Box sx={{ my: 2, textAlign: 'center' }}>
+            {error && (
+              <Typography variant='body2' sx={{ color: 'secondary.main' }}>
+                {error}
+              </Typography>
+            )}
+          </Box>
         )}
         <Heading variant='h2'>Contact Us</Heading>
 
@@ -80,6 +86,9 @@ export default function ContactForm() {
                 label='Name'
                 onChange={handleChange}
                 value={formValue.name}
+                inputProps={{
+                  autoComplete: 'off',
+                }}
                 autoFocus
                 InputLabelProps={{
                   shrink: true,
@@ -95,6 +104,9 @@ export default function ContactForm() {
                 name='email'
                 onChange={handleChange}
                 value={formValue.email}
+                inputProps={{
+                  autoComplete: 'off',
+                }}
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -111,6 +123,9 @@ export default function ContactForm() {
                 name='message'
                 onChange={handleChange}
                 value={formValue.message}
+                inputProps={{
+                  autoComplete: 'off',
+                }}
                 InputLabelProps={{
                   shrink: true,
                 }}

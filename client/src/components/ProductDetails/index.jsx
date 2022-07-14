@@ -10,19 +10,17 @@ import {
   DetailsSection,
   DetailsContainer,
   ImageWrap,
-  CardButton,
   Subheader,
   Text,
   Caption,
   CustomDivider,
 } from './styles';
 import { useParams } from 'react-router-dom';
-import { addItem } from '../../features/cart/cartSlice';
 import {
   selectProductById,
   useGetProductsByIdQuery,
 } from '../../features/product/productSlice';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector} from 'react-redux';
 import { ATCButton } from '../../components';
 
 export default function ProductDetails() {
@@ -30,20 +28,6 @@ export default function ProductDetails() {
   const loadedProducts = useSelector(state => selectProductById(state, id));
 
   const { isLoading, isSuccess, isError, error } = useGetProductsByIdQuery(id);
-
-  const dispatch = useDispatch();
-
-  const handleAddToCart = product => {
-    if (product) {
-      dispatch(
-        addItem({
-          ...product,
-        })
-      );
-    } else {
-      console.log('An error has occurred');
-    }
-  };
 
   const renderProduct = useCallback(() => {
     if (isLoading) {

@@ -1,17 +1,19 @@
 import { Button } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { logOut } from '../../features/auth/authSlice';
-import { useLocation, Navigate } from 'react-router-dom';
+import { clearCart } from '../../features/cart/cartSlice';
+import { useNavigate } from 'react-router-dom';
 
 export default function LogoutButton() {
   const dispatch = useDispatch();
-  const location = useLocation();
+  let navigate = useNavigate();
 
   function handleLogout() {
     dispatch(logOut());
-
-    <Navigate to='/' state={{ from: location }} replace />;
+    dispatch(clearCart());
+    navigate('/', { replace: true });
   }
+
   return (
     <Button variant='main' onClick={handleLogout}>
       Logout

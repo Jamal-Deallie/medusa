@@ -1,5 +1,4 @@
 import { styled } from '@mui/system';
-import { Typography } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 
 export const Nav = styled('nav')(({ theme }) => ({
@@ -91,6 +90,6 @@ export const OptionsContainer = styled('div')(({ theme }) => ({
   gap: '5rem',
   cursor: 'pointer',
   [theme.breakpoints.down('md')]: {
-    gap: '4rem',
+    gap: '3rem',
   },
 }));

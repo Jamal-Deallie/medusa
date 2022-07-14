@@ -6,11 +6,12 @@ import {
   InputIconWrapper,
   StyledInputBase,
   NewsLetterSection,
+  SubmitBtn,
   EmailInput,
 } from './styles';
-import { Box } from '@mui/material';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import { useNewsLetterMutation } from '../../features/newsletter/newsLetterSlice';
+import { Typography, Box } from '@mui/material';
 
 export default function NewsLetterInput() {
   const [email, setEmail] = useState('');
@@ -20,6 +21,11 @@ export default function NewsLetterInput() {
   const handleChange = event => {
     setEmail(event.target.value);
   };
+
+  if (isSuccess) {
+    setEmail('');
+  }
+
   const handleSubmit = async e => {
     e.preventDefault();
 
@@ -29,22 +35,22 @@ export default function NewsLetterInput() {
           email,
         }).unwrap();
       } catch (err) {
-        if (!err?.originalStatus) {
-          setError('No Server Response');
-        } else if (err.originalStatus === 400) {
-          setError('Missing Required Fields');
-        } else if (err.originalStatus === 401) {
-          setError('Unauthorized');
-        } else {
-          setError('Registration Failed');
-        }
+        setError('Submission Failed');
       }
     }
   };
+
   return (
     <NewsLetterSection>
-      <NewsLetterContent>
-        <NewsLetterHeader>Sign Up Now</NewsLetterHeader>
+      <Box sx={{ my: 2, textAlign: 'center' }}>
+        {error && (
+          <Typography variant='body2' sx={{ color: 'secondary.main' }}>
+            {error}
+          </Typography>
+        )}
+      </Box>
+      <NewsLetterContent onSubmit={handleSubmit}>
+        <NewsLetterHeader>Get the Dirt</NewsLetterHeader>
         <Text>
           Stay in the loop with special offers, plant-parenting tips, and more.
         </Text>
@@ -60,7 +66,7 @@ export default function NewsLetterInput() {
               sx={{ fontSize: 25, color: 'secondary.main' }}
             />
           </InputIconWrapper>
-          {/* <SubmitBtn type='submit'></SubmitBtn> */}
+          <SubmitBtn type='submit'></SubmitBtn>
         </EmailInput>
       </NewsLetterContent>
     </NewsLetterSection>

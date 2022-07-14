@@ -31,10 +31,10 @@ export default function Navigation() {
             <Logo src='/images/logos/logo-rough.svg' alt='medusa logo' />
           </Link>
           <OptionsContainer>
+            <Search />
             <NavLinks to={token ? 'account' : 'signin'} $dn={'none'}>
               Account
             </NavLinks>
-            <Search />
             <Cart />
           </OptionsContainer>
         </NavWrap>

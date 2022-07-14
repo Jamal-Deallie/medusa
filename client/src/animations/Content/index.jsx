@@ -34,6 +34,11 @@ export default function ContentAnimation({ children, link, id }) {
     }
     gsap.set(lineSplit.lines, { y: 40, opacity: 0 });
     const contentAnimation = tl.current
+      .fromTo(
+        q(`#${id}-image`),
+        { autoAlpha: 0 },
+        { duration: 1, autoAlpha: 1, ease: 'sine.in' }
+      )
       .from(wordSplit.words, {
         opacity: 0,
         y: 50,
@@ -48,13 +53,7 @@ export default function ContentAnimation({ children, link, id }) {
         stagger: 0.1,
         ease: 'power4.out',
         overflow: 'hidden',
-      })
-      .fromTo(
-        q(`#${id}-image`),
-        { autoAlpha: 0 },
-        { duration: 1, autoAlpha: 1, ease: 'sine.in' }
-      );
-
+      });
     // outro animation
     if (link) {
       contentAnimation.add(
@@ -64,8 +63,8 @@ export default function ContentAnimation({ children, link, id }) {
 
     let st = ScrollTrigger.create({
       trigger: q(`#${id}-container`),
-      start: 'top center',
-      end: 'bottom',
+      start: 'center bottom',
+      end: 'center top',
       animation: contentAnimation,
     });
 
@@ -73,7 +72,7 @@ export default function ContentAnimation({ children, link, id }) {
       contentAnimation.progress(1); // reverts the SplitText in the onComplete
       st.kill();
     };
-  }, []);
+  }, [q, id, ref, q, tl]);
 
   return <ContentSection ref={ref}>{children}</ContentSection>;
 }

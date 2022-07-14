@@ -9,7 +9,6 @@ export { default as AccountPage } from './Account';
 export { default as ContactPage } from './Contact';
 export { default as SignUpPage } from './SignUp';
 export { default as ForgotPasswordPage } from './ForgotPassword';
-export { default as DashboardPage } from './Dashboard';
 export { default as ResetPasswordPage } from './ResetPassword';
 export { default as ProductSearchPage } from './ProductSearch';
 export { default as CheckoutSuccessPage } from './CheckoutSuccess';

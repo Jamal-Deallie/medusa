@@ -1,4 +1,4 @@
-import { GridLayout } from '../../Layouts';
+import { GridLayout } from '../../layouts';
 import { featuredItems } from '../../shared/featuredItems';
 import { BatchAnimation } from '../../animations';
 

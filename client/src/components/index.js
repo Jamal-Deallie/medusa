@@ -3,12 +3,10 @@ export {default as CustomCard } from './Card';
 export { default as Cart } from './Cart';
 export { default as CartItems } from './CartItems';
 export { default as CheckoutBtn } from './CheckoutBtn';
-export { default as ContentLayout } from '../Layouts/Content';
+export { default as ContentLayout } from '../layouts/Content';
 export { default as ContactForm } from './ContactForm';
-
 export { default as Footer } from './Footer';
 export { default as ForgotPassword } from './ForgotPassword';
-export { default as Layout } from './Layout';
 export { default as LogoutButton } from './LogoutButton';
 export { default as Navigation } from './Navigation';
 export { default as NewsLetterInput } from './NewsLetterInput';

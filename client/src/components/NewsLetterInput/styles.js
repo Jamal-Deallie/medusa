@@ -1,5 +1,5 @@
 import { styled } from '@mui/system';
-import { Container, Button, Typography, Box, InputBase } from '@mui/material';
+import { Typography, Box, InputBase } from '@mui/material';
 
 
 
@@ -7,7 +7,7 @@ export const NewsLetterSection = styled(Box)({
   width: '100%',
 });
 
-export const NewsLetterContent = styled('div')(({ theme }) => ({
+export const NewsLetterContent = styled('form')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
@@ -63,4 +63,8 @@ export const StyledInputBase = styled(InputBase)(({ theme }) => ({
     fontSize: '1.6rem',
     textTransform: 'uppercase',
   },
+}));
+
+export const SubmitBtn = styled('button')(({ theme }) => ({
+  display: 'none',
 }));

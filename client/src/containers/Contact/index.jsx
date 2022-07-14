@@ -1,4 +1,4 @@
-import { Box, Typography, Grid, Container, Paper } from '@mui/material';
+import { Grid, Paper } from '@mui/material';
 import { ContactForm } from '../../components';
 import { ContactSection, GridItem } from './styles';
 export default function ContactContainer() {

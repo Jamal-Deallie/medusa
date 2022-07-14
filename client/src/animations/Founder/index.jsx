@@ -87,7 +87,7 @@ export default function FounderAnimation({ children }) {
       contentAnimation.progress(1); // reverts the SplitText in the onComplete
       st.kill();
     };
-  }, []);
+  }, [q, ref, tl, ]);
 
   return <FounderSection ref={ref}>{children}</FounderSection>;
 }

@@ -53,6 +53,13 @@ export const customTheme = createTheme({
       fontSize: '4.8rem',
       color: primaryColor,
     },
+    subheader1: {
+      color: secondaryLight,
+      fontSize: '3.2rem',
+      fontWeight: 400,
+      fontFamily: 'tenez, sans-serif',
+      textAlign: 'center',
+    },
     body1: {
       fontSize: '1.6rem',
       fontFamily: 'muli, sans-serif',
@@ -147,6 +154,26 @@ export const customTheme = createTheme({
             '&:hover': {
               backgroundColor: secondaryColor,
               color: primaryDark,
+            },
+          },
+        },
+        {
+          props: { variant: 'tertiary' },
+          style: {
+            background: primaryColor,
+            color: secondaryColor,
+            fontSize: '1.6rem',
+            fontFamily: 'muli, sans-serif',
+            fontWeight: 400,
+            padding: '1.5rem 4rem',
+            borderRadius: '8px',
+            boxSizing: 'border-box',
+            width: '100%',
+            marginTop: '5rem',
+            transition: 'background border color 0.5s ease-in-out',
+            '&:hover': {
+              background: secondaryColor,
+              color: primaryColor,
             },
           },
         },

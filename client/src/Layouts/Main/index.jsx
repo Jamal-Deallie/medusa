@@ -7,7 +7,7 @@ import {
   FooterContainer,
 } from './styles';
 
-export default function Layout() {
+export default function MainLayout() {
   return (
     <StyledLayout>
       <NavContainer>

@@ -1,6 +1,5 @@
 import React, { useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import {
   SearchSection,
   SearchBar,
@@ -11,8 +10,9 @@ import {
   FormWrapper,
   CloseSearchBtn,
   SubmitBtn,
+  Icon,
 } from './styles';
-import { Drawer, Box, Typography } from '@mui/material';
+import { Drawer, Box } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -33,17 +33,15 @@ export default function Search() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    //set search
-
     navigate(`/search?term=${searchTerm}`);
     setOpenCart(false);
-    //navigate to search page
   }
   return (
     <>
-      <Typography variant='navOption' onClick={cart}>
-        Search
-      </Typography>
+      <Box onClick={cart}>
+        <Icon />
+      </Box>
+
       <Drawer anchor='top' open={openCart} onClose={cart}>
         <Box>
           <SearchSection>
