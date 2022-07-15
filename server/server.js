@@ -22,7 +22,6 @@ connectDB();
 
 // app.options('*', cors());
 
-
 app.use(
   express.urlencoded({
     extended: true,
@@ -50,20 +49,13 @@ app.use('/api/v1/webhook', webhookRouter);
 app.use('/api/v1/contactus', contactRouter);
 app.use('/api/v1/newsletter', newsLetterRouter);
 
-//----deployment----
-__dirname = path.resolve();
-if (process.env.NODE_ENV !== 'production') {
-  app.use(express.static(path.join(__dirname, '../client/build')));
+app.get('/', (req, res) => {
+  // Sending the response
+  res.send('Hello World!');
 
-  app.get('/*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-  });
-} else {
-  app.get('/', function (req, res) {
-    res.send({ status: 'success' });
-  });
-}
-//----deployment----
+  // Ending the response
+  res.end();
+});
 
 const port = process.env.PORT || 5001;
 const server = app.listen(port, () => {
