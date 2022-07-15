@@ -4,7 +4,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const connectDB = require('./config/dbConn');
-// const cors = require('cors');
+const cors = require('cors');
 const userRouter = require('./routes/userRoutes');
 const productRouter = require('./routes/productRoutes');
 const checkoutRouter = require('./routes/checkoutRoutes');
@@ -18,18 +18,9 @@ const app = express();
 
 connectDB();
 
-const whitelist = [process.env.URL ]
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (!origin || whitelist.indexOf(origin) !== -1) {
-      callback(null, true)
-    } else {
-      callback(new Error("Not allowed by CORS"))
-    }
-  },
-  credentials: true,
-}
-app.use(cors(corsOptions))
+app.use(cors());
+
+app.options('*', cors());
 
 app.use(
   express.urlencoded({
