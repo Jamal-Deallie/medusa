@@ -18,9 +18,18 @@ const app = express();
 
 connectDB();
 
-// app.use(cors());
-
-// app.options('*', cors());
+const whitelist = [process.env.URL ]
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error("Not allowed by CORS"))
+    }
+  },
+  credentials: true,
+}
+app.use(cors(corsOptions))
 
 app.use(
   express.urlencoded({
