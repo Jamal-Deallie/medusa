@@ -50,9 +50,7 @@ export default function SignIn() {
       try {
         await signInUser({ email, password }).unwrap();
       } catch (err) {
-        if (!err?.originalStatus) {
-          setError('Login Failed');
-        }
+        setError('Login Failed');
       }
     }
   };

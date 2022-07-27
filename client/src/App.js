@@ -41,7 +41,7 @@ function App() {
               path='resetpassword/:resetToken'
               element={<ResetPasswordPage />}
             />
-            <Route path={'search'} element={<ProductSearchPage />} />
+            <Route path='search' element={<ProductSearchPage />} />
             <Route path='checkout-success' element={<CheckoutSuccessPage />} />
             <Route element={<RequireAuth />}>
               <Route path='account' element={<AccountPage />} />
