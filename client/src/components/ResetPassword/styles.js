@@ -1,56 +1,83 @@
 import { styled } from '@mui/material/styles';
+import { Container, TextField, Box } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { Box, OutlinedInput } from '@mui/material';
 
-export const FormWrap = styled(Box)(({ theme }) => ({
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 450,
-  border: `2px solid ${theme.palette.primary.main}`,
-  borderRadius: '30px',
-  padding: '7rem 3rem',
-  height: '100%',
-  gap: '5rem',
+export const ResetPasswordSection = styled(Box)(({ theme }) => ({
+  background: theme.palette.secondary.light,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  minHeight: '60rem',
+  padding: '7.5rem 0',
+}));
+
+
+export const CustomInput = styled(TextField)(({ theme }) => ({
+  '& label.Mui-focused': {
+    color: theme.palette.secondary.main,
+  },
+  '& label': {
+    color: theme.palette.primary.main,
+    fontFamily: 'muli, sans-serif',
+    fontSize: '1.6rem',
+    margin: 'dense',
+  },
+  '&& .MuiInput-underline:hover:before': {
+    borderBottomColor: '#e9e7dc',
+  },
+  '& .MuiInput-underline': {
+    marginTop: 25,
+  },
+  '& .MuiInput-underline:after': {
+    borderBottomColor: theme.palette.primary.main,
+  },
+  '& .MuiInput-underline:before': {
+    borderBottomColor: theme.palette.primary.main,
+  },
+  '& .MuiInput-underline:focused': {
+    borderBottomColor: ' #e9e7dc',
+  },
 }));
 
 export const CustomLink = styled(Link)(({ theme }) => ({
   color: theme.palette.primary.main,
   cursor: 'pointer',
   fontSize: '1.6rem',
-  transition: 'color 0.5s ease-in-out',
+  transition: 'color 0.2s ease-in-out',
+  fontWeight: 400,
   '&:hover': {
-    color: theme.palette.secondary.dark,
+    color: theme.palette.secondary.main,
+    fontWeight: 400,
   },
 }));
 
-export const OutlineInput = styled(OutlinedInput)(({ theme }) => ({
-  color: theme.palette.primary.main,
-  '& .MuiOutlinedInput-notchedOutline': {
-    border: `1px solid ${theme.palette.primary.main}`,
-    background: 'none',
+export const FormWrap = styled(Box)(({ theme }) => ({
+  width: '100%',
+  maxWidth: '55rem',
+  height: '100%',
+  padding: 'calc(.8rem + 1.5vw)',
+  margin: '0 auto',
+  [theme.breakpoints.down('sm')]: {
+    padding: '0',
   },
+}));
 
-  '&& .MuiOutlinedInput-root:hover': {
-    '& > fieldset': { border: `1px solid ${theme.palette.primary.main}` },
-  },
-  '& label': {
-    color: theme.palette.primary.main,
-    fontFamily: 'muli, sans-serif',
-    fontSize: 16,
-    margin: 'dense',
-  },
+export const FormContainer = styled(Container)({
+  margin: '0 auto',
+  position: 'relative',
+  width: '100%',
+});
 
-  '& .MuiTypography-root': {
-    color: theme.palette.primary.main,
-  },
+export const LinkContainer = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  justifyContent: 'center',
+  gap: '1rem',
+  marginTop: '2.5rem',
+  textAlign: 'center',
+}));
 
-  '& .MuiInputBase-root': {
-    color: theme.palette.primary.main,
-  },
-
-  ' & ::-webkit-calendar-picker-indicator': {
-    filter: 'invert(100%)',
-  },
+export const InnerContainer = styled(Box)(({ theme }) => ({
+  width: '100%',
+  height: '100%',
+  paddingTop: '2.5rem',
 }));

@@ -29,5 +29,9 @@ export default function ProductsListContainer() {
     }
   }, [isLoading, isSuccess, isError, loadedProducts]);
 
-  return <Box>{renderedProducts()}</Box>;
+  return (
+    <Box>
+      {renderedProducts()}
+    </Box>
+  );
 }

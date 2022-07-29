@@ -38,8 +38,8 @@ export default function Search() {
   }
   return (
     <>
-      <Box onClick={cart}>
-        <Icon />
+      <Box onClick={cart} sx={{ mt: 1 }}>
+        <Icon src='images/icons/search-1.svg' alt='search-icon' />
       </Box>
 
       <Drawer anchor='top' open={openCart} onClose={cart}>

@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useGetProductsByCategoryQuery } from '../../features/product/productSlice';
 import { CustomCard } from '../../components';
 import { Box, Typography, CircularProgress } from '@mui/material';
-
+import { ProductWrapper} from './styles'
 export default function CategoryListContainer() {
   const params = useParams();
   const { category } = params;
@@ -30,5 +30,5 @@ export default function CategoryListContainer() {
     }
   }, [isLoading, isSuccess, isError, currentData]);
 
-  return <Box>{renderedProducts()}</Box>;
+  return <ProductWrapper>{renderedProducts()}</ProductWrapper>;
 }

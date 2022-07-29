@@ -10,8 +10,6 @@ export const CartSection = styled('section')(({ theme }) => ({
   width: '50rem',
 }));
 
-
-
 export const CartFooter = styled('div')(({ theme }) => ({
   padding: '2rem',
   height: '25rem',
@@ -157,5 +155,11 @@ export const CustomButton = styled(Button)(({ theme }) => ({
     background: 'none',
     color: theme.palette.secondary.main,
     border: `2px solid ${theme.palette.secondary.main}`,
+  },
+}));
+
+export const CustomDrawer = styled(Drawer)(({ theme }) => ({
+  [theme.breakpoints.down('md')]: {
+    '& .MuiDrawer-paper': { width: "100vw", backgroundColor: 'green' },
   },
 }));

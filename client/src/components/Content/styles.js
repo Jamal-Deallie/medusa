@@ -83,7 +83,7 @@ export const ImageContainer = styled(Box, {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  width: '50%',
+  width: '100%',
   order: $order ? 1 : 'none',
   [theme.breakpoints.down('md')]: {
     width: '100%',

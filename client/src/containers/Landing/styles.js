@@ -28,6 +28,7 @@ export const LandingOuter = styled(Box)(({ theme }) => ({
     height: 'calc(100vh - 10rem)',
     position: 'relative',
     padding: 'calc(8px + 1.5625vw) 0',
+    width: '100%',
   },
 }));
 
@@ -35,7 +36,12 @@ export const ContentContainer = styled(Box)(({ theme }) => ({
   display: 'flex',
   height: 'auto',
   marginBottom: '-17.5rem',
-  [theme.breakpoints.down('sm')]: { marginBottom: 0 },
+  [theme.breakpoints.down('sm')]: {
+    marginBottom: 0,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 }));
 
 export const HeadingLeft = styled(Typography)(({ theme }) => ({
@@ -43,7 +49,7 @@ export const HeadingLeft = styled(Typography)(({ theme }) => ({
   fontFamily: 'tenez, sans-serif',
   fontStyle: 'italic',
   color: theme.palette.secondary.main,
-  lineHeight: 1.5,
+  lineHeight: 1.2,
   fontKerning: 'none',
   textRendering: 'optimizeSpeed',
   transform: 'translateZ(0)',
@@ -52,6 +58,7 @@ export const HeadingLeft = styled(Typography)(({ theme }) => ({
   [theme.breakpoints.down('sm')]: {
     fontSize: '7.5rem',
     marginTop: 0,
+    lineHeight: 1,
   },
 }));
 
@@ -60,7 +67,7 @@ export const HeadingRight = styled(Typography)(({ theme }) => ({
   fontFamily: 'tenez, sans-serif',
   fontStyle: 'italic',
   color: theme.palette.secondary.main,
-  lineHeight: 1.5,
+  lineHeight: 1.2,
   fontKerning: 'none',
   textRendering: 'optimizeSpeed',
   transform: 'translateZ(0)',
@@ -68,8 +75,9 @@ export const HeadingRight = styled(Typography)(({ theme }) => ({
   marginTop: 'calc(100vh - 90vh)',
   textShadow: '-1px 1px 2px rgba(0,0,0,0.6)',
   [theme.breakpoints.down('sm')]: {
+    marginTop: 0,
+    lineHeight: 1,
     fontSize: '7.5rem',
-    marginTop: '3rem',
   },
 }));
 
@@ -80,6 +88,7 @@ export const ImageContainer = styled(Box)(({ theme }) => ({
     position: 'absolute',
     top: 0,
     overflow: 'hidden',
+    width: '100%',
   },
 }));
 

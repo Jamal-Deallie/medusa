@@ -3,7 +3,7 @@ import { Typography, Box } from '@mui/material';
 
 export const ContentContainer = styled(Box)({
   margin: '0 auto',
-  maxWidth: '40rem',
+  width: '100%',
 });
 
 export const HeadingContainer = styled(Box)(({ theme }) => ({
@@ -18,13 +18,6 @@ export const Image = styled('img')({
   display: 'block',
   margin: '0 auto',
 });
-
-export const Text = styled(Typography)(({ theme }) => ({
-  fontSize: '1.6rem',
-  fontWeight: 400,
-  textTransform: 'uppercase',
-  color: theme.palette.secondary.light,
-}));
 
 export const CardWrap = styled(Box)(({ theme }) => ({
   border: `1px solid ${theme.palette.primary.main}`,

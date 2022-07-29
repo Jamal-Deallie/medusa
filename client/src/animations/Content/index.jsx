@@ -34,11 +34,11 @@ export default function ContentAnimation({ children, link, id }) {
     }
     gsap.set(lineSplit.lines, { y: 40, opacity: 0 });
     const contentAnimation = tl.current
-      .fromTo(
-        q(`#${id}-image`),
-        { autoAlpha: 0 },
-        { duration: 1, autoAlpha: 1, ease: 'sine.in' }
-      )
+      // .fromTo(
+      //   q(`#${id}-image`),
+      //   { autoAlpha: 0 },
+      //   { duration: 1, autoAlpha: 1, ease: 'sine.in' }
+      // )
       .from(wordSplit.words, {
         opacity: 0,
         y: 50,

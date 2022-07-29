@@ -87,8 +87,6 @@ export const SubmitBtn = styled('button')(({ theme }) => ({
   display: 'none',
 }));
 
-export const Icon = styled(SearchIcon)(({ theme }) => ({
-  fontSize: 28,
-  transform: 'scaleX(-1)',
-  color: theme.palette.secondary.light,
+export const Icon = styled('img')(({ theme }) => ({
+  height: '3rem',
 }));

@@ -7,10 +7,12 @@ import {
 } from '../../containers';
 import { useLocation } from 'react-router-dom';
 import {
-  SearchSection,
+  ProductSection,
   ProductsWrap,
   Subheader,
   CustomDivider,
+  ItemContainer,
+  HeaderContainer,
 } from './styles';
 import { Container } from '@mui/material';
 
@@ -45,12 +47,13 @@ export default function ProductContainer() {
   };
 
   return (
-    <SearchSection>
-      <ProductsWrap>
-        <Subheader sx={{ textTransform: 'capitalize' }}>{subheader}</Subheader>
+    <ProductSection>
+      <HeaderContainer>
+        <Subheader>{subheader}</Subheader>
         <CustomDivider />
-        <Container>{Products()}</Container>
-      </ProductsWrap>
-    </SearchSection>
+      </HeaderContainer>
+
+      <ItemContainer sx={{ margin: '0 auto' }}>{Products()}</ItemContainer>
+    </ProductSection>
   );
 }

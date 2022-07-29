@@ -8,6 +8,7 @@ import {
   CustomLink,
 } from './styles';
 import { ContentAnimation } from '../../animations';
+import { FadeUpAnimation } from '../../animations';
 
 export default function ContentLayout({
   src,
@@ -25,9 +26,12 @@ export default function ContentLayout({
   return (
     <ContentAnimation link={link} id={id}>
       <ContentInner $fd={fd} $pb={pb} id={`${id}-container`}>
-        <ImageContainer>
-          <Image $br={br} src={src} alt={alt} id={`${id}-image`} />
-        </ImageContainer>
+        <FadeUpAnimation id={id}>
+          <ImageContainer id={`${id}-container`}>
+            <Image $br={br} src={src} alt={alt} id={`${id}-fadeUp`} />
+          </ImageContainer>
+        </FadeUpAnimation>
+
         <ContentContainer>
           <Heading id={`${id}-heading`}>{title}</Heading>
           <Text sx={{ overflow: 'hidden' }} id={`${id}-text`}>

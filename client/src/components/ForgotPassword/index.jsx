@@ -1,64 +1,88 @@
-import React, { useState } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import {
-  FormWrap,
-  CustomLink,
-  CustomInput,
   ForgotPasswordSection,
+  CustomInput,
+  CustomLink,
+  LinkContainer,
+  FormWrap,
+  FormContainer,
+  InnerContainer,
 } from './styles';
-import { Typography, Box, Container, Stack, Button } from '@mui/material';
-import { useForgotPasswordMutation } from '../../features/users/userSlice';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { Typography, Box, Stack, Button } from '@mui/material';
+import { useForgotPasswordMutation } from '../../features/user/userSlice';
 
 export default function ForgotPassword() {
-  const [email, setEmail] = useState('');
-  const [confirmation, setConfirmation] = useState('');
-  const [error, setError] = useState('');
-  const [forgotPassword, { isLoading, isSuccess }] =
-    useForgotPasswordMutation();
-  const canSave = [email].every(Boolean) && !isLoading;
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/';
+  const [error, setError] = useState(false);
+  const [formData, setFormData] = useState({
+    email: '',
+  });
 
-  if (isSuccess) {
-    setEmail('');
-    setConfirmation('An email to reset your password has been sent');
-  }
+  const updateFormData = useCallback(
+    type => event => {
+      setFormData({ ...formData, [type]: event.target.value });
+    },
+    [formData]
+  );
 
-  const handleSubmit = async () => {
-    if (canSave) {
-      try {
-        await forgotPassword({ email }).unwrap();
-      } catch (err) {
-        setError('Submission has failed');
-      }
+  const [forgotPassword, { isSuccess }] = useForgotPasswordMutation();
+
+  const handleSubmit = async event => {
+    event.preventDefault();
+    try {
+      await forgotPassword(formData).unwrap();
+    } catch (err) {
+      setError('Forgot Password Failed');
     }
   };
 
+  useEffect(() => {
+    if (isSuccess) {
+      setFormData({
+        email: '',
+      });
+      navigate(from, { replace: true });
+    }
+  }, [isSuccess, setFormData, navigate, from]);
+
   return (
     <ForgotPasswordSection>
-      <Container sx={{ position: 'relative', height: '60rem' }}>
-        <FormWrap noValidate>
+      <FormContainer>
+        <FormWrap>
           <Box sx={{ textAlign: 'center' }}>
-            <Typography variant='header2'>Forgot Password</Typography>
+            <Typography variant='header1' color='primary'>
+              Forgot Password
+            </Typography>
           </Box>
-          <Box sx={{ my: 2 }}>
-            {confirmation && (
-              <Typography sx={{ color: 'primary.main' }}>
-                {confirmation}
+          <Box sx={{ textAlign: 'center', mt: 2.5 }}>
+            {error && (
+              <Typography
+                variant='body1'
+                sx={{ color: 'primary.main', textAlign: 'center' }}>
+                {error}
               </Typography>
             )}
-            {error && (
-              <Typography sx={{ color: 'primary.main' }}>{error}</Typography>
-            )}
           </Box>
-
-          <Box component='form' onSubmit={handleSubmit} sx={{ py: 5 }}>
-            <Stack spacing={5}>
+          <Typography sx={{ textAlign: 'center' }}>
+            Please enter your email address below. You will receive a link to
+            reset your password.
+          </Typography>
+          <InnerContainer>
+            <Stack
+              spacing={4}
+              component='form'
+              onSubmit={handleSubmit}
+              noValidate>
               <CustomInput
                 margin='normal'
                 fullWidth
                 id='user'
-                placeholder='Email'
                 label='Email Address'
-                onChange={e => setEmail(e.target.value)}
-                value={email}
+                onChange={updateFormData('email')}
+                value={formData.email}
                 autoFocus
                 inputProps={{
                   autoComplete: 'off',
@@ -68,16 +92,16 @@ export default function ForgotPassword() {
                 }}
               />
 
-              <Button variant='tertiary' type='submit'>
+              <Button variant='main' type='submit'>
                 Submit
               </Button>
+              <LinkContainer>
+                <CustomLink to='Return to Store'>Cancel</CustomLink>
+              </LinkContainer>
             </Stack>
-            <Box sx={{ textAlign: 'center', mt: 2.5, color: 'primary.main' }}>
-              <CustomLink to='/'>Cancel</CustomLink>
-            </Box>
-          </Box>
+          </InnerContainer>
         </FormWrap>
-      </Container>
+      </FormContainer>
     </ForgotPasswordSection>
   );
 }

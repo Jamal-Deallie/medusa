@@ -90,6 +90,6 @@ export const OptionsContainer = styled('div')(({ theme }) => ({
   gap: '5rem',
   cursor: 'pointer',
   [theme.breakpoints.down('md')]: {
-    gap: '3rem',
+    gap: '2.5rem',
   },
 }));

@@ -1,51 +1,39 @@
-import { styled } from '@mui/system';
-import { Box, TextField, Typography } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import { Container, TextField, Box } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-export const Container = styled(Box)({
+export const SignUpSection = styled(Box)(({ theme }) => ({
+  background: theme.palette.secondary.light,
+  minHeight: '60rem',
   display: 'flex',
-  flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-  maxWidth: '60rem',
-  margin: '0 auto',
-});
+}));
 
 export const CustomInput = styled(TextField)(({ theme }) => ({
-  '& .MuiOutlinedInput-root': {
-    '& > fieldset': {
-      border: `1px solid ${theme.palette.primary.main}`,
-      background: 'none',
-      color: theme.palette.primary.main,
-    },
-  },
-  '&& .MuiOutlinedInput-root:hover': {
-    '& > fieldset': { border: `1px solid ${theme.palette.primary.main}` },
-  },
-  '&& .MuiOutlinedInput-root:active': {
-    '& > fieldset': { border: `1px solid ${theme.palette.primary.main}` },
+  '& label.Mui-focused': {
+    color: theme.palette.secondary.main,
   },
   '& label': {
+    color: theme.palette.primary.main,
     fontFamily: 'muli, sans-serif',
-    fontSize: 16,
+    fontSize: '1.6rem',
     margin: 'dense',
   },
-
-  '& .MuiInputLabel-root.Mui-focused': {
-    marginLeft: 0,
-    color: theme.palette.primary.main,
+  '&& .MuiInput-underline:hover:before': {
+    borderBottomColor: '#e9e7dc',
   },
-
-  '& .MuiTypography-root': {
-    color: theme.palette.primary.main,
+  '& .MuiInput-underline': {
+    marginTop: 25,
   },
-
-  '& .MuiInputBase-root': {
-    color: theme.palette.primary.main,
+  '& .MuiInput-underline:after': {
+    borderBottomColor: theme.palette.primary.main,
   },
-
-  ' & ::-webkit-calendar-picker-indicator': {
-    filter: 'invert(100%)',
+  '& .MuiInput-underline:before': {
+    borderBottomColor: theme.palette.primary.main,
+  },
+  '& .MuiInput-underline:focused': {
+    borderBottomColor: ' #e9e7dc',
   },
 }));
 
@@ -53,20 +41,25 @@ export const CustomLink = styled(Link)(({ theme }) => ({
   color: theme.palette.primary.main,
   cursor: 'pointer',
   fontSize: '1.6rem',
-  transition: 'color 0.5s ease-in-out',
+  transition: 'color 0.2s ease-in-out',
+  fontWeight: 400,
   '&:hover': {
     color: theme.palette.secondary.main,
+    fontWeight: 400,
   },
 }));
 
-export const Heading = styled(Typography)(({ theme }) => ({
-  fontFamily: 'tenez, sans-serif',
-  fontSize: '4.8rem',
-  fontStyle: 'italic',
-  color: theme.palette.primary.main,
-  lineHeight: 'calc(1.5 * 48px)',
+export const FormWrap = styled(Box)(({ theme }) => ({
   width: '100%',
-  overflow: 'hidden',
-  paddingBottom: '2.5rem',
-  textAlign: 'center',
+  maxWidth: '55rem',
+  height: '100%',
+  padding: 'calc(.8rem + 1.5vw)',
+  margin: '0 auto',
 }));
+
+export const FormContainer = styled(Container)({
+  margin: '0 auto',
+  position: 'relative',
+  height: '80rem',
+  width: '100%',
+});

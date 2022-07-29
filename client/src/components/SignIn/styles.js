@@ -1,62 +1,39 @@
 import { styled } from '@mui/material/styles';
+import { Container, TextField, Box } from '@mui/material';
 import { Link } from 'react-router-dom';
-import {
-  Box,
-  Typography,
-  TextField,
-  OutlinedInput,
-  Button,
-  FormControl,
-} from '@mui/material';
 
-export const LoginWrap = styled('div')({
-  width: '45rem',
-  margin: '0 auto',
-});
+export const SignInSection = styled(Box)(({ theme }) => ({
+  background: theme.palette.secondary.light,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  minHeight: '60rem',
+}));
 
-export const MainButton = styled(Button)(({ theme }) => ({
-  background: theme.palette.secondary.main,
-  color: theme.palette.primary.main,
-  fontSize: 16,
-  fontFamily: 'muli, sans-serif',
-  fontWeight: 400,
-  padding: '1.5rem 4rem',
-  borderRadius: '8px',
-  boxSizing: 'border-box',
-  width: '100%',
-  marginTop: '5rem',
-  transition: 'background border color 0.5s ease-in-out',
-  '&:hover': {
-    background: theme.palette.secondary.main,
+export const CustomInput = styled(TextField)(({ theme }) => ({
+  '& label.Mui-focused': {
+    color: theme.palette.secondary.main,
+  },
+  '& label': {
     color: theme.palette.primary.main,
+    fontFamily: 'muli, sans-serif',
+    fontSize: '1.6rem',
+    margin: 'dense',
   },
-}));
-
-export const Links = styled(Link)(({ theme }) => ({
-  cursor: 'pointer',
-  fontSize: '1.2rem',
-  transition: 'color 0.5s ease-in-out',
-  '&:hover': {
-    color: theme.palette.secondary.light,
+  '&& .MuiInput-underline:hover:before': {
+    borderBottomColor: '#e9e7dc',
   },
-}));
-
-export const FormWrap = styled(Box)(({ theme }) => ({
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 450,
-  border: `2px solid ${theme.palette.primary.main}`,
-  borderRadius: '30px',
-  padding: '7rem 3rem',
-  height: '100%',
-  gap: '5rem',
-}));
-export const FormContainer = styled(FormControl)(({ theme }) => ({
-  color: theme.palette.secondary.light,
-  '& .Mui-focused': {
-    color: theme.palette.secondary.light,
+  '& .MuiInput-underline': {
+    marginTop: 25,
+  },
+  '& .MuiInput-underline:after': {
+    borderBottomColor: theme.palette.primary.main,
+  },
+  '& .MuiInput-underline:before': {
+    borderBottomColor: theme.palette.primary.main,
+  },
+  '& .MuiInput-underline:focused': {
+    borderBottomColor: ' #e9e7dc',
   },
 }));
 
@@ -64,67 +41,35 @@ export const CustomLink = styled(Link)(({ theme }) => ({
   color: theme.palette.primary.main,
   cursor: 'pointer',
   fontSize: '1.6rem',
-  transition: 'color 0.5s ease-in-out',
+  transition: 'color 0.2s ease-in-out',
+  fontWeight: 400,
   '&:hover': {
-    color: theme.palette.secondary.dark,
+    color: theme.palette.secondary.main,
+    fontWeight: 400,
   },
 }));
 
-export const CustomInput = styled(TextField)(({ theme }) => ({
-  '& .MuiOutlinedInput-root': {
-    '& > fieldset': {
-      border: `1px solid ${theme.palette.primary.main}`,
-      background: 'none',
-      color: theme.palette.primary.main,
-    },
-  },
-  '&& .MuiOutlinedInput-root:hover': {
-    '& > fieldset': { border: `1px solid ${theme.palette.primary.main}` },
-  },
-  '&& .MuiOutlinedInput-root:active': {
-    '& > fieldset': { border: `1px solid ${theme.palette.primary.main}` },
-  },
-  '& label': {
-    fontFamily: 'muli, sans-serif',
-    fontSize: 16,
-    margin: 'dense',
-  },
-
-  '& .MuiInputLabel-root.Mui-focused': {
-    marginLeft: 0,
-    color: theme.palette.primary.main,
-  },
-
-  '& .MuiTypography-root': {
-    color: theme.palette.primary.main,
-  },
-
-  '& .MuiInputBase-root': {
-    color: theme.palette.primary.main,
-  },
-
-  ' & ::-webkit-calendar-picker-indicator': {
-    filter: 'invert(100%)',
-  },
-}));
-
-export const Heading = styled(Typography)(({ theme }) => ({
-  fontFamily: 'tenez, sans-serif',
-  fontSize: '4.8rem',
-  fontStyle: 'italic',
-  color: theme.palette.primary.main,
-  lineHeight: 'calc(1.5 * 48px)',
+export const FormWrap = styled(Box)(({ theme }) => ({
   width: '100%',
-  overflow: 'hidden',
-  paddingBottom: '2.5rem',
-  textAlign: 'center',
+  maxWidth: '55rem',
+  height: '100%',
+  padding: 'calc(.8rem + 1.5vw)',
+  margin: '0 auto',
+  [theme.breakpoints.down('sm')]: {
+    padding: '0',
+  },
 }));
+
+export const FormContainer = styled(Container)({
+  margin: '0 auto',
+  position: 'relative',
+  width: '100%',
+});
 
 export const LinkContainer = styled(Box)(({ theme }) => ({
   display: 'flex',
   justifyContent: 'center',
-  gap: '5px',
+  gap: '1rem',
   marginTop: '2.5rem',
   textAlign: 'center',
-  color: theme.palette.primary.main,
 }));

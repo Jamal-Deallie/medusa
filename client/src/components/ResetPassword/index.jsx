@@ -1,140 +1,169 @@
-import React, { useState } from 'react';
-import { FormWrap, CustomLink, OutlineInput } from './styles';
-import { useNavigate } from 'react-router-dom';
+import { useState, useCallback, useEffect } from 'react';
 import {
-  Typography,
-  Box,
+  ResetPasswordSection,
+  FormWrap,
+  CustomInput,
+  CustomLink,
+  FormContainer,
+} from './styles';
+import { useNavigate, useLocation } from 'react-router-dom';
+import {
+  Grid,
   Button,
-  Container,
   InputAdornment,
   IconButton,
-  InputLabel,
-  FormControl,
+  Box,
   Stack,
+  Typography,
 } from '@mui/material';
-import { useResetPasswordMutation } from '../../features/users/userSlice';
+import { useResetPasswordMutation } from '../../features/user/userSlice';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 export default function ResetPassword() {
   const navigate = useNavigate();
-  const [password, setPassword] = useState('');
-  const [passwordConfirmation, setPasswordConfirmation] = useState('');
-  const [error, setError] = useState('');
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/';
+  const [formData, setFormData] = useState({
+    password: '',
+    passwordConfirm: '',
+  });
+
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState(false);
 
-  const [resetPassword, { isLoading, isSuccess }] = useResetPasswordMutation();
-
-  const canSave = [password, passwordConfirmation].every(Boolean) && !isLoading;
-
-  if (isSuccess) {
-    setPassword('');
-    setPasswordConfirmation('');
-    navigate('/');
-  }
   const handleClickShowPassword = () => {
     setShowPassword(showPassword => !showPassword);
   };
 
-  const handleSubmit = async () => {
-    if (canSave) {
-      try {
-        await resetPassword({ password, passwordConfirmation }).unwrap();
-      } catch (err) {
-        setError(err);
-      }
+  const updateFormData = useCallback(
+    type => event => {
+      setFormData({ ...formData, [type]: event.target.value });
+    },
+    [formData]
+  );
+
+  const [resetPassword, { isSuccess }] = useResetPasswordMutation();
+
+  const handleSubmit = async event => {
+    event.preventDefault();
+    try {
+      await resetPassword(formData).unwrap();
+    } catch (err) {
+      setError(' Reset Password Failed');
     }
   };
 
-  return (
-    <Box
-      sx={{
-        position: 'relative',
-        height: 'auto',
-        padding: '12.5rem 0',
-        backgroundColor: 'secondary.light',
-      }}>
-      <Container sx={{ position: 'relative', height: '60rem' }}>
-        <FormWrap noValidate>
-          {error && <Typography>{error}</Typography>}
-          <Box sx={{ textAlign: 'center' }}>
-            <Typography variant='header2'>Rest Password</Typography>
-          </Box>
-          <Box component='form' onSubmit={handleSubmit} sx={{ p: 2 }}>
-            <Stack spacing={4}>
-              <FormControl fullWidth>
-                <InputLabel htmlFor='outlined-adornment-password'>
-                  Password
-                </InputLabel>
-                <OutlineInput
-                  id='outlined-adornment-password'
-                  type={showPassword ? 'text' : 'password'}
-                  onChange={e => setPassword(e.target.value)}
-                  name='password'
-                  value={password}
-                  autoComplete='new-password'
-                  endAdornment={
-                    <InputAdornment position='end'>
-                      <IconButton
-                        onClick={handleClickShowPassword}
-                        aria-label='toggle password visibility'
-                        sx={{ pointerEvents: 'click', color: 'primary.main' }}>
-                        {showPassword ? (
-                          <VisibilityOff
-                            fontSize='large'
-                            sx={{ fill: 'primary.main' }}
-                          />
-                        ) : (
-                          <Visibility fontSize='large' />
-                        )}
-                      </IconButton>
-                    </InputAdornment>
-                  }
-                  label='Password'
-                />
-              </FormControl>
-              <FormControl fullWidth>
-                <InputLabel htmlFor='outlined-adornment-password-confirm'>
-                  Password Confirmation
-                </InputLabel>
-                <OutlineInput
-                  id='outlined-adornment-password-confirm'
-                  type={showPassword ? 'text' : 'password'}
-                  onChange={e => setPasswordConfirmation(e.target.value)}
-                  name='passwordConfirmation'
-                  value={passwordConfirmation}
-                  autoComplete='new-password'
-                  endAdornment={
-                    <InputAdornment position='end'>
-                      <IconButton
-                        onClick={handleClickShowPassword}
-                        aria-label='toggle password visibility'
-                        sx={{ pointerEvents: 'click', color: 'primary.main' }}>
-                        {showPassword ? (
-                          <VisibilityOff
-                            fontSize='large'
-                            sx={{ fill: 'primary.main' }}
-                          />
-                        ) : (
-                          <Visibility fontSize='large' />
-                        )}
-                      </IconButton>
-                    </InputAdornment>
-                  }
-                  label='Password Confirmation'
-                />
-              </FormControl>
+  useEffect(() => {
+    if (isSuccess) {
+      setFormData({
+        password: '',
+        passwordConfirm: '',
+      });
+      navigate(from, { replace: true });
+    }
+  }, [isSuccess, setFormData, navigate, from]);
 
-              <Button variant='tertiary' type='submit'>
+  return (
+    <ResetPasswordSection>
+      <FormContainer>
+        <FormWrap>
+          <Box sx={{ textAlign: 'center' }}>
+            <Typography variant='header1' color='primary'>
+              Reset Password
+            </Typography>
+          </Box>
+          <Box sx={{ textAlign: 'center', mt: 2.5 }}>
+            {error && (
+              <Typography
+                variant='body1'
+                sx={{ color: 'primary.main', textAlign: 'center' }}>
+                {error}
+              </Typography>
+            )}
+          </Box>
+          <Box sx={{ mt: 7.5 }}>
+            <Stack
+              spacing={4}
+              component='form'
+              onSubmit={handleSubmit}
+              noValidate>
+              <CustomInput
+                fullWidth
+                label='Password'
+                id='outlined-start-adornment'
+                type={showPassword ? 'text' : 'password'}
+                onChange={updateFormData('password')}
+                value={formData.password}
+                name='password'
+                autoComplete='new-password'
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position='start'>
+                      <IconButton
+                        onClick={handleClickShowPassword}
+                        aria-label='toggle password visibility'
+                        sx={{
+                          pointerEvents: 'click',
+                        }}>
+                        {showPassword ? (
+                          <VisibilityOff fontSize='large' />
+                        ) : (
+                          <Visibility fontSize='large' />
+                        )}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+              <CustomInput
+                fullWidth
+                label='Password'
+                id='outlined-start-adornment'
+                type={showPassword ? 'text' : 'password'}
+                onChange={updateFormData('passwordConfirm')}
+                value={formData.passwordConfirm}
+                name='passwordConfirm'
+                autoComplete='new-password'
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position='start'>
+                      <IconButton
+                        onClick={handleClickShowPassword}
+                        aria-label='toggle password visibility'
+                        sx={{
+                          pointerEvents: 'click',
+                        }}>
+                        {showPassword ? (
+                          <VisibilityOff fontSize='large' />
+                        ) : (
+                          <Visibility fontSize='large' />
+                        )}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+
+              <Button variant='main' type='submit'>
                 Submit
               </Button>
+
+              <Grid item xs={12} sx={{ textAlign: 'center', pt: 2.5 }}>
+                <CustomLink to='/' variant='body2'>
+                  Cancel
+                </CustomLink>
+              </Grid>
             </Stack>
           </Box>
-          <Box sx={{ textAlign: 'center', mt: 2.5, color: 'primary.main' }}>
-            <CustomLink to='/'>Cancel</CustomLink>
-          </Box>
         </FormWrap>
-      </Container>
-    </Box>
+      </FormContainer>
+    </ResetPasswordSection>
   );
 }

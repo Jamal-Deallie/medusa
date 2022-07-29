@@ -5,5 +5,5 @@ export const SignInSection = styled(Box)(({ theme }) => ({
   position: 'relative',
   height: 'auto',
   background: theme.palette.secondary.light,
-  padding: '8.5rem 0',
+  padding: '7.5rem 0',
 }));
