@@ -4,36 +4,35 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const connectDB = require('./config/dbConn');
+const mongoSanitize = require('express-mongo-sanitize');
+const helmet = require('helmet');
 const cors = require('cors');
+const xss = require('xss-clean');
 const userRouter = require('./routes/userRoutes');
 const productRouter = require('./routes/productRoutes');
 const checkoutRouter = require('./routes/checkoutRoutes');
 const webhookRouter = require('./routes/webhookRoutes');
 const contactRouter = require('./routes/contactRoutes');
 const newsLetterRouter = require('./routes/newsLetterRoutes');
-const mongoSanitize = require('express-mongo-sanitize');
-const bodyParser = require('body-parser');
+
 
 const app = express();
 
 connectDB();
 
-app.use(cors());
-
-app.options('*', cors());
 
 app.use(
-  express.urlencoded({
-    extended: true,
-    limit: '25mb',
+  cors({
+    origin: process.env.WEB_APP_URL,
   })
 );
 
+app.use(helmet());
 app.use(express.json({ limit: '25mb' }));
-
-app.use(bodyParser.json());
-
+app.use(express.urlencoded({ limit: '25mb' }));
 app.use(cookieParser());
+app.use(mongoSanitize());
+app.use(xss());
 
 app.use((req, res, next) => {
   console.log('middleware check');
