@@ -1,6 +1,7 @@
 {
   "name": "client",
   "version": "0.1.0",
+  "proxy": "https://medusa-app-jd.herokuapp.com",
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
@@ -13,7 +14,7 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
-    "gsap": "npm:@gsap/shockingly",
+    "gsap": "./gsap-bonus.tgz",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-error-boundary": "^3.1.4",

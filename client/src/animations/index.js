@@ -4,3 +4,4 @@ export { default as ProductAnimation } from './Product';
 export { default as ContentAnimation } from './Content';
 export { default as LandingAnimation } from './Landing';
 export { default as FadeUpAnimation } from './FadeUp';
+export { default as TextFadeAnimation } from './TextFade';
