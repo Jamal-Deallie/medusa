@@ -8,7 +8,12 @@ import {
   CustomLink,
 } from './styles';
 import { ContentAnimation } from '../../animations';
-import { FadeUpAnimation, TextFadeAnimation } from '../../animations';
+import {
+  FadeUpAnimation,
+  FadeAnimation,
+  TextFadeAnimation,
+  TextRotateAnimation,
+} from '../../animations';
 
 export default function ContentLayout({
   src,
@@ -26,14 +31,16 @@ export default function ContentLayout({
   return (
     // <ContentAnimation link={link} id={id}>
     <ContentInner $fd={fd} $pb={pb} id={`${id}-container`}>
-      <FadeUpAnimation id={id}>
+      <FadeAnimation id={id}>
         <ImageContainer id={`${id}-container`}>
-          <Image $br={br} src={src} alt={alt} id={`${id}-fadeUp`} />
+          <Image $br={br} src={src} alt={alt} id={`${id}-fade`} />
         </ImageContainer>
-      </FadeUpAnimation>
+      </FadeAnimation>
 
       <ContentContainer>
-        <Heading id={`${id}-heading`}>{title}</Heading>
+        <TextRotateAnimation id={id}>
+          <Heading id={`${id}-heading`}>{title}</Heading>
+        </TextRotateAnimation>
         <TextFadeAnimation id={id}>
           <Text sx={{ overflow: 'hidden' }} id={`${id}-text`}>
             {description}
@@ -41,9 +48,11 @@ export default function ContentLayout({
         </TextFadeAnimation>
 
         {link && (
-          <CustomLink to={webLink} id={`${id}-link`}>
-            {label}
-          </CustomLink>
+          <FadeUpAnimation id={id}>
+            <CustomLink to={webLink} id={`${id}-fadeUp`}>
+              {label}
+            </CustomLink>
+          </FadeUpAnimation>
         )}
       </ContentContainer>
     </ContentInner>

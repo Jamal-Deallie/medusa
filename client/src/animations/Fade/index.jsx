@@ -5,7 +5,7 @@ import { gsap } from 'gsap';
 import { Box } from '@mui/material';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-export default function FadeUpAnimation({ children, id }) {
+export default function FadeAnimation({ children, id }) {
   const tl = useRef();
   const [q, ref] = useRefSelector();
 
@@ -13,17 +13,16 @@ export default function FadeUpAnimation({ children, id }) {
     gsap.registerPlugin(ScrollTrigger);
 
     gsap.fromTo(
-      q(`#${id}-fadeUp`),
-      { opacity: 0, y: '50%' },
+      q(`#${id}-fade`),
+      { opacity: 0 },
       {
-        y: '0%',
         duration: 1,
         opacity: 1,
         ease: 'sine.in',
 
         scrollTrigger: {
           trigger: ref.current,
-          start: 'top center',
+          start: 'top 50%',
           markers: true,
         },
       }

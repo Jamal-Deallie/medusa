@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { FeaturedInSection, SubheaderContainer } from './styles';
+import { useEnhancedEffect } from '../../hooks/useEnhancedEffect';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
@@ -14,7 +15,7 @@ export default function FeaturedInContainer() {
   const tl = useRef();
 
   //register ScrollTrigger & SplitText
-  useEffect(() => {
+  useEnhancedEffect(() => {
     let lineSplit = new SplitText(descRef.current, {
       type: 'lines',
     });

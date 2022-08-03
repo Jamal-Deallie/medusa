@@ -7,7 +7,6 @@ export const ContentSection = styled('section', {
 })(({ theme, $pb }) => ({
   background: theme.palette.primary.main,
   paddingTop: '8.5rem',
-
 }));
 
 export const ContentContainer = styled(Box)(({ theme }) => ({
@@ -74,6 +73,7 @@ export const Image = styled('img', {
   height: 'auto',
   aspectRatio: '3/4',
   objectFit: 'cover',
+
 }));
 
 export const ImageContainer = styled(Box, {
@@ -101,6 +101,8 @@ export const ContentInner = styled(Box, {
   gap: '2rem',
   flexDirection: $fd ? 'row-reverse' : 'row',
   paddingBottom: $pb ? '8.5rem' : 'none',
+  // paddingTop: $pb ? '8.5rem' : 'none',
+  paddingTop: '8.5rem',
   [theme.breakpoints.down('md')]: {
     flexDirection: 'column-reverse',
   },

@@ -51,7 +51,7 @@ export const customTheme = createTheme({
       textTransform: 'capitalize',
       fontStyle: 'italic',
       fontSize: '4.8rem',
-      color: primaryColor,
+      color: secondaryLight,
     },
     subheader1: {
       color: secondaryLight,
@@ -59,6 +59,14 @@ export const customTheme = createTheme({
       fontWeight: 400,
       fontFamily: 'tenez, sans-serif',
       textAlign: 'center',
+    },
+    subheader2: {
+      color: secondaryLight,
+      fontSize: '4.2rem',
+      fontWeight: 400,
+      fontFamily: 'tenez, sans-serif',
+      textAlign: 'center',
+      whiteSpace: 'normal',
     },
     body1: {
       fontSize: '1.6rem',

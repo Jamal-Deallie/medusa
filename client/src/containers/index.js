@@ -18,5 +18,4 @@ export { default as SignUpContainer } from './SignUp';
 export { default as StoryContainer } from './Story';
 export { default as QuestionsContainer } from './Questions';
 export { default as VisitContainer } from './Visit';
-
-
+export { default as MissionContainer } from './Mission';

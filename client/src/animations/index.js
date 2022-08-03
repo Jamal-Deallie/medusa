@@ -4,4 +4,8 @@ export { default as ProductAnimation } from './Product';
 export { default as ContentAnimation } from './Content';
 export { default as LandingAnimation } from './Landing';
 export { default as FadeUpAnimation } from './FadeUp';
+export { default as FadeAnimation } from './Fade';
 export { default as TextFadeAnimation } from './TextFade';
+export { default as TextRotateAnimation } from './TextRotate';
+export { default as ScrollRightAnimation } from './ScrollRight';
+export { default as ScrollLeftAnimation } from './ScrollLeft';
