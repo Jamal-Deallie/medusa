@@ -11,38 +11,41 @@ export default function ScrollLeftAnimation({ children, id }) {
 
   useEnhancedEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-    tl.current = gsap.timeline({});
-    let scroll = tl.current
+    let targets = gsap.utils.toArray(`#${id}-scroll`);
+    tl.current = gsap.timeline();
+    const scrollAnimation = tl.current
       .fromTo(
-        q(`#${id}-left`),
-        { x: '-100%' },
+        q(targets[0]),
+        { x: '0%' },
         {
-          x: '0%',
+          x: '25%',
           duration: 1,
           ease: 'sine.in',
         }
       )
       .fromTo(
-        q(`#${id}-right`),
-        { x: '100%' },
+        q(targets[1]),
+        { x: '0%' },
         {
-          x: '0%',
+          x: '-25%',
           duration: 1,
           ease: 'sine.in',
-        }
+        },
+        '-=1'
       );
 
     let st = ScrollTrigger.create({
       trigger: ref.current,
       start: 'top center',
-      markers: true,
-      animation: scroll,
-    });
+      scrub: true,
 
+      animation: scrollAnimation,
+    });
     return () => {
-      ScrollTrigger.kill();
+      st.kill();
     };
   }, [q, id, ref]);
 
   return <Box ref={ref}>{children}</Box>;
 }
+

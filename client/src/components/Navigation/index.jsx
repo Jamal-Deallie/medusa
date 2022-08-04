@@ -24,7 +24,7 @@ export default function Navigation() {
               About
             </NavLinks>
             <NavLinks to='contactus' $dn={'none'}>
-              Contact Us
+              Contact
             </NavLinks>
           </LinkContainer>
           <Link to='/'>

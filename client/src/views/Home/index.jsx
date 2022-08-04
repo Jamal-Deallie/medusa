@@ -7,6 +7,7 @@ import {
   QuestionsContainer,
   CTAContainer,
   MissionContainer,
+  TextPathContainer,
 } from '../../containers';
 
 export default function HomePage() {
@@ -18,6 +19,7 @@ export default function HomePage() {
       <ProcessContainer />
       <MissionContainer />
       <VisitContainer />
+      <TextPathContainer />
       <QuestionsContainer />
       <CTAContainer />
     </>

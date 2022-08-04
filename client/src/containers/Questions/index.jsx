@@ -13,7 +13,7 @@ export default function QuestionsContainer() {
       }
       id='visit'
       link={true}
-      webLink='/contactus'
+      webLink='/contact'
       label="Contact Us"
       fd='row-reverse'
     />

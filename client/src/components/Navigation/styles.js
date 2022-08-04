@@ -41,9 +41,11 @@ export const LinkContainer = styled('div')(({ theme }) => ({
 export const NavLinks = styled(NavLink, {
   shouldForwardProp: prop => prop !== '$dn',
 })(({ theme, $dn }) => ({
+  WebkitFontSmoothing: 'subpixel-antialiased',
+  WebkitTextStroke: `0.2px ${theme.palette.secondary.light}`,
   color: theme.palette.secondary.light,
   fontSize: '1.6rem',
-  fontWeight: 400,
+  fontWeight: 300,
   fontStyle: 'italic',
   cursor: 'pointer',
   fontFamily: 'muli, sans-serif',

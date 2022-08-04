@@ -1,6 +1,5 @@
 import { styled } from '@mui/material/styles';
-import { InputBase } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
+import { InputBase, Typography } from '@mui/material';
 
 export const SearchSection = styled('div')(({ theme }) => ({
   width: '100%',
@@ -89,4 +88,14 @@ export const SubmitBtn = styled('button')(({ theme }) => ({
 
 export const Icon = styled('img')(({ theme }) => ({
   height: '3rem',
+  display: 'none',
+  [theme.breakpoints.down('md')]: {
+    display: 'block',
+  },
+}));
+
+export const SearchOption = styled(Typography)(({ theme }) => ({
+  [theme.breakpoints.down('md')]: {
+    display: 'none',
+  },
 }));

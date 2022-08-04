@@ -9,3 +9,4 @@ export { default as TextFadeAnimation } from './TextFade';
 export { default as TextRotateAnimation } from './TextRotate';
 export { default as ScrollRightAnimation } from './ScrollRight';
 export { default as ScrollLeftAnimation } from './ScrollLeft';
+export { default as TextRightFade } from './TextRightFade';

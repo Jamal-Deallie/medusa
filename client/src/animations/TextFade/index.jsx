@@ -34,7 +34,7 @@ export default function TextFadeAnimation({ children, id }) {
         scrollTrigger: {
           trigger: ref.current,
           start: 'top center',
-          markers: true,
+       
         },
         onComplete() {
           lineSplit.revert();

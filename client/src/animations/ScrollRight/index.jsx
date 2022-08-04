@@ -24,7 +24,7 @@ export default function ScrollRightAnimation({ children, id }) {
         scrollTrigger: {
           trigger: ref.current,
           start: 'top center',
-          markers: true,
+     
         },
       }
     );

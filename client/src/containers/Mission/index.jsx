@@ -1,35 +1,23 @@
-import { Box, Typography } from '@mui/material';
-import { MissionInner, MissionSection, Heading } from './styles';
-import {
-  FadeUpAnimation,
-  FadeAnimation,
-  TextRotateAnimation,
-  ScrollLeftAnimation,
-} from '../../animations';
+import { Box} from '@mui/material';
+import { MissionInner, MissionSection, Cite, Quote } from './styles';
+import { TextRotateAnimation, ScrollLeftAnimation } from '../../animations';
 
 export default function MissionContainer() {
   return (
     <MissionSection>
       <MissionInner>
-        <TextRotateAnimation id={'mission'}>
-          <Heading sx={{ textAlign: 'center' }} id='mission-heading'>
-            Our Mission
-          </Heading>
-        </TextRotateAnimation>
-
         <ScrollLeftAnimation id={'mission'}>
-          <Box id='mission-left'>
-            <Typography variant='subheader2'>
-              To strengthen your bond with nature
-            </Typography>
+          <Box id='mission-scroll'>
+            <Quote>All the flowers of all the tomorrows</Quote>
           </Box>
 
-          <Box id='mission-right'>
-            <Typography variant='subheader2'>
-              and to help bring joy to your space!
-            </Typography>
+          <Box id='mission-scroll'>
+            <Quote>are in the seeds of today</Quote>
           </Box>
         </ScrollLeftAnimation>
+        <TextRotateAnimation id={'mission'}>
+          <Cite id='mission-heading'>— Doris Dixon, CEO & Founder</Cite>
+        </TextRotateAnimation>
       </MissionInner>
     </MissionSection>
   );

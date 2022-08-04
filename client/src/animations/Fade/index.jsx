@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import { useEnhancedEffect } from '../../hooks/useEnhancedEffect';
 import useRefSelector from '../../hooks/useRefSelector';
 import { gsap } from 'gsap';
@@ -6,7 +5,7 @@ import { Box } from '@mui/material';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 export default function FadeAnimation({ children, id }) {
-  const tl = useRef();
+
   const [q, ref] = useRefSelector();
 
   useEnhancedEffect(() => {
@@ -23,7 +22,7 @@ export default function FadeAnimation({ children, id }) {
         scrollTrigger: {
           trigger: ref.current,
           start: 'top 50%',
-          markers: true,
+   
         },
       }
     );

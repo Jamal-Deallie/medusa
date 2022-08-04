@@ -66,19 +66,18 @@ export const customTheme = createTheme({
       fontWeight: 400,
       fontFamily: 'tenez, sans-serif',
       textAlign: 'center',
-      whiteSpace: 'normal',
     },
     body1: {
       fontSize: '1.6rem',
       fontFamily: 'muli, sans-serif',
       fontWeight: 400,
-      fontStyle: 'italic',
+      fontStyle: 'normal',
     },
     body2: {
       fontSize: '1.8rem',
       fontFamily: 'muli, sans-serif',
       fontWeight: 400,
-      fontStyle: 'italic',
+      fontStyle: 'normal',
     },
     navOption: {
       color: secondaryLight,
@@ -132,6 +131,8 @@ export const customTheme = createTheme({
             letterSpacing: '0.025rem',
             fontSize: '1.8rem',
             fontWeight: 300,
+            WebkitFontSmoothing: 'subpixel-antialiased',
+            WebkitTextStroke: `0.5px ${primaryColor}`,
             padding: '1rem 4rem',
             borderRadius: '3px',
             boxSizing: 'border-box',
@@ -139,6 +140,7 @@ export const customTheme = createTheme({
             width: '100%',
             maxWidth: '65rem',
             transition: 'border color background 0.2s ease-in-out',
+            textTransform: 'capitalize',
             '&:hover': {
               background: 'none',
               color: secondaryColor,

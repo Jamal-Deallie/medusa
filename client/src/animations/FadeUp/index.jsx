@@ -6,7 +6,7 @@ import { Box } from '@mui/material';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 export default function FadeUpAnimation({ children, id }) {
-  const tl = useRef();
+
   const [q, ref] = useRefSelector();
 
   useEnhancedEffect(() => {
@@ -24,7 +24,6 @@ export default function FadeUpAnimation({ children, id }) {
         scrollTrigger: {
           trigger: ref.current,
           start: 'top center',
-          markers: true,
         },
       }
     );

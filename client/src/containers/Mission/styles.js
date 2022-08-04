@@ -3,7 +3,7 @@ import { Typography, Box } from '@mui/material';
 
 export const MissionSection = styled('section')(({ theme }) => ({
   background: theme.palette.primary.main,
-  padding: '8.5rem 0',
+  padding: '15.5rem 0',
   whiteSpace: 'normal',
   width: '100%',
 }));
@@ -11,11 +11,9 @@ export const MissionSection = styled('section')(({ theme }) => ({
 export const Heading = styled(Typography)(({ theme }) => ({
   fontFamily: 'tenez, sans-serif',
   fontSize: '4.8rem',
-  fontStyle: 'italic',
   color: theme.palette.secondary.light,
   lineHeight: 1.2,
   width: '100%',
-  overflow: 'hidden',
   marginBottom: '3.5rem',
   whiteSpace: 'normal',
   [theme.breakpoints.down('md')]: {
@@ -25,7 +23,33 @@ export const Heading = styled(Typography)(({ theme }) => ({
 
 export const MissionInner = styled(Box)(({ theme }) => ({
   margin: '0 auto',
-  maxWidth: '70rem',
-  overflow: 'hidden',
+  width: '100%',
   textAlign: 'center',
+}));
+
+export const Quote = styled(Typography)(({ theme }) => ({
+  fontFamily: 'tenez, sans-serif',
+  fontSize: '3.5vw',
+  color: theme.palette.secondary.light,
+  lineHeight: 1.2,
+  fontStyle: 'normal',
+  width: '100%',
+  marginBottom: '3.5rem',
+  whiteSpace: 'normal',
+  [theme.breakpoints.down('md')]: {
+    textAlign: 'center',
+  },
+}));
+export const Cite = styled('cite')(({ theme }) => ({
+  color: theme.palette.secondary.light,
+  lineHeight: 1.2,
+  width: '100%',
+  fontStyle: 'italic',
+  fontSize: '4.2rem',
+  fontWeight: 400,
+  fontFamily: 'tenez, sans-serif',
+  textAlign: 'center',
+  [theme.breakpoints.down('md')]: {
+    textAlign: 'center',
+  },
 }));
