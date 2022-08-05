@@ -15,6 +15,7 @@ export default function StoryContainer() {
       webLink={'about'}
       label='Learn'
       id='story'
+
     />
   );
 }

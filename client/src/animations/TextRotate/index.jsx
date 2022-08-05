@@ -36,7 +36,7 @@ export default function TextRotateAnimation({ children, id }) {
       }
     );
     return () => {
-      ScrollTrigger.kill();
+      ScrollTrigger.refresh()
     };
   }, [q, id, ref]);
   return <Box ref={ref}>{children}</Box>;

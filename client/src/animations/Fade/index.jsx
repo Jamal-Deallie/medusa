@@ -28,7 +28,7 @@ export default function FadeAnimation({ children, id }) {
     );
 
     return () => {
-      ScrollTrigger.kill();
+      ScrollTrigger.refresh()
     };
   }, [q, id, ref]);
 

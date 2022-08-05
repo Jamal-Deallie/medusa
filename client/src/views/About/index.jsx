@@ -2,16 +2,16 @@ import {
   FounderContainer,
   CustomersContainer,
   NurseryContainer,
-  ShippedContainer,
+  ReviewsContainer,
 } from '../../containers';
 
 export default function AboutPage() {
   return (
     <>
-      <CustomersContainer />
-      <ShippedContainer />
       <FounderContainer />
+      <CustomersContainer />
       <NurseryContainer />
+      <ReviewsContainer />
     </>
   );
 }

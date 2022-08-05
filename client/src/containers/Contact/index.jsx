@@ -12,7 +12,8 @@ export default function ContactContainer() {
         md={false}
         lg={6}
         sx={{
-          backgroundImage: 'url(/images/planting.jpg)',
+          backgroundImage:
+            'https://res.cloudinary.com/dtwk4dm3g/image/upload/v1655867297/Medusa/pexels-cottonbro-9720699_rn6rfu.webp',
           backgroundRepeat: 'no-repeat',
           backgroundColor: 'primary.light',
           backgroundSize: 'cover',

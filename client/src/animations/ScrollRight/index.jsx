@@ -30,7 +30,7 @@ export default function ScrollRightAnimation({ children, id }) {
     );
 
     return () => {
-      ScrollTrigger.kill();
+      ScrollTrigger.refresh()
     };
   }, [q, id, ref]);
 

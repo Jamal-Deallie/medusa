@@ -2,7 +2,6 @@ import { useState } from 'react';
 import {
   NewsLetterContent,
   NewsLetterHeader,
-  Text,
   InputIconWrapper,
   StyledInputBase,
   NewsLetterSection,
@@ -51,9 +50,9 @@ export default function NewsLetterInput() {
       </Box>
       <NewsLetterContent onSubmit={handleSubmit}>
         <NewsLetterHeader>Get the Dirt</NewsLetterHeader>
-        <Text>
+        <Typography variant='body2' sx={{ color: 'secondary.light' }}>
           Stay in the loop with special offers, plant-parenting tips, and more.
-        </Text>
+        </Typography>
         <EmailInput>
           <StyledInputBase
             placeholder='Enter your email'

@@ -37,7 +37,7 @@ export default function TextRightFade({ children, id }) {
       }
     );
     return () => {
-      ScrollTrigger.kill();
+      ScrollTrigger.refresh()
     };
   }, [q, ref, id]);
   return <Box ref={ref}>{children}</Box>;

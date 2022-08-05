@@ -6,7 +6,7 @@ export const ContentSection = styled('section', {
   shouldForwardProp: prop => prop !== '$pb',
 })(({ theme, $pb }) => ({
   background: theme.palette.primary.main,
-  paddingTop: '8.5rem',
+  padding: '5% 0',
 }));
 
 export const ContentContainer = styled(Box)(({ theme }) => ({
@@ -67,13 +67,12 @@ export const Text = styled(Typography)(({ theme }) => ({
 export const Image = styled('img', {
   shouldForwardProp: prop => prop !== '$br',
 })(({ $br }) => ({
-  borderRadius: '55rem 55rem 0 0',
+  borderRadius: $br ? $br : '55rem 55rem 0 0',
   width: '100%',
   maxWidth: '53.5rem',
   height: 'auto',
-  aspectRatio: '3/4',
+  aspectRatio: '59/77',
   objectFit: 'cover',
-
 }));
 
 export const ImageContainer = styled(Box, {

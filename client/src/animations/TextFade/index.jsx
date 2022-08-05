@@ -1,49 +1,50 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { Box } from '@mui/material';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
 import useRefSelector from '../../hooks/useRefSelector';
+import { useEnhancedEffect } from '../../hooks/useEnhancedEffect';
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
 export default function TextFadeAnimation({ children, id }) {
   const [q, ref] = useRefSelector();
+  const tl = useRef();
 
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger, SplitText);
-    ScrollTrigger.saveStyles(q(`#${id}-text`));
-
+  useEnhancedEffect(() => {
     let lineSplit = new SplitText(q(`#${id}-text`), {
       type: 'lines',
     });
 
-    gsap.fromTo(
+    tl.current = gsap.timeline({
+      onComplete() {
+        lineSplit.revert();
+      },
+    });
+
+    const flexAnimation = tl.current.fromTo(
       lineSplit.lines,
-      //   { y: 80, opacity: 0 },
       { y: '50%', opacity: 0 },
       {
-        // duration: 1,
-        // y: 0,
         y: '0%',
         opacity: 1,
-        // stagger: 0.1,
         ease: 'power4.out',
         overflow: 'hidden',
         duration: 1,
-        // ease: 'power4.out',
         stagger: 0.2,
-        scrollTrigger: {
-          trigger: ref.current,
-          start: 'top center',
-       
-        },
-        onComplete() {
-          lineSplit.revert();
-        },
       }
     );
+
+    let st = ScrollTrigger.create({
+      trigger: ref.current,
+      start: 'top center',
+      end: 'bottom',
+      animation: flexAnimation,
+    });
     return () => {
-      ScrollTrigger.kill();
+      flexAnimation.progress(1);
+      st.kill();
     };
-  }, [q, ref, id]);
+  }, [q, ref, tl, id]);
   return <Box ref={ref}>{children}</Box>;
 }

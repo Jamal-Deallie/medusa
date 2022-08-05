@@ -7,7 +7,6 @@ import {
   ContentContainer,
   CustomLink,
 } from './styles';
-import { ContentAnimation } from '../../animations';
 import {
   FadeUpAnimation,
   FadeAnimation,
@@ -29,7 +28,6 @@ export default function ContentLayout({
   pb,
 }) {
   return (
-    // <ContentAnimation link={link} id={id}>
     <ContentInner $fd={fd} $pb={pb} id={`${id}-container`}>
       <FadeAnimation id={id}>
         <ImageContainer id={`${id}-container`}>
@@ -56,6 +54,5 @@ export default function ContentLayout({
         )}
       </ContentContainer>
     </ContentInner>
-    // </ContentAnimation>
   );
 }

@@ -14,6 +14,7 @@ export default function NurseryContainer() {
       id='nursery'
       fd='row-reverse'
       pb={true}
+      br={'0rem'}
     />
   );
 }

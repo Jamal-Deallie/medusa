@@ -1,4 +1,4 @@
-import { ShippedSection, Image, ImageContainer, Video } from './styles';
+import { ShippedSection, Image, ImageContainer} from './styles';
 import { useEnhancedEffect } from '../../hooks/useEnhancedEffect';
 import useRefSelector from '../../hooks/useRefSelector';
 import { gsap } from 'gsap';
@@ -24,7 +24,7 @@ export default function ShippedContainer() {
     });
 
     return () => {
-      ScrollTrigger.kill();
+      ScrollTrigger.refresh();
     };
   }, [q]);
   return (

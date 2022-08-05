@@ -3,9 +3,10 @@ import { Typography, Box } from '@mui/material';
 
 export const MissionSection = styled('section')(({ theme }) => ({
   background: theme.palette.primary.main,
-  padding: '15.5rem 0',
+  padding: '10% 0 4%',
   whiteSpace: 'normal',
   width: '100%',
+  overflow: 'hidden',
 }));
 
 export const Heading = styled(Typography)(({ theme }) => ({
@@ -40,6 +41,7 @@ export const Quote = styled(Typography)(({ theme }) => ({
     textAlign: 'center',
   },
 }));
+
 export const Cite = styled('cite')(({ theme }) => ({
   color: theme.palette.secondary.light,
   lineHeight: 1.2,

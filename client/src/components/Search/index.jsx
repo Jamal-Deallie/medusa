@@ -4,6 +4,7 @@ import {
   SearchSection,
   SearchBar,
   StyledInputBase,
+  SearchOption,
   SearchIconWrapper,
   Heading,
   Form,
@@ -12,7 +13,7 @@ import {
   SubmitBtn,
   Icon,
 } from './styles';
-import { Drawer, Box, Typography } from '@mui/material';
+import { Drawer, Box} from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -41,7 +42,7 @@ export default function Search() {
       <Box onClick={cart} sx={{ mt: 1 }}>
         <Icon src='images/icons/search-1.svg' alt='search-icon' />
       </Box>
-      <Typography variant='navOption'>Search</Typography>
+      <SearchOption variant='navOption'>Search</SearchOption>
 
       <Drawer anchor='top' open={openCart} onClose={cart}>
         <Box>

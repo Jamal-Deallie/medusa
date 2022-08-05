@@ -20,10 +20,8 @@ export const Image = styled('div')({
   margin: '0 auto',
 });
 
-export const Video = styled('video')({});
-
 export const ImageContainer = styled(Box)(({ theme }) => ({
-  height: '100vh',
+  height: '80vh',
   display: 'grid',
   placeContent: 'center',
   padding: '0 1rem',

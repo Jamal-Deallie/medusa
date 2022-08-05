@@ -21,12 +21,6 @@ export const NewsLetterHeader = styled(Typography)(({ theme }) => ({
   marginBottom: '2.5rem',
   fontStyle: 'italic',
 }));
-export const Text = styled(Typography)(({ theme }) => ({
-  color: theme.palette.secondary.light,
-  fontSize: '1.6rem',
-  fontFamily: 'muli, sans-serif',
-  fontStyle: 'italic',
-}));
 
 export const EmailInput = styled('div')(({ theme }) => ({
   marginTop: '5.5rem',

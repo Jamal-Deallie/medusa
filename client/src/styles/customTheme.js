@@ -67,6 +67,13 @@ export const customTheme = createTheme({
       fontFamily: 'tenez, sans-serif',
       textAlign: 'center',
     },
+    subheader3: {
+      color: secondaryLight,
+      fontSize: '2.6rem',
+      fontWeight: 400,
+      fontFamily: 'tenez, sans-serif',
+      textAlign: 'center',
+    },
     body1: {
       fontSize: '1.6rem',
       fontFamily: 'muli, sans-serif',
@@ -78,6 +85,7 @@ export const customTheme = createTheme({
       fontFamily: 'muli, sans-serif',
       fontWeight: 400,
       fontStyle: 'normal',
+      lineHeight: 1.2,
     },
     navOption: {
       color: secondaryLight,

@@ -8,7 +8,7 @@ export const ContentSection = styled('section')(({ theme }) => ({
 
 export const ContentContainer = styled(Box)(({ theme }) => ({
   margin: '0 auto',
-  marginTop: '15%',
+  marginTop: '5%',
   width: '50%',
   padding: 'calc(8px + 1vw)',
   [theme.breakpoints.down('md')]: {
@@ -49,7 +49,6 @@ export const Text = styled(Typography)(({ theme }) => ({
 export const Image = styled('img', {
   shouldForwardProp: prop => prop !== '$br',
 })(({ $br }) => ({
-  borderRadius: '55rem 55rem 0 0',
   width: '100%',
   maxWidth: '53.5rem',
   height: 'auto',
