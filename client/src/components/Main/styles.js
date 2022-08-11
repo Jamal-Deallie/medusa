@@ -18,6 +18,7 @@ export const NavContainer = styled(Box)(({ theme }) => ({
 }));
 
 export const ContentContainer = styled('main')(({ theme }) => ({
+  marginTop:'10rem',
   flexGrow: 2,
   minHeight: '60rem',
   width: '100%',

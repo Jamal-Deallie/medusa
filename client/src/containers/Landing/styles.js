@@ -6,6 +6,7 @@ export const LandingSection = styled('section')(({ theme }) => ({
   position: 'relative',
   background: theme.palette.primary.main,
   paddingBottom: '7.5rem',
+  height: 'calc(100vh - 10rem)',
   [theme.breakpoints.down('sm')]: {
     height: 'calc(100vh - 10rem)',
     position: 'relative',

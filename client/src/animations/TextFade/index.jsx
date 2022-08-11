@@ -11,7 +11,7 @@ export default function TextFadeAnimation({ children, id }) {
   const [q, ref] = useRefSelector();
   const tl = useRef();
 
-  useEnhancedEffect(() => {
+  useEffect(() => {
     let lineSplit = new SplitText(q(`#${id}-text`), {
       type: 'lines',
     });
