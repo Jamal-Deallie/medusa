@@ -6,6 +6,7 @@ export const HeroSection = styled(Box)({
   width: '100%',
   height: 'calc(100vh - 10rem)',
   overflow: 'hidden',
+  position: 'relative',
 });
 
 export const HeroInnerContainer = styled(Box)({

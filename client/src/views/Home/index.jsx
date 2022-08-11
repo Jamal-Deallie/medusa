@@ -19,7 +19,7 @@ export default function HomePage() {
       <FeaturedInContainer />
       <ProcessContainer />
       <VisitContainer />
-      <TextPathContainer />
+      {/* <TextPathContainer /> */}
       <QuestionsContainer />
       <CTAContainer />
     </>

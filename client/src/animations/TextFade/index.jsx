@@ -4,7 +4,6 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
 import useRefSelector from '../../hooks/useRefSelector';
-import { useEnhancedEffect } from '../../hooks/useEnhancedEffect';
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 export default function TextFadeAnimation({ children, id }) {
@@ -45,6 +44,6 @@ export default function TextFadeAnimation({ children, id }) {
       flexAnimation.progress(1);
       st.kill();
     };
-  }, [q, ref, tl, id]);
+  }, []);
   return <Box ref={ref}>{children}</Box>;
 }
