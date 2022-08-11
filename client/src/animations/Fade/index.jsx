@@ -15,7 +15,7 @@ export default function FadeAnimation({ children, id }) {
       q(`#${id}-fade`),
       { opacity: 0 },
       {
-        duration: 1,
+        duration: 2,
         opacity: 1,
         ease: 'sine.in',
 

@@ -5,7 +5,7 @@ import { gsap } from 'gsap';
 import { Box } from '@mui/material';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-export default function FadeUpAnimation({ children, id }) {
+export default function FadeUp({ children, id }) {
 
   const [q, ref] = useRefSelector();
 

@@ -4,14 +4,13 @@ import { NavLink } from 'react-router-dom';
 export const Nav = styled('nav')(({ theme }) => ({
   height: '10rem',
   width: '100%',
-  background: theme.palette.primary.main,
   position: 'relative',
+  zIndex: 1,
 }));
 
 export const NavWrap = styled('div')(({ theme }) => ({
   margin: '0 auto',
-  background: theme.palette.primary.main,
-  color: theme.palette.secondary.light,
+  color: theme.palette.secondary.main,
   maxWidth: '150rem',
   height: '10rem',
   paddingTop: 'calc(1rem + 1.5625vw)',
@@ -21,7 +20,6 @@ export const NavWrap = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
-  zIndex: 4,
 }));
 
 export const Logo = styled('img')({
@@ -42,14 +40,13 @@ export const NavLinks = styled(NavLink, {
   shouldForwardProp: prop => prop !== '$dn',
 })(({ theme, $dn }) => ({
   WebkitFontSmoothing: 'subpixel-antialiased',
-  WebkitTextStroke: `0.2px ${theme.palette.secondary.light}`,
-  color: theme.palette.secondary.light,
-  fontSize: '1.6rem',
+  WebkitTextStroke: `0.2px ${theme.palette.secondary.main}`,
+  color: theme.palette.secondary.main,
+  fontSize: '1.563rem',
   fontWeight: 300,
-  fontStyle: 'italic',
   cursor: 'pointer',
   fontFamily: 'muli, sans-serif',
-  textTransform: 'uppercase',
+  textTransform: 'capitalize',
   transition: 'all opacity color .2s ease',
   position: 'relative',
   display: 'inline-block',
@@ -79,7 +76,8 @@ export const NavLinks = styled(NavLink, {
     '&::before': { width: '100%', left: 0 },
   },
   '&.active': {
-    color: theme.palette.secondary.dark,
+    color: theme.palette.secondary.light,
+    WebkitTextStroke: `0.2px ${theme.palette.secondary.light}`,
   },
   [theme.breakpoints.down('md')]: {
     display: 'none',

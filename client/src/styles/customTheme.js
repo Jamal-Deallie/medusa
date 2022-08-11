@@ -6,6 +6,7 @@ const primaryColor = '#253232';
 const secondaryColor = '#A68764';
 const secondaryLight = '#E6E1DD';
 const secondaryDark = '#cfcac7';
+const secondaryAlt = '#FFFAF0';
 const warningColor = '#d14334';
 
 export const customTheme = createTheme({
@@ -18,6 +19,7 @@ export const customTheme = createTheme({
       dark: secondaryDark,
       light: secondaryLight,
       main: secondaryColor,
+      alternative: secondaryAlt,
     },
     warning: {
       main: warningColor,
@@ -54,8 +56,7 @@ export const customTheme = createTheme({
       color: secondaryLight,
     },
     subheader1: {
-      color: secondaryLight,
-      fontSize: '3.2rem',
+      fontSize: 'clamp(2.38rem, calc(2.13rem + 1.29vw), 3.73rem)',
       fontWeight: 400,
       fontFamily: 'tenez, sans-serif',
       textAlign: 'center',
@@ -79,6 +80,7 @@ export const customTheme = createTheme({
       fontFamily: 'muli, sans-serif',
       fontWeight: 400,
       fontStyle: 'normal',
+      display: 'block',
     },
     body2: {
       fontSize: '1.8rem',
@@ -87,17 +89,24 @@ export const customTheme = createTheme({
       fontStyle: 'normal',
       lineHeight: 1.2,
     },
+    body3: {
+      fontSize: 'clamp(1.76rem, calc(1.38rem + 1.90vw), 3.73rem)',
+      fontFamily: 'muli, sans-serif',
+      fontWeight: 400,
+      fontStyle: 'normal',
+    },
     navOption: {
-      color: secondaryLight,
-      fontSize: '1.6rem',
+      color: secondaryColor,
+      fontSize: '1.563rem',
       fontWeight: 'bold',
       cursor: 'pointer',
       fontFamily: 'muli, sans-serif',
-      textTransform: 'uppercase',
+      textTransform: 'capitalize',
       transition: 'all color .2s ease',
       position: 'relative',
       display: 'inline-block',
       padding: '3px 0',
+      letterSpacing: '1.2px',
       '&::before': {
         content: '""',
         position: 'absolute',

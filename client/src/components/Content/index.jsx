@@ -8,7 +8,7 @@ import {
   CustomLink,
 } from './styles';
 import {
-  FadeUpAnimation,
+  FadeUp,
   FadeAnimation,
   TextFadeAnimation,
   TextRotateAnimation,
@@ -26,9 +26,10 @@ export default function ContentLayout({
   link,
   label,
   pb,
+  pt,
 }) {
   return (
-    <ContentInner $fd={fd} $pb={pb} id={`${id}-container`}>
+    <ContentInner $fd={fd} $pb={pb} $pt={pt} id={`${id}-container`}>
       <FadeAnimation id={id}>
         <ImageContainer id={`${id}-container`}>
           <Image $br={br} src={src} alt={alt} id={`${id}-fade`} />
@@ -46,11 +47,11 @@ export default function ContentLayout({
         </TextFadeAnimation>
 
         {link && (
-          <FadeUpAnimation id={id}>
+          <FadeUp id={id}>
             <CustomLink to={webLink} id={`${id}-fadeUp`}>
               {label}
             </CustomLink>
-          </FadeUpAnimation>
+          </FadeUp>
         )}
       </ContentContainer>
     </ContentInner>

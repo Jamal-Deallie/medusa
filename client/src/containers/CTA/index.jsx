@@ -1,10 +1,10 @@
 import { NewsLetterInput } from '../../components';
-import { CategoryMenuSection } from './styles';
+import { CTASection } from './styles';
 
 export default function CTAContainer() {
   return (
-    <CategoryMenuSection>
+    <CTASection>
       <NewsLetterInput />
-    </CategoryMenuSection>
+    </CTASection>
   );
 }

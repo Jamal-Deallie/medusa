@@ -1,10 +1,15 @@
 import { styled } from '@mui/system';
 
 export const Text = styled('text')(({ theme }) => ({
-  height: '100vh',
   padding: '0 1rem',
   fontFamily: 'tenez, sans-serif',
   fontStyle: 'italic',
-  fill: theme.palette.secondary.light,
+  fill: theme.palette.primary.main,
   lineHeight: 1.2,
+}));
+
+export const ContentSection = styled('section')(({ theme }) => ({
+  [theme.breakpoints.down('md')]: {
+    display: 'none',
+  },
 }));

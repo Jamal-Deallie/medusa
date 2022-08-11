@@ -10,10 +10,10 @@ import {
 export default function MainLayout() {
   return (
     <StyledLayout>
-      <NavContainer>
+      <NavContainer id='nav'>
         <Navigation />
       </NavContainer>
-      <ContentContainer>
+      <ContentContainer id='content-container'>
         <Outlet />
       </ContentContainer>
       <FooterContainer>

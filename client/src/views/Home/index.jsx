@@ -1,5 +1,6 @@
 import {
-  LandingContainer,
+  // LandingContainer,
+  HeroContainer,
   FeaturedInContainer,
   VisitContainer,
   StoryContainer,
@@ -13,11 +14,10 @@ import {
 export default function HomePage() {
   return (
     <>
-      <LandingContainer />
+      <HeroContainer />
       <StoryContainer />
       <FeaturedInContainer />
       <ProcessContainer />
-      <MissionContainer />
       <VisitContainer />
       <TextPathContainer />
       <QuestionsContainer />

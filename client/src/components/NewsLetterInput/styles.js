@@ -1,8 +1,6 @@
 import { styled } from '@mui/system';
 import { Typography, Box, InputBase } from '@mui/material';
 
-
-
 export const NewsLetterSection = styled(Box)({
   width: '100%',
 });
@@ -15,15 +13,15 @@ export const NewsLetterContent = styled('form')(({ theme }) => ({
 }));
 
 export const NewsLetterHeader = styled(Typography)(({ theme }) => ({
-  color: theme.palette.secondary.light,
-  fontSize: '4.8rem',
+  color: theme.palette.primary.main,
+  fontSize: 'clamp(3.73rem, calc(3.32rem + 2.02vw), 5.82rem)',
   fontFamily: 'tenez, sans-serif',
   marginBottom: '2.5rem',
   fontStyle: 'italic',
 }));
 
 export const EmailInput = styled('div')(({ theme }) => ({
-  marginTop: '5.5rem',
+  marginTop: '4.5rem',
   paddingRight: '1.5rem',
   position: 'relative',
   display: 'flex',
@@ -35,7 +33,7 @@ export const EmailInput = styled('div')(({ theme }) => ({
   '&:hover': {
     backgroundColor: 'transparent',
   },
-  border: `1px solid ${theme.palette.secondary.light}`,
+  border: `1px solid ${theme.palette.primary.main}`,
   marginLeft: 0,
 }));
 
@@ -50,7 +48,7 @@ export const InputIconWrapper = styled('div')(({ theme }) => ({
 
 export const StyledInputBase = styled(InputBase)(({ theme }) => ({
   paddingLeft: '1.5rem',
-  color: theme.palette.secondary.light,
+  color: theme.palette.primary.main,
   width: '100%',
   '& .MuiInputBase-input': {
     backgroundColor: 'transparent',

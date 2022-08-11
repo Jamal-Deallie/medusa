@@ -59,7 +59,7 @@ export default function ShopMenu() {
   return (
     <>
       <Typography variant='navOption' onClick={openShopMenu}>
-        SHOP
+        Shop
       </Typography>
       <MenuSection ref={menu}>
         <MenuContainer id='menu-container'>

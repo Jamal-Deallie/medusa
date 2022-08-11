@@ -18,7 +18,7 @@ export default function ShippedContainer() {
         trigger: ref.current,
         start: 'top+=20% 50%',
         end: 'bottom-=20% 50%',
-        markers: true,
+
         scrub: 2,
       },
     });

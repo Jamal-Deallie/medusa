@@ -2,7 +2,7 @@ import { styled } from '@mui/system';
 import { Typography, Box } from '@mui/material';
 
 export const ContentSection = styled('section')(({ theme }) => ({
-  background: theme.palette.primary.main,
+  background: theme.palette.secondary.light,
   paddingTop: '8.5rem',
 }));
 
@@ -26,7 +26,7 @@ export const Heading = styled(Typography)(({ theme }) => ({
   fontFamily: 'tenez, sans-serif',
   fontSize: '4.8rem',
   fontStyle: 'italic',
-  color: theme.palette.secondary.light,
+  color: theme.palette.primary.main,
   lineHeight: 1.2,
   width: '100%',
   overflow: 'hidden',
@@ -38,7 +38,7 @@ export const Heading = styled(Typography)(({ theme }) => ({
 
 export const Text = styled(Typography)(({ theme }) => ({
   fontFamily: 'tenez, sans-serif',
-  color: theme.palette.secondary.light,
+  color: theme.palette.primary.main,
   width: '100%',
   fontSize: '2.4rem',
   [theme.breakpoints.down('md')]: {
@@ -80,6 +80,7 @@ export const ContentInner = styled(Box, {
   margin: '0 auto',
   gap: '2rem',
   flexDirection: $fd ? 'row-reverse' : 'row',
+  paddingTop: '5%',
   [theme.breakpoints.down('md')]: {
     flexDirection: 'column-reverse',
   },

@@ -17,7 +17,7 @@ export default function Bag() {
   return (
     <>
       <Typography variant='navOption' onClick={cart}>
-        CART<span>{quantity > 0 ? ` (${quantity})` : ''}</span>
+        Cart<span>{quantity > 0 ? ` (${quantity})` : ''}</span>
       </Typography>
       <CustomDrawer  anchor='right' open={openCart} onClose={cart}>
         <CartItems cart={cart} quantity={quantity} />

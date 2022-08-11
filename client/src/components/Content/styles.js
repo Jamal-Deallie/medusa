@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 export const ContentSection = styled('section', {
   shouldForwardProp: prop => prop !== '$pb',
 })(({ theme, $pb }) => ({
-  background: theme.palette.primary.main,
+  background: theme.palette.secondary.light,
   padding: '5% 0',
 }));
 
@@ -31,12 +31,12 @@ export const CustomLink = styled(Link)(({ theme }) => ({
   padding: '0 1.7rem',
   height: '4.8rem',
   backgroundColor: 'none',
-  borderBottom: `1px solid ${theme.palette.secondary.light}`,
+  borderBottom: `1px solid ${theme.palette.primary.main}`,
   fontSize: '1.6rem',
   fontWeight: '600',
-  color: theme.palette.secondary.light,
+  color: theme.palette.primary.main,
   '&:hover': {
-    color: theme.palette.secondary.main,
+    color: theme.palette.primary.light,
   },
 }));
 
@@ -44,7 +44,7 @@ export const Heading = styled(Typography)(({ theme }) => ({
   fontFamily: 'tenez, sans-serif',
   fontSize: '4.8rem',
   fontStyle: 'italic',
-  color: theme.palette.secondary.light,
+  color: theme.palette.primary.main,
   lineHeight: 1.2,
   width: '100%',
   overflow: 'hidden',
@@ -55,13 +55,11 @@ export const Heading = styled(Typography)(({ theme }) => ({
 }));
 
 export const Text = styled(Typography)(({ theme }) => ({
-  fontFamily: 'tenez, sans-serif',
-  color: theme.palette.secondary.light,
+  fontFamily: 'muli, sans-serif',
+  color: theme.palette.primary.main,
   width: '100%',
-  fontSize: '2.4rem',
-  [theme.breakpoints.down('md')]: {
-    fontSize: '1.8rem',
-  },
+  fontSize: 'clamp(1.53rem, calc(1.45rem + 0.37vw), 1.91rem)',
+  fontWeight: 400,
 }));
 
 export const Image = styled('img', {
@@ -92,16 +90,16 @@ export const ImageContainer = styled(Box, {
 
 export const ContentInner = styled(Box, {
   shouldForwardProp: prop => prop !== '$fd' && '$pb',
-})(({ theme, $fd, $pb }) => ({
+})(({ theme, $fd, $pb, $pt }) => ({
   maxWidth: '125rem',
   display: 'flex',
   justifyContent: 'center',
   margin: '0 auto',
   gap: '2rem',
   flexDirection: $fd ? 'row-reverse' : 'row',
-  paddingBottom: $pb ? '8.5rem' : 'none',
-  // paddingTop: $pb ? '8.5rem' : 'none',
-  paddingTop: '8.5rem',
+  paddingBottom: $pb ? $pb : '5%',
+  position: 'relative',
+  paddingTop: $pt ? $pt : '5%',
   [theme.breakpoints.down('md')]: {
     flexDirection: 'column-reverse',
   },

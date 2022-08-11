@@ -30,7 +30,7 @@ export default function ContentAnimation({ children, link, id }) {
     });
 
     if (link) {
-      gsap.set(q(`#${id}-link`), { autoAlpha: 0 });
+      gsap.set(q(`#${id}-link`), { opacity: 0 });
     }
     gsap.set(lineSplit.lines, { y: 40, opacity: 0 });
     const contentAnimation = tl.current
@@ -54,10 +54,10 @@ export default function ContentAnimation({ children, link, id }) {
         ease: 'power4.out',
         overflow: 'hidden',
       });
-    // outro animation
+
     if (link) {
       contentAnimation.add(
-        gsap.to(q(`#${id}-link`), { duration: 0.7, autoAlpha: 1 }, '-=1')
+        gsap.to(q(`#${id}-link`), { duration: 0.7, opacity: 1 }, '-=1')
       );
     }
 

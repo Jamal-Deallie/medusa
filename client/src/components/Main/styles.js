@@ -1,3 +1,4 @@
+import { Box } from '@mui/material';
 import { styled } from '@mui/system';
 
 export const StyledLayout = styled('div')({
@@ -7,22 +8,20 @@ export const StyledLayout = styled('div')({
   position: 'relative',
 });
 
-export const NavContainer = styled('div')({
+export const NavContainer = styled(Box)(({ theme }) => ({
   flexGrow: 1,
   height: '10rem',
   width: '100%',
-  zIndex: 4,
-  top: 0,
-  left: 0,
-  right: 0,
-});
+  zIndex: 2,
+  position: 'fixed',
+  backgroundColor: theme.palette.primary.main,
+}));
 
 export const ContentContainer = styled('main')(({ theme }) => ({
   flexGrow: 2,
   minHeight: '60rem',
-  position: 'relative',
   width: '100%',
-  background: theme.palette.primary.main,
+  background: theme.palette.secondary.light,
 }));
 
 export const FooterContainer = styled('div')({

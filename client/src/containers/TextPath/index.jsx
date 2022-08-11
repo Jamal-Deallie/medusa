@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Text } from './styles';
+import { Text, ContentSection } from './styles';
 import { Box } from '@mui/material';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -14,8 +14,8 @@ export default function TextPathContainer() {
     gsap.to('#myPath', {
       scrollTrigger: {
         trigger: ref.current,
-        start: 'top top',
-        scrub: 1,
+        start: 'top 100px',
+        scrub: 2,
         invalidateOnRefresh: true,
       },
       attr: {
@@ -29,16 +29,15 @@ export default function TextPathContainer() {
 
   return (
     //container
-    <Box
+    <ContentSection
       ref={ref}
       sx={{
-        padding: '10.5rem 0',
         position: 'relative',
         width: '100%',
         overflow: 'hidden',
-        height: '50vh',
+        p: '5% 0',
       }}>
-      <Box>
+      <Box sx={{}}>
         <svg viewBox='0 0 1000 200' xmlns='http://www.w3.org/2000/svg'>
           <path
             id='a'
@@ -46,7 +45,7 @@ export default function TextPathContainer() {
             fill='none'
           />
           <Text y={40} fontSize={26}>
-            <textPath id='myPath' href='#a' startOffset={20}>
+            <textPath id='myPath' href='#a' startOffset={-800}>
               {
                 '\n      Don’t judge each day by the harvest you reap, but by the seeds that you plant.\n    '
               }
@@ -54,6 +53,6 @@ export default function TextPathContainer() {
           </Text>
         </svg>
       </Box>
-    </Box>
+    </ContentSection>
   );
 }

@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import { Box } from '@mui/material';
 import useRefSelector from '../../hooks/useRefSelector';
 import { useEnhancedEffect } from '../../hooks/useEnhancedEffect';
@@ -10,66 +10,70 @@ export default function LandingAnimation({ children, id }) {
   const tl = useRef();
   const [q, ref] = useRefSelector();
 
-  useEnhancedEffect(() => {
+  useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     gsap.registerPlugin(SplitText);
-    let arrTargets = gsap.utils.toArray(`#${id}-heading`);
 
-    ScrollTrigger.matchMedia({
-      // desktop
-      '(min-width: 800px)': function () {
-        // ScrollTrigger (this automatically gets killed when the breakpoint no longer matches...
-        gsap.to(ref.current, {
-          scrollTrigger: {
-            trigger: ref.current,
-          },
-        });
-        const lineSplit1 = new SplitText(arrTargets[0], {
-          type: 'chars, words',
-          linesClass: 'lineChildren',
-        });
+    let lineSplit = new SplitText(q(`#${id}-subheader`), {
+      type: 'words',
+    });
 
-        const lineSplit2 = new SplitText(arrTargets[1], {
-          type: 'chars, words',
-          linesClass: 'lineChildren',
-        });
+    let charSplit = new SplitText(q(`#${id}-heading`), {
+      type: 'chars, words',
+    });
 
-        gsap.set(q(`#${id}-button`), { autoAlpha: 0 });
-        // other animations that aren't ScrollTrigger-related...
-        tl.current = gsap.timeline();
-        tl.current
-
-          .fromTo(
-            q(`#${id}-image`),
-            { clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)' },
-            {
-              clipPath: 'polygon(0% 100%, 100% 100%, 100% 0%, 0% 0%)',
-              ease: 'power3.in',
-              duration: 0.7,
-              scale: 1.1,
-            }
-          )
-          .from(lineSplit1.chars, {
-            opacity: 0,
-            y: 50,
-            duration: 2,
-            ease: 'back',
-            stagger: 0.05,
-          })
-          .from(
-            lineSplit2.chars,
-            { opacity: 0, y: 50, duration: 2, ease: 'back', stagger: 0.05 },
-            '-=1.5'
-          )
-          .to(q(`#${id}-button`), { autoAlpha: 1, ease: 'sine.in' }, '-=1');
-
-        // THIS IS THE KEY! Return a function that'll get called when the breakpoint no longer matches so we can kill() the animation (or whatever)
-        return function () {
-          tl.current.kill();
-          // other cleanup code can go here.
-        };
+    gsap.to(ref.current, {
+      scrollTrigger: {
+        trigger: ref.current,
       },
     });
+
+    tl.current = gsap.timeline({
+      onComplete() {
+        charSplit.revert();
+        lineSplit.revert();
+      },
+    });
+
+    const heroAnimation = tl.current
+      .fromTo(
+        charSplit.chars,
+
+        { opacity: 0, yPercent: 25 },
+        {
+          opacity: 1,
+          yPercent: 0,
+          duration: 2,
+          ease: 'back',
+          stagger: 0.05,
+        }
+      )
+      .fromTo(
+        lineSplit.words,
+        { opacity: 0, y: 50 },
+        { opacity: 1, y: 0, duration: 2, ease: 'back', stagger: 0.05 },
+        '-=1.5'
+      )
+      .fromTo(
+        q(`#${id}-link`),
+        { opacity: 0 },
+        { opacity: 1, ease: 'sine.in' },
+        '-=1'
+      );
+    let st = gsap.to(ref.current, {
+      scrollTrigger: {
+        trigger: ref.current,
+        start: 'top center',
+        end: 'bottom',
+        animation: heroAnimation,
+        invalidateOnRefresh: true,
+      },
+    });
+
+    return () => {
+      heroAnimation.progress(1); // reverts the SplitText in the onComplete
+      st.kill();
+    };
   }, [ref, q, id]);
 
   return <Box ref={ref}>{children}</Box>;

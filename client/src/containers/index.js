@@ -23,3 +23,4 @@ export { default as GreenhouseContainer } from './Greenhouse';
 export { default as ReviewsContainer } from './Reviews';
 export { default as ShippedContainer } from './Shipped';
 export { default as TextPathContainer } from './TextPath';
+export { default as HeroContainer } from './Hero';

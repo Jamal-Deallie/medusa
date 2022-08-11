@@ -43,14 +43,14 @@ export default function NewsLetterInput() {
     <NewsLetterSection>
       <Box sx={{ my: 2, textAlign: 'center' }}>
         {error && (
-          <Typography variant='body2' sx={{ color: 'secondary.main' }}>
+          <Typography variant='body2' color='primary'>
             {error}
           </Typography>
         )}
       </Box>
       <NewsLetterContent onSubmit={handleSubmit}>
         <NewsLetterHeader>Get the Dirt</NewsLetterHeader>
-        <Typography variant='body2' sx={{ color: 'secondary.light' }}>
+        <Typography variant='body2' color='primary'>
           Stay in the loop with special offers, plant-parenting tips, and more.
         </Typography>
         <EmailInput>
