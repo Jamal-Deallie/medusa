@@ -1,20 +1,18 @@
 body {
   margin: 0;
   font-size: 62.5%;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-kerning: none;
-  -webkit-text-rendering: optimizeSpeed;
-  text-rendering: optimizeSpeed;
-  backface-visibility: 'hidden';
 }
 
 html {
+  scroll-behavior: smooth;
   font-size: 62.5%;
 }
 
 .no-scroll {
   overflow: hidden !important;
+}
+* {
+  box-sizing: border-box;
 }
 
 *,
@@ -101,7 +99,6 @@ video {
   margin: 0;
   padding: 0;
   border: 0;
-  vertical-align: baseline;
 }
 
 ol,

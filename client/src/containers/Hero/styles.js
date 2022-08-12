@@ -4,9 +4,14 @@ import { Link } from 'react-router-dom';
 
 export const HeroSection = styled(Box)({
   width: '100%',
-  height: 'calc(100vh - 10rem)',
+  height: '100vh',
   overflow: 'hidden',
   position: 'relative',
+  backgroundImage:
+    'linear-gradient(rgba(20, 20, 20, .5),rgba(20, 20, 20, .5)), url("https://res.cloudinary.com/dtwk4dm3g/image/upload/q_100/v1660182569/Medusa/hero.webp")',
+  backgroundPosition: 'center center',
+  backgroundRepeat: 'no-repeat',
+  backgroundSize: 'cover',
 });
 
 export const HeroInnerContainer = styled(Box)({
@@ -33,31 +38,31 @@ export const Heading = styled(Typography)(({ theme }) => ({
   //   overflow: 'hidden'
 }));
 
-export const Image = styled('img')(({ theme }) => ({
-  filter: 'brightness(60%)',
-  objectFit: 'cover',
-  position: 'absolute',
-  top: 0,
-  right: 0,
-  left: 0,
-  width: '100%',
-  height: '100vh',
-  [theme.breakpoints.down('md')]: {
-    overflow: 'hidden',
-  },
-}));
-
 export const CustomLink = styled(Link)(({ theme }) => ({
   fontFamily: 'muli, sans-serif',
   transition: 'color borderBottom 0.3s ease',
-  borderBottom: `1px solid ${theme.palette.secondary.light}`,
   fontSize: 'clamp(1.41rem, calc(1.10rem + 1.52vw), 2.98rem)',
   fontWeight: 600,
   color: theme.palette.secondary.light,
   cursor: 'pointer',
+  position: 'relative',
+  '&::before': {
+    content: '""',
+    position: 'absolute',
+    width: '100%',
+    height: '1.2px',
+    left: 0,
+    bottom: '-5px',
+    background: theme.palette.secondary.light,
+    transform: 'scale(1)',
+    transformOrigin: 'left center',
+    transition: 'transform .2s ease-in-out',
+  },
   '&:hover': {
     color: theme.palette.primary.main,
-    borderBottom: `1px solid ${theme.palette.primary.main}`,
+    '&::before': {
+      background: theme.palette.primary.main,
+    },
   },
   [theme.breakpoints.down('md')]: {
     marginTop: 0,
@@ -81,6 +86,5 @@ export const Subheader = styled(Typography)(({ theme }) => ({
   marginBottom: '5.5rem',
   [theme.breakpoints.down('md')]: {
     margin: '2.5vh 0',
-
   },
 }));

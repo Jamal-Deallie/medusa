@@ -1,5 +1,4 @@
 import {
-  // LandingContainer,
   HeroContainer,
   FeaturedInContainer,
   VisitContainer,
@@ -7,8 +6,6 @@ import {
   ProcessContainer,
   QuestionsContainer,
   CTAContainer,
-  MissionContainer,
-  TextPathContainer,
 } from '../../containers';
 
 export default function HomePage() {
@@ -19,7 +16,6 @@ export default function HomePage() {
       <FeaturedInContainer />
       <ProcessContainer />
       <VisitContainer />
-      {/* <TextPathContainer /> */}
       <QuestionsContainer />
       <CTAContainer />
     </>

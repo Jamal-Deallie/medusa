@@ -16,7 +16,7 @@ export default function QuestionsContainer() {
       webLink='/contact'
       label='Contact Us'
       fd='row-reverse'
-      pt='0'
+
     />
   );
 }

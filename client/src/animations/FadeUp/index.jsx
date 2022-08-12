@@ -6,14 +6,13 @@ import { Box } from '@mui/material';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 export default function FadeUp({ children, id }) {
-
   const [q, ref] = useRefSelector();
 
   useEnhancedEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
     gsap.fromTo(
-      q(`#${id}-fadeUp`),
+      ref.current,
       { opacity: 0, y: '50%' },
       {
         y: '0%',
@@ -29,7 +28,7 @@ export default function FadeUp({ children, id }) {
     );
 
     return () => {
-      ScrollTrigger.refresh()
+      ScrollTrigger.refresh();
     };
   }, [q, id, ref]);
 

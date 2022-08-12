@@ -6,13 +6,9 @@ import {
   Text,
   ContentContainer,
   CustomLink,
+  ContentSection,
 } from './styles';
-import {
-  FadeUp,
-  FadeAnimation,
-  TextFadeAnimation,
-  TextRotateAnimation,
-} from '../../animations';
+import { FadeUp, FadeIn, MaskOut } from '../../animations';
 
 export default function ContentLayout({
   src,
@@ -25,35 +21,33 @@ export default function ContentLayout({
   webLink,
   link,
   label,
-  pb,
-  pt,
+  pd,
 }) {
   return (
-    <ContentInner $fd={fd} $pb={pb} $pt={pt} id={`${id}-container`}>
-      <FadeAnimation id={id}>
-        <ImageContainer id={`${id}-container`}>
-          <Image $br={br} src={src} alt={alt} id={`${id}-fade`} />
-        </ImageContainer>
-      </FadeAnimation>
+    <ContentSection $pd={pd}>
+      <ContentInner $fd={fd} id={`${id}-container`}>
+        <FadeIn>
+          <ImageContainer id={`${id}-container`}>
+            <Image src={src} alt={alt} />
+          </ImageContainer>
+        </FadeIn>
 
-      <ContentContainer>
-        <TextRotateAnimation id={id}>
-          <Heading id={`${id}-heading`}>{title}</Heading>
-        </TextRotateAnimation>
-        <TextFadeAnimation id={id}>
-          <Text sx={{ overflow: 'hidden' }} id={`${id}-text`}>
-            {description}
-          </Text>
-        </TextFadeAnimation>
-
-        {link && (
-          <FadeUp id={id}>
-            <CustomLink to={webLink} id={`${id}-fadeUp`}>
-              {label}
-            </CustomLink>
+        <ContentContainer>
+          <FadeUp>
+            <Heading>{title}</Heading>
           </FadeUp>
-        )}
-      </ContentContainer>
-    </ContentInner>
+          <MaskOut>
+            <Text>{description}</Text>
+          </MaskOut>
+          {link && (
+            <FadeUp>
+              <CustomLink to={webLink} id={`${id}-fadeUp`}>
+                {label}
+              </CustomLink>
+            </FadeUp>
+          )}
+        </ContentContainer>
+      </ContentInner>
+    </ContentSection>
   );
 }

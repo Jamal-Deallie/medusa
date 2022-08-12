@@ -11,6 +11,7 @@ import {
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import { useNewsLetterMutation } from '../../features/newsletter/newsLetterSlice';
 import { Typography, Box } from '@mui/material';
+import { FadeUp, FadeIn, MaskOut } from '../../animations';
 
 export default function NewsLetterInput() {
   const [email, setEmail] = useState('');
@@ -49,7 +50,9 @@ export default function NewsLetterInput() {
         )}
       </Box>
       <NewsLetterContent onSubmit={handleSubmit}>
-        <NewsLetterHeader>Get the Dirt</NewsLetterHeader>
+        <FadeUp>
+          <NewsLetterHeader>Get the Dirt</NewsLetterHeader>
+        </FadeUp>
         <Typography variant='body2' color='primary'>
           Stay in the loop with special offers, plant-parenting tips, and more.
         </Typography>

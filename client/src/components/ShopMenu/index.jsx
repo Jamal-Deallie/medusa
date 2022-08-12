@@ -12,7 +12,8 @@ import {
 import { gsap } from 'gsap';
 import useArrayRef from '../../hooks/useArrayRef';
 import { navItems } from '../../shared/navItems';
-import { Typography } from '@mui/material';
+import { Typography, Box } from '@mui/material';
+import { Search } from '../../components';
 
 export default function ShopMenu() {
   const tl = useRef();
@@ -87,6 +88,11 @@ export default function ShopMenu() {
                   $dn={'none'}>
                   Account
                 </Links>
+              </LinkWrap>
+              <LinkWrap>
+                <Box ref={setLinks}>
+                  <Search />
+                </Box>
               </LinkWrap>
             </LinkContainer>
           </MenuWrapper>

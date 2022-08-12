@@ -7,7 +7,7 @@ import {
   ContentContainer,
   CustomerSection,
 } from './styles';
-import { TextFadeAnimation, TextRotateAnimation } from '../../animations';
+import { FadeUp, FadeIn, MaskOut } from '../../animations';
 
 export default function CustomersContainer() {
   return (
@@ -23,19 +23,19 @@ export default function CustomersContainer() {
         </VideoContainer>
 
         <ContentContainer>
-          <TextRotateAnimation id={'customer'}>
+          <FadeUp>
             <Heading id='customer-heading'>
               Everyone Should Live with a Little More Green
             </Heading>
-          </TextRotateAnimation>
-          <TextFadeAnimation id={'customer'}>
-            <Text sx={{ overflow: 'hidden' }} id='customer-text'>
+          </FadeUp>
+          <MaskOut>
+            <Text>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
               enim ad minim veniam, quis nostrud exercitation ullamco laboris
               nisi ut aliquip ex ea commodo consequat.
             </Text>
-          </TextFadeAnimation>
+          </MaskOut>
         </ContentContainer>
       </ContentInner>
     </CustomerSection>

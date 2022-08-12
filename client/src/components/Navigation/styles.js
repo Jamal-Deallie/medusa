@@ -43,6 +43,7 @@ export const NavLinks = styled(NavLink, {
   WebkitTextStroke: `0.2px ${theme.palette.secondary.main}`,
   color: theme.palette.secondary.main,
   fontSize: '1.563rem',
+  letterSpacing: '.5px',
   fontWeight: 300,
   cursor: 'pointer',
   fontFamily: 'muli, sans-serif',

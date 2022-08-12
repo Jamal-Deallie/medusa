@@ -41,15 +41,13 @@ export const Links = styled(Link, {
   fontFamily: 'tenez, sans-serif',
   fontStyle: 'italic',
   overflow: 'hidden',
-  lineHeight: 1.5,
-  padding: 'calc(8px + 1.5625vw)',
+  lineHeight: 1.2,
   display: $dn ? 'none' : 'block',
   '&:hover': {
     color: theme.palette.secondary.main,
   },
   [theme.breakpoints.down('md')]: {
     display: 'block',
-    fontSize: '4.8rem',
   },
 }));
 
@@ -79,8 +77,8 @@ export const LinkContainer = styled(Box)(({ theme }) => ({
   maxWidth: '140rem',
   height: 'auto',
   overflow: 'hidden',
-  [theme.breakpoints.down('lg')]: {
-    gap: '1rem',
+  [theme.breakpoints.down('md')]: {
+    gap: '3rem',
     flexDirection: 'column',
   },
 }));
@@ -95,9 +93,8 @@ export const MenuWrapper = styled(Box)(({ theme }) => ({
   justifyContent: 'center',
   flexDirection: 'column',
   height: '100vh',
-  gap: '2.5rem',
   [theme.breakpoints.down('md')]: {
-    marginTop: '5.5rem',
+    marginTop: '4.5rem',
     justifyContent: 'flex-start',
   },
 }));

@@ -1,16 +1,17 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useLayoutEffect } from 'react';
 import { Box } from '@mui/material';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
 import useRefSelector from '../../hooks/useRefSelector';
+import { useEnhancedEffect } from '../../hooks/useEnhancedEffect';
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 export default function TextFadeAnimation({ children, id }) {
   const [q, ref] = useRefSelector();
   const tl = useRef();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     let lineSplit = new SplitText(q(`#${id}-text`), {
       type: 'lines',
     });
@@ -44,6 +45,6 @@ export default function TextFadeAnimation({ children, id }) {
       flexAnimation.progress(1);
       st.kill();
     };
-  }, []);
+  }, [q, ref, tl]);
   return <Box ref={ref}>{children}</Box>;
 }

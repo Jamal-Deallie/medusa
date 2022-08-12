@@ -3,10 +3,10 @@ import { Typography, Box } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 export const ContentSection = styled('section', {
-  shouldForwardProp: prop => prop !== '$pb',
-})(({ theme, $pb }) => ({
+  shouldForwardProp: prop => prop !== '$pd',
+})(({ theme, $pd }) => ({
   background: theme.palette.secondary.light,
-  padding: '5% 0',
+  padding: $pd ? $pd : '5% 0',
 }));
 
 export const ContentContainer = styled(Box)(({ theme }) => ({
@@ -25,7 +25,7 @@ export const CustomLink = styled(Link)(({ theme }) => ({
   marginTop: '5.5rem',
   fontFamily: 'muli, sans-serif',
   alignItems: 'center',
-  transition: 'color .3s ease',
+  transition: 'color 0.3s ease-in',
   display: 'inline-flex',
   boxSizing: 'border-box',
   padding: '0 1.7rem',
@@ -97,9 +97,7 @@ export const ContentInner = styled(Box, {
   margin: '0 auto',
   gap: '2rem',
   flexDirection: $fd ? 'row-reverse' : 'row',
-  paddingBottom: $pb ? $pb : '5%',
   position: 'relative',
-  paddingTop: $pt ? $pt : '5%',
   [theme.breakpoints.down('md')]: {
     flexDirection: 'column-reverse',
   },

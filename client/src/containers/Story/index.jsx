@@ -15,7 +15,7 @@ export default function StoryContainer() {
       webLink={'about'}
       label='Learn'
       id='story'
-      pt='10%'
+      pd='7.5% 0 7.5%'
     />
   );
 }

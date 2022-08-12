@@ -1,5 +1,5 @@
 import { styled } from '@mui/material/styles';
-import { InputBase, Typography } from '@mui/material';
+import { InputBase, Typography, Box } from '@mui/material';
 
 export const SearchSection = styled('div')(({ theme }) => ({
   width: '100%',
@@ -94,9 +94,30 @@ export const Icon = styled('img')(({ theme }) => ({
   },
 }));
 
-export const SearchOption = styled(Typography)(({ theme }) => ({
+export const SearchOption = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
     display: 'none',
   },
 }));
 
+export const MobileOption = styled(Typography)(({ theme }) => ({
+  display: 'none',
+
+  [theme.breakpoints.down('md')]: {
+    display: 'block',
+    color: theme.palette.primary.main,
+    fontSize: 'clamp(3.13rem, calc(1.52rem + 8.00vw), 7rem)',
+    fontWeight: 400,
+    textTransform: 'capitalize',
+    cursor: 'pointer',
+    transition: 'color 0.2s ease',
+    position: 'relative',
+    fontFamily: 'tenez, sans-serif',
+    fontStyle: 'italic',
+    overflow: 'hidden',
+    lineHeight: 1.2,
+    '&:hover': {
+      color: theme.palette.secondary.main,
+    },
+  },
+}));

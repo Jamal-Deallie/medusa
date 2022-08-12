@@ -1,21 +1,29 @@
-import { useEffect } from 'react';
-import { Box } from '@mui/material';
+import { useEffect, useRef } from 'react';
+import { Typography } from '@mui/material';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
 import useRefSelector from '../../hooks/useRefSelector';
+gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(SplitText);
 
 export default function TextRotateAnimation({ children, id }) {
-  const [q, ref] = useRefSelector();
+  const ref = useRef();
+  const tl = useRef();
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger, SplitText);
-    let lineSplit = new SplitText(q(`#${id}-heading`), {
-      type: 'lines chars',
+    let wordSplit = new SplitText(ref.current, {
+      type: 'words, chars',
     });
 
-    gsap.fromTo(
-      lineSplit.chars,
+    tl.current = gsap.timeline({
+      onComplete() {
+        wordSplit.revert();
+      },
+    });
+
+    let textAnimation = tl.current.fromTo(
+      wordSplit.chars,
       //   { y: 80, opacity: 0 },
       { y: '110%', rotate: '-2deg', opacity: 0 },
       {
@@ -26,18 +34,22 @@ export default function TextRotateAnimation({ children, id }) {
         duration: 1,
         ease: 'power3.out',
         offset: 10,
-        scrollTrigger: {
-          trigger: ref.current,
-          start: 'top center',
-        },
-        onComplete() {
-          lineSplit.revert();
-        },
       }
     );
+    let st = ScrollTrigger.create({
+      trigger: ref.current,
+      start: 'top center',
+      end: 'bottom',
+      animation: textAnimation,
+    });
     return () => {
-      ScrollTrigger.refresh()
+      textAnimation.progress(1); // reverts the SpliText in the onComplete
+      st.kill();
     };
-  }, [q, id, ref]);
-  return <Box ref={ref}>{children}</Box>;
+  }, []);
+  return (
+    <Typography ref={ref} variant='subheader1'>
+      {children}
+    </Typography>
+  );
 }

@@ -59,7 +59,6 @@ export const customTheme = createTheme({
       fontSize: 'clamp(2.38rem, calc(2.13rem + 1.29vw), 3.73rem)',
       fontWeight: 400,
       fontFamily: 'tenez, sans-serif',
-      textAlign: 'center',
     },
     subheader2: {
       color: secondaryLight,
@@ -106,7 +105,7 @@ export const customTheme = createTheme({
       position: 'relative',
       display: 'inline-block',
       padding: '3px 0',
-      letterSpacing: '1.2px',
+      letterSpacing: '.5px',
       '&::before': {
         content: '""',
         position: 'absolute',
