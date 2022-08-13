@@ -6,6 +6,7 @@ import {
   Logo,
   LinkContainer,
   OptionsContainer,
+  NavSearch,
 } from './styles';
 import { Cart, Search, ShopMenu } from '../../components';
 import { selectToken } from '../../features/auth/authSlice';
@@ -31,7 +32,9 @@ export default function Navigation() {
             <Logo src='/images/logos/logo-rough.svg' alt='medusa logo' />
           </Link>
           <OptionsContainer>
-            <Search />
+            <NavSearch>
+              <Search />
+            </NavSearch>
             <NavLinks to={token ? 'account' : 'signin'} $dn={'none'}>
               Account
             </NavLinks>

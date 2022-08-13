@@ -74,6 +74,13 @@ export const customTheme = createTheme({
       fontFamily: 'tenez, sans-serif',
       textAlign: 'center',
     },
+    subheader4: {
+      fontSize: 'clamp(4.66rem, calc(3.80rem + 4.28vw), 9.10rem)',
+      fontWeight: 400,
+      fontFamily: 'tenez, sans-serif',
+      color: primaryColor,
+      textTransform: 'uppercase',
+    },
     body1: {
       fontSize: '1.6rem',
       fontFamily: 'muli, sans-serif',

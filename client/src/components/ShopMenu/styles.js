@@ -98,3 +98,10 @@ export const MenuWrapper = styled(Box)(({ theme }) => ({
     justifyContent: 'flex-start',
   },
 }));
+
+export const MenuSearch = styled(Box)(({ theme }) => ({
+  display: 'none',
+  [theme.breakpoints.down('md')]: {
+    display: 'block',
+  },
+}));

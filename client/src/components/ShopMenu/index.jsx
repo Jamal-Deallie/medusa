@@ -8,11 +8,12 @@ import {
   MenuWrapper,
   MenuContainer,
   LinkWrap,
+  MenuSearch,
 } from './styles';
 import { gsap } from 'gsap';
 import useArrayRef from '../../hooks/useArrayRef';
 import { navItems } from '../../shared/navItems';
-import { Typography, Box } from '@mui/material';
+import { Typography } from '@mui/material';
 import { Search } from '../../components';
 
 export default function ShopMenu() {
@@ -46,7 +47,7 @@ export default function ShopMenu() {
         yPercent: 0,
         stagger: 0.1,
       });
-  }, []);
+  }, [links]);
 
   useEffect(() => {
     openMenu ? tl.current.play() : tl.current.reverse();
@@ -90,9 +91,9 @@ export default function ShopMenu() {
                 </Links>
               </LinkWrap>
               <LinkWrap>
-                <Box ref={setLinks}>
+                <MenuSearch ref={setLinks}>
                   <Search />
-                </Box>
+                </MenuSearch>
               </LinkWrap>
             </LinkContainer>
           </MenuWrapper>

@@ -1,24 +1,24 @@
 import { useRef } from 'react';
 import { useEnhancedEffect } from '../../hooks/useEnhancedEffect';
-import useRefSelector from '../../hooks/useRefSelector';
 import { gsap } from 'gsap';
 import { Box } from '@mui/material';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-export default function FadeUp({ children, id }) {
-  const [q, ref] = useRefSelector();
+export default function FadeUp({ as, children, duration, delay, y, ease }) {
+  const ref = useRef();
 
   useEnhancedEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
     gsap.fromTo(
       ref.current,
-      { opacity: 0, y: '50%' },
+      { opacity: 0, y: y || '50%' },
       {
         y: '0%',
-        duration: 1,
+        duration: duration || 1,
+        delay: delay || 0,
         opacity: 1,
-        ease: 'sine.in',
+        ease: ease || 'sine.in',
 
         scrollTrigger: {
           trigger: ref.current,
@@ -30,7 +30,11 @@ export default function FadeUp({ children, id }) {
     return () => {
       ScrollTrigger.refresh();
     };
-  }, [q, id, ref]);
+  }, [ref]);
 
-  return <Box ref={ref}>{children}</Box>;
+  return (
+    <Box as={as} ref={ref}>
+      {children}
+    </Box>
+  );
 }

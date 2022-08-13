@@ -7,11 +7,13 @@ import {
   QuestionsContainer,
   CTAContainer,
 } from '../../containers';
+import { Marquee } from '../../components';
 
 export default function HomePage() {
   return (
     <>
       <HeroContainer />
+      <Marquee />
       <StoryContainer />
       <FeaturedInContainer />
       <ProcessContainer />

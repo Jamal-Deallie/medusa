@@ -11,7 +11,7 @@ import {
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import { useNewsLetterMutation } from '../../features/newsletter/newsLetterSlice';
 import { Typography, Box } from '@mui/material';
-import { FadeUp, FadeIn, MaskOut } from '../../animations';
+import { FadeUp } from '../../animations';
 
 export default function NewsLetterInput() {
   const [email, setEmail] = useState('');

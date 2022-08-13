@@ -15,15 +15,13 @@ const webhookRouter = require('./routes/webhookRoutes');
 const contactRouter = require('./routes/contactRoutes');
 const newsLetterRouter = require('./routes/newsLetterRoutes');
 
-
 const app = express();
 
 connectDB();
 
-
 app.use(
   cors({
-    origin: process.env.WEB_APP_URL,
+    origin: [process.env.WEB_APP_URL],
   })
 );
 

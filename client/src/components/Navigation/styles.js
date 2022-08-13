@@ -1,5 +1,7 @@
 import { styled } from '@mui/system';
 import { NavLink } from 'react-router-dom';
+import { Box } from '@mui/material';
+
 
 export const Nav = styled('nav')(({ theme }) => ({
   height: '10rem',
@@ -92,5 +94,11 @@ export const OptionsContainer = styled('div')(({ theme }) => ({
   cursor: 'pointer',
   [theme.breakpoints.down('md')]: {
     gap: '2.5rem',
+  },
+}));
+
+export const NavSearch = styled(Box)(({ theme }) => ({
+  [theme.breakpoints.down('md')]: {
+    display: 'none',
   },
 }));

@@ -1,7 +1,6 @@
 import { useRef, useEffect } from 'react';
 import { Box } from '@mui/material';
 import useRefSelector from '../../hooks/useRefSelector';
-import { useEnhancedEffect } from '../../hooks/useEnhancedEffect';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
@@ -36,6 +35,7 @@ export default function LandingAnimation({ children, id }) {
     });
 
     const heroAnimation = tl.current
+
       .fromTo(
         charSplit.chars,
 

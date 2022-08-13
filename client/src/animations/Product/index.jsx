@@ -4,6 +4,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import useRefSelector from '../../hooks/useRefSelector';
 
+
 export default function ProductAnimation({ children }) {
   const [q, ref] = useRefSelector();
 

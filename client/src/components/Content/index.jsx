@@ -8,7 +8,7 @@ import {
   CustomLink,
   ContentSection,
 } from './styles';
-import { FadeUp, FadeIn, MaskOut } from '../../animations';
+import { FadeUp, FadeIn } from '../../animations';
 
 export default function ContentLayout({
   src,
@@ -36,9 +36,9 @@ export default function ContentLayout({
           <FadeUp>
             <Heading>{title}</Heading>
           </FadeUp>
-          <MaskOut>
+          <FadeIn>
             <Text>{description}</Text>
-          </MaskOut>
+          </FadeIn>
           {link && (
             <FadeUp>
               <CustomLink to={webLink} id={`${id}-fadeUp`}>
