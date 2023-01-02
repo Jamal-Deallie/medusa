@@ -4,7 +4,7 @@ export const apiSlice = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
     mode: 'cors',
-    baseUrl: 'https://medusa-app-jd.herokuapp.com/api/v1',
+    baseUrl: process.env.REACT_APP_URL,
     // baseUrl: 'http://localhost:4000',
     prepareHeaders: (headers, { getState }) => {
       const token = JSON.parse(localStorage.getItem('token'));
