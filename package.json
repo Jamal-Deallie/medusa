@@ -5,7 +5,7 @@
   "repository": "https://github.com/Jamal-Deallie/medusa.git",
   "license": "MIT",
   "engines": {
-    "node": "17.x"
+    "node": "16.x"
   },
   "scripts": {
     "start": "node server/server.js",
