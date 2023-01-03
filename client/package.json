@@ -1,7 +1,7 @@
 {
   "name": "client",
   "version": "0.1.0",
-  "proxy": "https://medusa-app-jd.herokuapp.com",
+  "proxy": "https://medusa-production-b90a.up.railway.app/",
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",

@@ -9,7 +9,9 @@ exports.updateProduct = factory.updateOne(Product);
 exports.deleteProduct = factory.deleteOne(Product);
 
 exports.getProductsBySearch = catchAsync(async (req, res) => {
+  console.log('testing');
   const { term } = req.query;
+  console.log(term);
 
   try {
     const query = new RegExp(term, 'i');

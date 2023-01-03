@@ -4,8 +4,7 @@ export const apiSlice = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
     mode: 'cors',
-    baseUrl: process.env.REACT_APP_URL,
-    // baseUrl: 'http://localhost:4000',
+    baseUrl: 'https://medusa-production-b90a.up.railway.app/api/v1',
     prepareHeaders: (headers, { getState }) => {
       const token = JSON.parse(localStorage.getItem('token'));
       if (token) {
